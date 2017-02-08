@@ -40,7 +40,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>   org.testng</groupId>
+            <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.10</version>
         </dependency>
@@ -49,6 +49,18 @@
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>2.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.3.5</version>
         </dependency>
 
         <dependency>
@@ -68,6 +80,18 @@
             <groupId>com.jayway.restassured</groupId>
             <artifactId>json-schema-validator</artifactId>
             <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.10</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.10</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

@@ -1,13 +1,13 @@
 package com.api;
 
 import  com.ApiUtils.ApiHeaders;
+
 import com.jayway.restassured.response.Header;
 import com.jayway.restassured.response.Headers;
 import com.jayway.restassured.response.Response;
 import org.testng.annotations.*;
-import com.jayway.restassured.*;
 import static com.jayway.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
+
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -18,19 +18,6 @@ import java.util.Map;
 public class getLedger {
 
    Map<String, String> headersMap = new ApiHeaders().headers();
-
-//    @BeforeTest
-//    public void setUp() {
-//
-//        given().
-//                headers(new Headers(headerList))
-////                header("Auth-Key", "UfHWKDi9mj8MlPpXpJNy5olw3DUPpEa_M6wTd0MYCZHzll3xZCSvkZVkusHzHnbVC9uU7_fuysX7EDqxy8V6z3qCSnd6Kc57J1pvtbbTSZY=").
-////                header("Content-Type", "application/json").
-////                body("  {\"id\":\"2\","
-////                        + " \"titile\":\"dummyTitle\","
-////                        + " \"author\":\"Vaibhav\" }  ");
-//
-//    }
 
     @Test
     public void Test01(){

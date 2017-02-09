@@ -6,7 +6,7 @@ import java.util.Map;
 import static com.jayway.restassured.RestAssured.given;
 
 
-public class ApiHeaders   {
+public class Apiheaders {
 
     private Map<String, String> map = new HashMap<>();
 

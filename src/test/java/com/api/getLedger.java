@@ -4,9 +4,7 @@ package com.api;
 
 import  com.ApiUtils.Apiheaders;
 
-import com.ApiUtils.Headers;
-import  com.model.allheader;
-import com.jayway.restassured.response.Header;
+import com.model.Manage_Header;
 
 import com.jayway.restassured.response.Response;
 import org.testng.annotations.*;
@@ -14,14 +12,12 @@ import static com.jayway.restassured.RestAssured.*;
 
 import  org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 
 public class getLedger {
 
-    allheader ah = new allheader();
+    Manage_Header header = new Manage_Header();
     String URL = "http://apitest.giddh.com/company/inventindore1483703191258019mki/";
 
     Map<String, String> headersMap = new Apiheaders().headers();
@@ -46,8 +42,7 @@ public class getLedger {
 
     @BeforeTest
     public void sethead(){
-       ah.all_Headers();
-
+        header.set_Headers();
     }
 
 
@@ -55,7 +50,7 @@ public class getLedger {
     public void getStocks(){
       Response resp =
                 given()
-                        .headers("Auth-Key", ah.getauth_key()).
+                        .headers("Auth-Key", header.getauth_key()).
                         // header("Content-Type", ah.get_type()).
                 when().
                        get( URL + "stocks");

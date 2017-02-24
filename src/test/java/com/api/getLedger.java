@@ -1,9 +1,10 @@
 package com.api;
 
 
-import  com.ApiUtils.Headers;
+
 import  com.ApiUtils.Apiheaders;
 
+import com.ApiUtils.Headers;
 import com.jayway.restassured.response.Header;
 
 import com.jayway.restassured.response.Response;
@@ -29,7 +30,7 @@ public class getLedger {
 //            Header header = new Header(key, value);
 //            headerList.add(header);
 //        }
-//        Response resp =given().headers(new Headers(headerList)).
+//        Response resp =given().headers(new Header(headerList)).
 //                body("  {\"id\":\"2\","
 //                        + " \"titile\":\"dummyTitle\","
 //                        + " \"author\":\"Vaibhav\" }  ").
@@ -42,7 +43,7 @@ public class getLedger {
 
     @Test
     public void Test02(){
-        com.ApiUtils.Headers h1 = new com.ApiUtils.Headers();
+        Headers h1 = new Headers();
         h1.setAuth_Key("UfHWKDi9mj8MlPpXpJNy5olw3DUPpEa_M6wTd0MYCZHzll3xZCSvkZVkusHzHnbVC9uU7_fuysX7EDqxy8V6z3qCSnd6Kc57J1pvtbbTSZY");
         h1.setType("application/json");
         Response resp =

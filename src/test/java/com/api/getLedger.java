@@ -5,6 +5,7 @@ package com.api;
 import  com.ApiUtils.Apiheaders;
 
 import com.ApiUtils.Headers;
+import  com.model.allheader;
 import com.jayway.restassured.response.Header;
 
 import com.jayway.restassured.response.Response;
@@ -19,6 +20,9 @@ import java.util.Map;
 
 
 public class getLedger {
+
+    allheader ah = new allheader();
+    String URL = "http://apitest.giddh.com/company/inventindore1483703191258019mki/";
 
     Map<String, String> headersMap = new Apiheaders().headers();
 
@@ -40,19 +44,22 @@ public class getLedger {
 //        Assert.assertEquals(resp.getStatusCode(), 200);
 //    }
 
+    @BeforeTest
+    public void sethead(){
+       ah.all_Headers();
+
+    }
+
 
     @Test
-    public void Test02(){
-        Headers h1 = new Headers();
-        h1.setAuth_Key("UfHWKDi9mj8MlPpXpJNy5olw3DUPpEa_M6wTd0MYCZHzll3xZCSvkZVkusHzHnbVC9uU7_fuysX7EDqxy8V6z3qCSnd6Kc57J1pvtbbTSZY");
-        h1.setType("application/json");
-        Response resp =
+    public void getStocks(){
+      Response resp =
                 given()
-                        .headers("Auth-Key", h1.getAuth_Key()).
-                        header("Content-Type", h1.getType()).
+                        .headers("Auth-Key", ah.getauth_key()).
+                        // header("Content-Type", ah.get_type()).
                 when().
-                get("http://apitest.giddh.com/company/inventindore1483703191258019mki/stocks");
-        System.out.println(resp.asString());
-        Assert.assertEquals(resp.getStatusCode(), 200);
+                       get( URL + "stocks");
+                       System.out.println(resp.asString());
+                       Assert.assertEquals(resp.getStatusCode(), 200);
     }
 }

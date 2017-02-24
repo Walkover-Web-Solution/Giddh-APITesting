@@ -10,9 +10,7 @@ public class ManageURL {
     }
 
     public String getURL(){
-        System.out.println("URL is " + b1.getURL());
         return b1.getURL();
-
     }
 
 }

@@ -49,7 +49,7 @@ public class StocksAPI {
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
                         // header("Content-Type", ah.get_type()).
-                                when().
+                when().
                         get( URL + "stocks");
         System.out.println(resp.asString());
         Assert.assertEquals(resp.getStatusCode(), 200);
@@ -60,9 +60,9 @@ public class StocksAPI {
         given()
                 .headers
                       ("Auth-Key", header.getAuthKey()).
-                // header("Content-Type", ah.get_type())
+                      // header("Content-Type", ah.get_type())
                 when().
-                     get( URL + "stocks").
+                      get( URL + "stocks").
                 then().
                      assertThat().
                      body(

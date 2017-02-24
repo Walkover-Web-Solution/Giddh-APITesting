@@ -10,6 +10,8 @@ import com.model.Manage_Header;
 import io.restassured.response.*;
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.Matchers.containsString;
 
 import org.hamcrest.Matchers.*;
@@ -49,7 +51,6 @@ public class getLedger {
         header.set_Headers();
     }
 
-
     @Test
     public void getStocks(){
         Response resp =
@@ -70,7 +71,9 @@ public class getLedger {
                         when().
                 get( URL + "stocks").
                 then().
-                body(containsString("success"));
+                assertThat().
+                body("body.results[0].stockGroup.uniqueName", equalTo("textsms"));
+               // body(containsString("sms1"));
         //  System.out.println(resp.asString());
         //  Assert.assertEquals(resp.getStatusCode(), 200);
     }

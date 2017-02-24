@@ -66,13 +66,17 @@ public class getLedger {
     @Test
     public void getStocksValidater(){
         given()
-                .headers("Auth-Key", header.getAuthKey()).
-                // header("Content-Type", ah.get_type()).
-                        when().
-                get( URL + "stocks").
+                .headers
+                      ("Auth-Key", header.getAuthKey()).
+                // header("Content-Type", ah.get_type())
+                when().
+                     get( URL + "stocks").
                 then().
-                assertThat().
-                body("body.results[0].stockGroup.uniqueName", equalTo("textsms"));
+                     assertThat().
+                     body(
+                              "body.results[0].stockGroup.uniqueName", equalTo("textsms"),
+                              "body.results[0].stockGroup.name", equalTo("text sms1")
+                         );
                // body(containsString("sms1"));
         //  System.out.println(resp.asString());
         //  Assert.assertEquals(resp.getStatusCode(), 200);

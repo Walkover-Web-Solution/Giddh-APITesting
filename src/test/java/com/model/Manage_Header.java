@@ -11,11 +11,11 @@ public class Manage_Header {
          h2.setType("application/json");
      }
 
-    public String getauth_key(){
+    public String getAuthKey(){
         return h2.getAuth_Key();
     }
 
-    public String get_type(){
+    public String getType(){
         return h2.getType();
     }
 

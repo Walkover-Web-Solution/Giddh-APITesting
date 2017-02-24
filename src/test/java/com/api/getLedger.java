@@ -50,7 +50,7 @@ public class getLedger {
     public void getStocks(){
       Response resp =
                 given()
-                        .headers("Auth-Key", header.getauth_key()).
+                        .headers("Auth-Key", header.getAuthKey()).
                         // header("Content-Type", ah.get_type()).
                 when().
                        get( URL + "stocks");

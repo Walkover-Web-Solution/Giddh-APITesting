@@ -1,22 +1,26 @@
 package com.api;
 
 import  com.ApiUtils.Apiheaders;
-import com.model.Manage_Header;
+import com.model.ManageHeaders;
+import  com.model.*;
 import io.restassured.response.*;
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.Matchers.containsString;
-import org.hamcrest.Matchers.*;
+
 import  org.testng.Assert;
 import java.util.Map;
 
 
 public class StocksAPI {
 
-    Manage_Header header = new Manage_Header();
+    ManageHeaders header = new ManageHeaders();
+
+
     String URL = "http://apitest.giddh.com/company/inventindore1483703191258019mki/";
+
 
     Map<String, String> headersMap = new Apiheaders().headers();
 
@@ -53,6 +57,9 @@ public class StocksAPI {
                         get( URL + "stocks");
         System.out.println(resp.asString());
         Assert.assertEquals(resp.getStatusCode(), 200);
+
+        Long time = resp.then().extract().time();
+        System.out.println("Response Time = " + time + " ms");
     }
 
     @Test
@@ -68,7 +75,8 @@ public class StocksAPI {
                      body(
                               "body.results[0].stockGroup.uniqueName", equalTo("textsms"),
                               "body.results[0].stockGroup.name", equalTo("text sms1")
-                         );
+                         ).and().time(lessThan(2000L));
+
                // body(containsString("sms1"));
         //  System.out.println(resp.asString());
         //  Assert.assertEquals(resp.getStatusCode(), 200);

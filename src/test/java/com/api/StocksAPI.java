@@ -1,27 +1,19 @@
 package com.api;
 
-
-
 import  com.ApiUtils.Apiheaders;
-
 import com.model.Manage_Header;
-
-
 import io.restassured.response.*;
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.Matchers.containsString;
-
 import org.hamcrest.Matchers.*;
-
 import  org.testng.Assert;
-
 import java.util.Map;
 
 
-public class getLedger {
+public class StocksAPI {
 
     Manage_Header header = new Manage_Header();
     String URL = "http://apitest.giddh.com/company/inventindore1483703191258019mki/";

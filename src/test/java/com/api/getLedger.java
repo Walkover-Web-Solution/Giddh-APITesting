@@ -6,9 +6,13 @@ import  com.ApiUtils.Apiheaders;
 
 import com.model.Manage_Header;
 
-import com.jayway.restassured.response.Response;
+
+import io.restassured.response.*;
 import org.testng.annotations.*;
-import static com.jayway.restassured.RestAssured.*;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.containsString;
+
+import org.hamcrest.Matchers.*;
 
 import  org.testng.Assert;
 
@@ -41,20 +45,33 @@ public class getLedger {
 //    }
 
     @BeforeTest
-    public void sethead(){
+    public void setHeader(){
         header.set_Headers();
     }
 
 
     @Test
     public void getStocks(){
-      Response resp =
+        Response resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
                         // header("Content-Type", ah.get_type()).
-                when().
-                       get( URL + "stocks");
-                       System.out.println(resp.asString());
-                       Assert.assertEquals(resp.getStatusCode(), 200);
+                                when().
+                        get( URL + "stocks");
+        System.out.println(resp.asString());
+        Assert.assertEquals(resp.getStatusCode(), 200);
+    }
+
+    @Test
+    public void getStocksValidater(){
+        given()
+                .headers("Auth-Key", header.getAuthKey()).
+                // header("Content-Type", ah.get_type()).
+                        when().
+                get( URL + "stocks").
+                then().
+                body(containsString("success"));
+        //  System.out.println(resp.asString());
+        //  Assert.assertEquals(resp.getStatusCode(), 200);
     }
 }

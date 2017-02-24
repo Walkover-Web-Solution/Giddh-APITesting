@@ -2,7 +2,7 @@ package com.model;
 
 import  com.ApiUtils.Headers;
 
-public class Manage_Header {
+public class ManageHeaders {
 
     Headers headers = new Headers();
 

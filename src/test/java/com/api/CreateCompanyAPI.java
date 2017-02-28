@@ -9,18 +9,19 @@ public class CreateCompanyAPI {
 
     ManageURL baseURL = new ManageURL();
 
+
    @BeforeTest
    public void setURL(){
-       baseURL.setURL();
-       String URL = baseURL.getURL();
+
    }
 
 
 
     @Test
-    public void sam(){
+    public void createCompany(){
+        baseURL.setURL();
         String URL = baseURL.getURL();
-        String mainURL = URL + "company/companyname";
+        String mainURL = URL + "company/";
         System.out.println(mainURL);
 
     }

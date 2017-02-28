@@ -8,7 +8,7 @@ import java.util.*;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class HelperMethods {
-    /*
+    /**
     Verify the http response status returned. Check Status Code is 200?
     We can use Rest Assured library's response's getStatusCode method
     */
@@ -16,7 +16,7 @@ public class HelperMethods {
         assertEquals("Status Check Failed!", 200, res.getStatusCode());
     }
 
-    /*
+    /**
     Get Video Ids (For example 1)
     We can use get method of Rest Assured library's JsonPath Class's get method
     PArt of a response is shown below:
@@ -31,7 +31,7 @@ public class HelperMethods {
         return videoIdList;
     }
 
-    /*
+    /**
     Get Related Video Ids (For example 2)
     Structure of response is shown below:
     items:

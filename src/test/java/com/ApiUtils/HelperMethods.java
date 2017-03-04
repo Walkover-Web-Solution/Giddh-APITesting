@@ -16,6 +16,10 @@ public class HelperMethods {
         assertEquals("Status Check Failed!", 200, res.getStatusCode());
     }
 
+    public static void checkStatusIs201 (Response res) {
+        assertEquals("Status Check Failed!", 201, res.getStatusCode());
+    }
+
     /**
     Get Video Ids (For example 1)
     We can use get method of Rest Assured library's JsonPath Class's get method

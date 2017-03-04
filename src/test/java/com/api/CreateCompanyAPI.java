@@ -2,10 +2,9 @@ package com.api;
 
 import com.model.ManageHeaders;
 import com.model.ManageURL;
-import io.restassured.http.ContentType;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +22,8 @@ public class CreateCompanyAPI {
     @BeforeTest
     public void setHeader(){
         header.set_Headers();
+        baseURL.setURL();
+        String URL = baseURL.getURL() + "company/";
     }
 
 
@@ -47,8 +48,26 @@ public class CreateCompanyAPI {
                         .body(body).
                 when().
                         post(URL);
-                        System.out.println(resp);
-                        Assert.assertEquals(resp.getStatusCode(), 201);
+                        System.out.println(resp.asString());
+                        HelperMethods.checkStatusIs201(resp);
+    }
+
+
+    @Test
+    public void deleteCompany(){
+        baseURL.setURL();
+        String URL = baseURL.getURL() + "company/";
+
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+                given()
+                        .headers("Auth-Key", header.getAuthKey()).
+                when().
+                        delete(URL + "audi");
+                        HelperMethods.checkStatusIs200(resp);
     }
 
 }

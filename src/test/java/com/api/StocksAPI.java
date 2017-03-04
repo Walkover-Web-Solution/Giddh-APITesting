@@ -56,7 +56,7 @@ public class StocksAPI {
                 when().
                         get( URL + "stocks");
         System.out.println(resp.asString());
-//        Assert.assertEquals(resp.getStatusCode(), 200);
+       Assert.assertEquals(resp.getStatusCode(), 200);
         HelperMethods.checkStatusIs200(resp);
 
         Long time = resp.then().extract().time();

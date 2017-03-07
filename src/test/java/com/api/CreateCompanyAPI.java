@@ -23,7 +23,6 @@ public class CreateCompanyAPI {
     public void setHeader(){
         header.set_Headers();
         baseURL.setURL();
-        String URL = baseURL.getURL() + "company/";
     }
 
 
@@ -53,6 +52,7 @@ public class CreateCompanyAPI {
                         HelperMethods.checkStatusIs201(resp);
     }
 
+
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
         String URL = baseURL.getURL() + "company/";
@@ -68,13 +68,14 @@ public class CreateCompanyAPI {
                         HelperMethods.checkStatusIs200(resp);
     }
 
+
     @Test(dependsOnMethods={"createCompany"})
     public void shareCompany(){
 
         String URL = baseURL.getURL() + "company/audi/share";
 
         Map<String,String> body = new HashMap<>();
-        body.put("user", "chirag@walkover.in");
+        body.put("user", "walkover78@gmail.com");
         body.put("role", "edit");
 
         /**
@@ -93,13 +94,14 @@ public class CreateCompanyAPI {
 
     }
 
+
     @Test(dependsOnMethods={"createCompany"})
     public void unshareCompany(){
 
         String URL = baseURL.getURL() + "company/audi/unshare";
 
         Map<String,String> body = new HashMap<>();
-        body.put("user", "chirag@walkover.in");
+        body.put("user", "walkover78@gmail.com");
 
         /**
          * Main test and api call initiated
@@ -110,15 +112,12 @@ public class CreateCompanyAPI {
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                        when().
+                when().
                         put(URL);
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs200(resp);
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
 
     }
-
-
-
 
 
     @Test(dependsOnMethods={"getCompany"})

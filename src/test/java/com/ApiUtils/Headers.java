@@ -18,6 +18,10 @@ public class Headers {
         return Type;
     }
 
+    public String getHeader() {
+        return Type;
+    }
+
     public void setType(String type) {
         Type = type;
     }

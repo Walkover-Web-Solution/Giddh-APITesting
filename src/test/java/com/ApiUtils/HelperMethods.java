@@ -76,4 +76,10 @@ public class HelperMethods {
         }
         return true;
     }
+
+    public static void checkResponseTime (Response resp, String msg ) {
+         Long time = resp.then().extract().time();
+         System.out.println("Response Time of  "+ msg + time + " ms");
+    }
+
 }

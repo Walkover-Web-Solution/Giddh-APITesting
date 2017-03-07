@@ -27,7 +27,8 @@ public class CreateCompanyAPI {
     }
 
 
-    @Test
+    @Test(groups = { "functest", "company" })
+
     public void createCompany(){
 
         baseURL.setURL();
@@ -44,7 +45,8 @@ public class CreateCompanyAPI {
         Response resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey())
-                        .contentType("application/json")
+                        .headers("Content-Type", header.getType())
+                        //.contentType("application/json")
                         .body(body).
                 when().
                         post(URL);
@@ -55,7 +57,7 @@ public class CreateCompanyAPI {
 
     @Test
     public void deleteCompany(){
-        baseURL.setURL();
+
         String URL = baseURL.getURL() + "company/";
 
         /**

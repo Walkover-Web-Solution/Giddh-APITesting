@@ -2,18 +2,18 @@ package com.api;
 
 import  com.ApiUtils.*;
 import com.model.ManageHeaders;
-import  com.model.*;
+
 import io.restassured.response.*;
+
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.CoreMatchers.hasItems;
 
 import  org.testng.Assert;
 import java.util.Map;
 
-
+@Test
 public class StocksAPI {
 
     ManageHeaders header = new ManageHeaders();
@@ -52,15 +52,12 @@ public class StocksAPI {
         Response resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
-                        // header("Content-Type", ah.get_type()).
                 when().
-                        get( URL + "stocks");
-        System.out.println(resp.asString());
-       Assert.assertEquals(resp.getStatusCode(), 200);
-        HelperMethods.checkStatusIs200(resp);
-
-        Long time = resp.then().extract().time();
-        System.out.println("Response Time = " + time + " ms");
+                         get( URL + "stocks");
+                         System.out.println(resp.asString());
+                         Assert.assertEquals(resp.getStatusCode(), 200);
+                         HelperMethods.checkStatusIs200(resp);
+                         HelperMethods.checkResponseTime(resp, "Get Stock API is ");
 
 //        String json = resp.asString();
 //        JsonPath jp = new JsonPath(json);
@@ -71,18 +68,18 @@ public class StocksAPI {
 
     @Test
     public void getStocksValidater(){
-        given()
-                .headers
-                      ("Auth-Key", header.getAuthKey()).
-                      // header("Content-Type", ah.get_type())
+                given()
+                       .headers("Auth-Key", header.getAuthKey()).
                 when().
-                      get( URL + "stocks").
+                        get( URL + "stocks").
                 then().
-                     assertThat().
-                     body(
+                assertThat().
+                         body(
                               "body.results[0].stockGroup.uniqueName", equalTo("textsms"),
                               "body.results[0].stockGroup.name", equalTo("text sms1")
-                         ).and().time(lessThan(2000L));
+                         ).
+                and().
+                          time(lessThan(2000L));
 
                // body(containsString("sms1"));
         //  System.out.println(resp.asString());

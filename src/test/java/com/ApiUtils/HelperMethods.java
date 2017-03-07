@@ -82,4 +82,8 @@ public class HelperMethods {
          System.out.println("Response Time of  "+ msg + time + " ms");
     }
 
+    public static void printResponse( Response resp){
+        System.out.println(resp.asString());
+    }
+
 }

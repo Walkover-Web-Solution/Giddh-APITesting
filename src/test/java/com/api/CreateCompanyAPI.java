@@ -27,8 +27,7 @@ public class CreateCompanyAPI {
     }
 
 
-    @Test(groups = { "functest", "company" })
-
+    @Test
     public void createCompany(){
 
         baseURL.setURL();
@@ -50,12 +49,27 @@ public class CreateCompanyAPI {
                         .body(body).
                 when().
                         post(URL);
-                        System.out.println(resp.asString());
+                        HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs201(resp);
     }
 
-
     @Test
+    public void getCompany(){
+        String URL = baseURL.getURL() + "company/";
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+                given()
+                        .headers("Auth-Key", header.getAuthKey()).
+                when().
+                        get(URL + "audi");
+                        HelperMethods.checkStatusIs200(resp);
+    }
+
+
+    @Test(dependsOnMethods={"getCompany"})
     public void deleteCompany(){
 
         String URL = baseURL.getURL() + "company/";

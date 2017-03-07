@@ -53,7 +53,7 @@ public class CreateCompanyAPI {
                         HelperMethods.checkStatusIs201(resp);
     }
 
-    @Test
+    @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
         String URL = baseURL.getURL() + "company/";
         /**
@@ -68,11 +68,63 @@ public class CreateCompanyAPI {
                         HelperMethods.checkStatusIs200(resp);
     }
 
+    @Test(dependsOnMethods={"createCompany"})
+    public void shareCompany(){
+
+        String URL = baseURL.getURL() + "company/audi/share";
+
+        Map<String,String> body = new HashMap<>();
+        body.put("user", "chirag@walkover.in");
+        body.put("role", "edit");
+
+        /**
+         * Main test and api call initiated
+         */
+        Response resp =
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType())
+                        //.contentType("application/json")
+                        .body(body).
+                when().
+                        put(URL);
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
+
+    }
+
+    @Test(dependsOnMethods={"createCompany"})
+    public void unshareCompany(){
+
+        String URL = baseURL.getURL() + "company/audi/unshare";
+
+        Map<String,String> body = new HashMap<>();
+        body.put("user", "chirag@walkover.in");
+
+        /**
+         * Main test and api call initiated
+         */
+        Response resp =
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType())
+                        //.contentType("application/json")
+                        .body(body).
+                        when().
+                        put(URL);
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs200(resp);
+
+    }
+
+
+
+
 
     @Test(dependsOnMethods={"getCompany"})
     public void deleteCompany(){
 
-        String URL = baseURL.getURL() + "company/";
+        String URL = baseURL.getURL() + "company/audi";
 
         /**
          * Main test and api call initiated
@@ -82,7 +134,7 @@ public class CreateCompanyAPI {
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
                 when().
-                        delete(URL + "audi");
+                        delete(URL);
                         HelperMethods.checkStatusIs200(resp);
     }
 

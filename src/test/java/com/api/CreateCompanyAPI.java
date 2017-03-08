@@ -24,8 +24,6 @@ public class CreateCompanyAPI {
     @BeforeTest
     public void setHeader(){
         header.set_Headers();
-//        header.setAuth();
-//        header.setType();
         baseURL.setURL();
     }
 
@@ -101,7 +99,7 @@ public class CreateCompanyAPI {
 
 
     @Test(dependsOnMethods={"createCompany"})
-    public void unshareCompany(){
+    public void unShareCompany(){
 
         String URL = baseURL.getURL() + "company/audi/unshare";
 

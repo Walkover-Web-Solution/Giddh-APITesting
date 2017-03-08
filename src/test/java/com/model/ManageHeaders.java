@@ -16,14 +16,6 @@ public class ManageHeaders {
          headers.setType(config.setType());
      }
 
-//    public void setAuth(){
-//        headers.setAuth_Key(config.setAuthKey());
-//    }
-//
-//    public void setType(){
-//        headers.setType(config.setType());
-//    }
-
     public String getAuthKey(){
         return headers.getAuth_Key();
     }

@@ -6,6 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 import com.ApiUtils.*;
@@ -22,6 +24,8 @@ public class CreateCompanyAPI {
     @BeforeTest
     public void setHeader(){
         header.set_Headers();
+//        header.setAuth();
+//        header.setType();
         baseURL.setURL();
     }
 
@@ -41,6 +45,7 @@ public class CreateCompanyAPI {
          * Main test and api call initiated
          */
         Response resp =
+
                 given()
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType())

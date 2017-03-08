@@ -7,6 +7,7 @@ import io.restassured.response.*;
 
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
+import static org.aeonbits.owner.ConfigFactory.create;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 public class StocksAPI {
 
     ManageHeaders header = new ManageHeaders();
+    HeadersConfig config = create(HeadersConfig.class);
 
 
     String URL = "http://apitest.giddh.com/company/inventindore1483703191258019mki/";
@@ -45,6 +47,8 @@ public class StocksAPI {
     @BeforeTest
     public void setHeader(){
         header.set_Headers();
+//        header.setAuth();
+//        header.setType();
     }
 
     @Test

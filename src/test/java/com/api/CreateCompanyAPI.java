@@ -2,11 +2,7 @@ package com.api;
 
 import com.model.ManageHeaders;
 import com.model.ManageURL;
-import org.testng.Assert;
 import org.testng.annotations.*;
-
-
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +16,6 @@ public class CreateCompanyAPI {
     ManageHeaders header = new ManageHeaders();
     ManageURL baseURL = new ManageURL();
 
-
     @BeforeTest
     public void setHeader(){
         header.set_Headers();
@@ -30,8 +25,6 @@ public class CreateCompanyAPI {
 
     @Test
     public void createCompany(){
-
-        baseURL.setURL();
         String URL = baseURL.getURL() + "company/";
         // System.out.println(URL);
 
@@ -125,7 +118,6 @@ public class CreateCompanyAPI {
 
     @Test(dependsOnMethods={"getCompany"})
     public void deleteCompany(){
-
         String URL = baseURL.getURL() + "company/audi";
 
         /**

@@ -61,6 +61,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.10</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -149,7 +150,6 @@
             <version>2.2.0</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path-assert</artifactId>
@@ -160,24 +160,6 @@
             <groupId>com.jayway.restassured</groupId>
             <artifactId>json-schema-validator</artifactId>
             <version>2.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.9.10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.9.10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.6.1</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>

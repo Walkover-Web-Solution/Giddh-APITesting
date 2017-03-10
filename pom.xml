@@ -10,6 +10,23 @@
     <name>ApiTesting</name>
 
 
+    <profiles>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env.id>test</env.id>
+                <run.environment>test</run.environment>
+                <persistence.properties.file>
+                    ${project.build.outputDirectory}/URL.${run.environment}.properties
+                </persistence.properties.file>
+            </properties>
+        </profile>
+    </profiles>
+
+
     <build>
         <plugins>
             <!-- Following plugin executes the testng tests -->

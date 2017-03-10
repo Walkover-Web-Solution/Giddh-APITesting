@@ -7,5 +7,20 @@ import org.aeonbits.owner.Config.Sources;
 public interface UrlConfig extends  Config{
 
     @Key("url")
-    String enterUrl();
+    String baseURL();
+
+    @Key("baseURL")
+    String mainURL();
+
+    @Key("get.Company")
+    String getCompany();
+
+    @Key("share.Company")
+    String shareCompany();
+
+    @Key("unshare.Company")
+    String unshareCompany();
+
+    @Key("delete.Company")
+    String deleteCompany();
 }

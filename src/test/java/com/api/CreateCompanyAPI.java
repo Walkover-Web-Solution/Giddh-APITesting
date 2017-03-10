@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import com.ApiUtils.*;
 import static io.restassured.RestAssured.*;
+import static org.aeonbits.owner.ConfigFactory.create;
+
 import io.restassured.response.*;
 
 
@@ -15,6 +17,7 @@ public class CreateCompanyAPI {
 
     ManageHeaders header = new ManageHeaders();
     ManageURL baseURL = new ManageURL();
+    UrlConfig config = create(UrlConfig.class);
 
     @BeforeTest
     public void setHeader(){
@@ -25,8 +28,6 @@ public class CreateCompanyAPI {
 
     @Test
     public void createCompany(){
-        String URL = baseURL.getURL() + "company/";
-        // System.out.println(URL);
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "audi");
@@ -43,7 +44,7 @@ public class CreateCompanyAPI {
                         //.contentType("application/json")
                         .body(body).
                 when().
-                        post(URL);
+                        post(config.mainURL());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs201(resp);
     }
@@ -51,24 +52,21 @@ public class CreateCompanyAPI {
 
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
-        String URL = baseURL.getURL() + "company/";
         /**
-         * Main test and api call initiated
+          * Main test and api call initiated
          */
 
         Response resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
                 when().
-                        get(URL + "audi");
+                        get(config.getCompany());
                         HelperMethods.checkStatusIs200(resp);
     }
 
 
     @Test(dependsOnMethods={"createCompany"})
     public void shareCompany(){
-
-        String URL = baseURL.getURL() + "company/audi/share";
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "walkover78@gmail.com");
@@ -84,7 +82,7 @@ public class CreateCompanyAPI {
                         //.contentType("application/json")
                         .body(body).
                 when().
-                        put(URL);
+                        put(config.shareCompany());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs200(resp);
 
@@ -93,8 +91,6 @@ public class CreateCompanyAPI {
 
     @Test(dependsOnMethods={"createCompany"})
     public void unShareCompany(){
-
-        String URL = baseURL.getURL() + "company/audi/unshare";
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "walkover78@gmail.com");
@@ -109,7 +105,7 @@ public class CreateCompanyAPI {
                         //.contentType("application/json")
                         .body(body).
                 when().
-                        put(URL);
+                        put(config.unshareCompany());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs200(resp);
 
@@ -118,8 +114,6 @@ public class CreateCompanyAPI {
 
     @Test(dependsOnMethods={"getCompany"})
     public void deleteCompany(){
-        String URL = baseURL.getURL() + "company/audi";
-
         /**
          * Main test and api call initiated
          */
@@ -128,7 +122,7 @@ public class CreateCompanyAPI {
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
                 when().
-                        delete(URL);
+                        delete(config.deleteCompany());
                         HelperMethods.checkStatusIs200(resp);
     }
 

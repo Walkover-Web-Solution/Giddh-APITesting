@@ -10,7 +10,7 @@ public class ManageURL {
 
     UrlConfig config = create(UrlConfig.class);
     public void setURL(){
-       b1.setURL(config.enterUrl());
+       b1.setURL(config.baseURL());
     }
 
     public String getURL(){

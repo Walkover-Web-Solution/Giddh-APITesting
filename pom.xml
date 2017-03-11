@@ -44,10 +44,10 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <!-- This will set the system property for the environment variable passed  -->
                     <systemPropertyVariables>
                         <api.environment>${env.id}</api.environment>
                     </systemPropertyVariables>
-
                 </configuration>
             </plugin>
             <plugin>

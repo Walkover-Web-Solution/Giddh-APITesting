@@ -4,7 +4,8 @@
 <suite name="API Suite" parallel="tests">
 	<test name="Test on Rest API ">
 		<classes>
-			<class name="com.api.CreateCompanyAPI" />
+			<class name="com.api.StocksAPI" />
+			<class name="com.api.CreateCompanyAPI"/>
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

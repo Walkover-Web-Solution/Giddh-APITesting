@@ -47,9 +47,30 @@ public class GroupAPI {
                         //.contentType("application/json")
                         .body(body).
                 when().
-                        post(config.groupCreate());
+                        post(config.createGroup());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs201(resp);
+
+
+    }
+
+    @Test(dependsOnMethods={"createGroup"})
+    public void getGroup() {
+
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType()).
+                        //.contentType("application/json")
+                when().
+                        get(config.getGroup());
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
 
 
     }

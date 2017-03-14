@@ -124,7 +124,9 @@ public class CompanyAPI {
                         .headers("Auth-Key", header.getAuthKey()).
                 when().
                         delete(config.deleteCompany());
+                       // System.out.println(resp);
                         HelperMethods.checkStatusIs200(resp);
+
     }
 
 }

@@ -13,7 +13,15 @@
 			<!--</methods>-->
 			</class>
 			<class name="com.api.CompanyAPI"/>
-			<class name="com.api.GroupAPI"/>
+			<class name="com.api.GroupAPI">
+				<methods>
+				<include name="createGroup" />
+				<include name="getGroup" />
+				<include name="shareGroup" />
+				<include name="unshareGroup" />
+				<include name="deleteGroup"/>
+				</methods>
+			</class>
 		</classes>
 	</test> <!-- Test -->
 </suite> <!--thods>

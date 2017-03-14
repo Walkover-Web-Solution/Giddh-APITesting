@@ -29,4 +29,13 @@ public interface UrlConfig extends  Config{
 
     @Key("group.Get")
     String getGroup();
+
+    @Key("group.Share")
+    String shareGroup();
+
+    @Key("group.unShare")
+    String unshareGroup();
+
+    @Key("group.Delete")
+    String deleteGroup();
 }

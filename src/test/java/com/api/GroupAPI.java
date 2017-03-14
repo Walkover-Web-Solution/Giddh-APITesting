@@ -77,6 +77,73 @@ public class GroupAPI {
                         HelperMethods.checkStatusIs200(resp);
     }
 
+    @Test(dependsOnMethods={"createGroup"})
+    public void shareGroup() {
+
+        Map<String,String> body = new HashMap<>();
+        body.put("user", "tadhall87@gmail.com");
+        body.put("role", "edit");
+
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType()).
+                        //.contentType("application/json")
+                        body(body).
+                when().
+                        put(config.shareGroup());
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
+    }
+
+
+    @Test(dependsOnMethods={"createGroup"})
+    public void unshareGroup() {
+
+        Map<String,String> body = new HashMap<>();
+        body.put("user", "tadhall87@gmail.com");
+
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType()).
+                        //.contentType("application/json")
+                         body(body).
+                when().
+                        put(config.unshareGroup());
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
+    }
+
+    @Test(dependsOnMethods={"createGroup"})
+    public void deleteGroup() {
+
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType()).
+                        //.contentType("application/json")
+                when().
+                        delete(config.deleteGroup());
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
+    }
+
 
     @AfterMethod
     public void closeConnection(){

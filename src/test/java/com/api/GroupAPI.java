@@ -14,7 +14,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.aeonbits.owner.ConfigFactory.create;
 
-public class CreateGroupAPI {
+public class GroupAPI {
 
     ManageHeaders header = new ManageHeaders();
     ManageURL baseURL = new ManageURL();

@@ -13,7 +13,7 @@ import static org.aeonbits.owner.ConfigFactory.create;
 import io.restassured.response.*;
 
 
-public class CreateCompanyAPI {
+public class CompanyAPI {
 
     ManageHeaders header = new ManageHeaders();
     ManageURL baseURL = new ManageURL();

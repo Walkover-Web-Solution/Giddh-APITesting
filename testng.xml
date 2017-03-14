@@ -12,8 +12,8 @@
 				<!--<include name="logout" />-->
 			<!--</methods>-->
 			</class>
-			<class name="com.api.CreateCompanyAPI"/>
-			<class name="com.api.CreateGroupAPI"/>
+			<class name="com.api.CompanyAPI"/>
+			<class name="com.api.GroupAPI"/>
 		</classes>
 	</test> <!-- Test -->
 </suite> <!--thods>

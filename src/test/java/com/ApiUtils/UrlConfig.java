@@ -23,4 +23,7 @@ public interface UrlConfig extends  Config{
 
     @Key("delete.Company")
     String deleteCompany();
+
+    @Key("group.Create")
+    String groupCreate();
 }

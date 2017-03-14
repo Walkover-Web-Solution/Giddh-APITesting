@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="API Suite" parallel="tests">
+<suite name="API Suite" parallel="false" preserve-order="true">
 	<test name="Test on Rest API ">
 		<classes>
-			<class name="com.api.StocksAPI" />
+			<class name="com.api.StocksAPI">
+			<!--<methods>-->
+				<!--<include name="getStocks" />-->
+				<!--<include name="verifySomething1" />-->
+				<!--<include name="verifySomething2" />-->
+				<!--<include name="logout" />-->
+			<!--</methods>-->
+			</class>
 			<class name="com.api.CreateCompanyAPI"/>
+			<class name="com.api.CreateGroupAPI"/>
 		</classes>
 	</test> <!-- Test -->
-</suite> <!-- Suite -->
+</suite> <!--thods>
+-->

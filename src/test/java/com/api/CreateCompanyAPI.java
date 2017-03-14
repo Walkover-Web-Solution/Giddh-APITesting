@@ -47,6 +47,7 @@ public class CreateCompanyAPI {
                         post(config.mainURL());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs201(resp);
+
     }
 
 
@@ -112,7 +113,7 @@ public class CreateCompanyAPI {
     }
 
 
-    @Test(dependsOnMethods={"getCompany"})
+    @AfterSuite
     public void deleteCompany(){
         /**
          * Main test and api call initiated

@@ -6,6 +6,7 @@ import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.RestAssured;
 import io.restassured.config.ConnectionConfig;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.*;
 
@@ -15,14 +16,13 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
+import static org.testng.Assert.assertEquals;
 
 public class GroupAPI {
 
     ManageHeaders header = new ManageHeaders();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
-
-
 
     @BeforeTest
     public void setHeader(){
@@ -54,9 +54,8 @@ public class GroupAPI {
                         post(config.createGroup());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs201(resp);
-
-
     }
+
 
     @Test(dependsOnMethods={"createGroup"})
     public void getGroup() {
@@ -91,8 +90,8 @@ public class GroupAPI {
         Response resp =
 
                 given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType()).
+                        .headers("Auth-Key", header.getAuthKey()).
+                         headers("Content-Type", header.getType()).
                         //.contentType("application/json")
                         body(body).
                 when().
@@ -123,6 +122,35 @@ public class GroupAPI {
                         put(config.unshareGroup());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs200(resp);
+    }
+
+
+    @Test(dependsOnMethods={"createGroup"})
+    public void updateGroup() {
+
+        Map<String,String> body = new HashMap<>();
+        body.put("name", "tgroup1");
+        body.put("uniqueName", "tgroup1");
+        body.put("parentGroupUniqueName", "capital");
+
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType())
+                        //.contentType("application/json")
+                        .body(body).
+                when().
+                        put(config.updateGroup());
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
+                        String json = resp.asString();
+                        JsonPath jp = new JsonPath(json);
+                        assertEquals("tgroup1", jp.get("body.name"));
     }
 
     @Test(dependsOnMethods={"createGroup"})

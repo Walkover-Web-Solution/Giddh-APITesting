@@ -19,6 +19,7 @@
 				<include name="getGroup" />
 				<include name="shareGroup" />
 				<include name="unshareGroup" />
+				<include name="updateGroup"/>
 				<include name="deleteGroup"/>
 				</methods>
 			</class>

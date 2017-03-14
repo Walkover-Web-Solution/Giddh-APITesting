@@ -62,11 +62,6 @@ public class StocksAPI {
                          HelperMethods.checkStatusIs200(resp);
                          HelperMethods.checkResponseTime(resp, "Get Stock API is ");
 
-//        String json = resp.asString();
-//        JsonPath jp = new JsonPath(json);
-//        assertEquals("onur@swtestacademy", jp.get("email"));
-//        assertEquals("Onur", jp.get("firstName"));
-//        assertEquals("Baskirt", jp.get("lastName"));
     }
 
     @Test

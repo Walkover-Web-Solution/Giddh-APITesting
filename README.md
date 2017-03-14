@@ -25,7 +25,7 @@ Usual build tasks
 `mvn compile test`
 
 * Compile and run test for different file
-`mvn test -Pdev`
+`mvn test -P dev`
 
 * Report updates on dependencies
 `mvn versions:display-dependency-updates`

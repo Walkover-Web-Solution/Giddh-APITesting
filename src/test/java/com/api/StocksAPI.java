@@ -3,10 +3,12 @@ package com.api;
 import  com.ApiUtils.*;
 import com.model.ManageHeaders;
 
+import io.restassured.RestAssured;
 import io.restassured.response.*;
 
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
@@ -85,5 +87,10 @@ public class StocksAPI {
                // body(containsString("sms1"));
         //  System.out.println(resp.asString());
         //  Assert.assertEquals(resp.getStatusCode(), 200);
+    }
+
+    @AfterMethod
+    public void closeConnection(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
     }
 }

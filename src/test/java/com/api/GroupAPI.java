@@ -4,14 +4,16 @@ import com.ApiUtils.HelperMethods;
 import com.ApiUtils.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
+import io.restassured.RestAssured;
+import io.restassured.config.ConnectionConfig;
 import io.restassured.response.Response;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
 public class GroupAPI {
@@ -19,6 +21,8 @@ public class GroupAPI {
     ManageHeaders header = new ManageHeaders();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
+
+
 
     @BeforeTest
     public void setHeader(){
@@ -71,8 +75,12 @@ public class GroupAPI {
                         get(config.getGroup());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs200(resp);
+    }
 
 
+    @AfterMethod
+    public void closeConnection(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
     }
 
 

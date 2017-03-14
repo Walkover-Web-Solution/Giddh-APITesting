@@ -2,12 +2,14 @@ package com.api;
 
 import com.model.ManageHeaders;
 import com.model.ManageURL;
+import io.restassured.RestAssured;
 import org.testng.annotations.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import com.ApiUtils.*;
 import static io.restassured.RestAssured.*;
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
 import io.restassured.response.*;
@@ -110,6 +112,11 @@ public class CompanyAPI {
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs200(resp);
 
+    }
+
+    @AfterMethod
+    public void closeConnection(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
     }
 
 

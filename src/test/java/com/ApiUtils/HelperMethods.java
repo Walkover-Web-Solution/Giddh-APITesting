@@ -2,8 +2,10 @@ package com.ApiUtils;
 
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.commons.lang3.Validate;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -84,6 +86,34 @@ public class HelperMethods {
 
     public static void printResponse( Response resp){
         System.out.println(resp.asString());
+    }
+
+    public static class CloseIdleConnectionConfig {
+        private final long idleTime;
+        private final TimeUnit timeUnit;
+
+        /**
+         * Close connections that have idled for the amount of time specified in this config.
+         *
+         * @param idleTime The idle time of connections to be closed
+         * @param timeUnit The time unit to for <code>idleTime</code>
+         */
+        public CloseIdleConnectionConfig(long idleTime, TimeUnit timeUnit) {
+            if (idleTime < 0) {
+                throw new IllegalArgumentException("Idle time cannot be less than 0.");
+            }
+            Validate.notNull(timeUnit, "Timeunit cannot be null");
+            this.idleTime = idleTime;
+            this.timeUnit = timeUnit;
+        }
+
+        public long getIdleTime() {
+            return idleTime;
+        }
+
+        public TimeUnit getTimeUnit() {
+            return timeUnit;
+        }
     }
 
 }

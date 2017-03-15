@@ -8,15 +8,12 @@ import com.model.ManageURL;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
@@ -27,13 +24,12 @@ public class AccountAPI {
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
 
-    @BeforeClass
+    @BeforeTest
     public void setHeader(){
         header.set_Headers();
         baseURL.setURL();
     }
 
-    @BeforeTest
     public void createGroup() {
 
         Map<String,String> body = new HashMap<>();
@@ -52,15 +48,17 @@ public class AccountAPI {
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                        when().
+                when().
                         post(config.createGroup());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs201(resp);
-    }
+                        HelperMethods.checkStatusIs201(resp);
+            }
 
 
     @Test
     public void createAccount() {
+
+        createGroup();
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "taccount");
@@ -77,10 +75,10 @@ public class AccountAPI {
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                        when().
+                when().
                         post(config.createAccount());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs201(resp);
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs201(resp);
     }
 
 
@@ -97,10 +95,10 @@ public class AccountAPI {
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType()).
                         //.contentType("application/json")
-                                when().
+                when().
                         get(config.getAccount());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs200(resp);
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
     }
 
     @Test(dependsOnMethods={"createAccount"})
@@ -121,10 +119,10 @@ public class AccountAPI {
                         headers("Content-Type", header.getType()).
                         //.contentType("application/json")
                                 body(body).
-                        when().
+                when().
                         put(config.shareAccount());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs200(resp);
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
     }
 
 
@@ -144,11 +142,11 @@ public class AccountAPI {
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType()).
                         //.contentType("application/json")
-                                body(body).
-                        when().
+                        body(body).
+                when().
                         put(config.unshareAccount());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs200(resp);
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
     }
 
 
@@ -171,13 +169,13 @@ public class AccountAPI {
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                        when().
+                when().
                         put(config.updateAccount());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs200(resp);
-        String json = resp.asString();
-        JsonPath jp = new JsonPath(json);
-        assertEquals("tAccount1", jp.get("body.name"));
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
+                        String json = resp.asString();
+                        JsonPath jp = new JsonPath(json);
+                        assertEquals("tsccount1", jp.get("body.name"));
     }
 
     @Test(dependsOnMethods={"createAccount"})
@@ -193,10 +191,10 @@ public class AccountAPI {
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType()).
                         //.contentType("application/json")
-                                when().
+                when().
                         delete(config.deleteAccount());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs200(resp);
+                        HelperMethods.printResponse(resp);
+                        HelperMethods.checkStatusIs200(resp);
     }
 
 

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="API Suite" parallel="false" preserve-order="true">
+<suite name="API Suite" parallel="false" preserve-order="true" verbose="1" >
 	<test name="Test on Rest API ">
 		<classes>
 			<class name="com.api.StocksAPI"/>
-
 			<class name="com.api.CompanyAPI"/>
-
 			<class name="com.api.GroupAPI">
 				<methods>
 				<include name="createGroup" />
@@ -18,7 +16,6 @@
 				<include name="deleteGroup"/>
 				</methods>
 			</class>
-
 			<class name="com.api.AccountAPI">
 				<methods>
 					<include name="createAccount" />

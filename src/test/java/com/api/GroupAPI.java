@@ -156,7 +156,7 @@ public class GroupAPI {
                         assertEquals("tgroup1", jp.get("body.name"));
     }
 
-    @Test(dependsOnMethods={"createGroup"})
+    @Test(groups = { "group" },dependsOnMethods={"createGroup"})
     public void deleteGroup() {
 
         /**
@@ -179,6 +179,7 @@ public class GroupAPI {
     @AfterMethod
     public void closeConnection(){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+
     }
 
 

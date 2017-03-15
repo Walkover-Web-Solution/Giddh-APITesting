@@ -41,4 +41,24 @@ public interface UrlConfig extends  Config{
 
     @Key("group.Delete")
     String deleteGroup();
+
+    @Key("account.Create")
+    String createAccount();
+
+    @Key("account.Update")
+    String updateAccount();
+
+    @Key("account.Get")
+    String getAccount();
+
+    @Key("account.Share")
+    String shareAccount();
+
+    @Key("account.unShare")
+    String unshareAccount();
+
+    @Key("account.Delete")
+    String deleteAccount();
+
+
 }

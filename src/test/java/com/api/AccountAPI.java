@@ -1,14 +1,17 @@
 package com.api;
 
+
 import com.ApiUtils.HelperMethods;
 import com.ApiUtils.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.RestAssured;
-import io.restassured.config.ConnectionConfig;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +21,7 @@ import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
-public class GroupAPI {
+public class AccountAPI {
 
     ManageHeaders header = new ManageHeaders();
     ManageURL baseURL = new ManageURL();
@@ -30,11 +33,7 @@ public class GroupAPI {
         baseURL.setURL();
     }
 
-
-
-
-
-    @Test
+    @BeforeTest
     public void createGroup() {
 
         Map<String,String> body = new HashMap<>();
@@ -53,15 +52,40 @@ public class GroupAPI {
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                when().
+                        when().
                         post(config.createGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs201(resp);
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs201(resp);
     }
 
 
-    @Test(dependsOnMethods={"createGroup"})
-    public void getGroup() {
+    @Test
+    public void createAccount() {
+
+        Map<String,String> body = new HashMap<>();
+        body.put("name", "taccount");
+        body.put("uniqueName", "taccount");
+
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType())
+                        //.contentType("application/json")
+                        .body(body).
+                        when().
+                        post(config.createAccount());
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs201(resp);
+    }
+
+
+    @Test(dependsOnMethods={"createAccount"})
+    public void getAccount() {
 
         /**
          * Main test and api call initiated
@@ -73,14 +97,14 @@ public class GroupAPI {
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType()).
                         //.contentType("application/json")
-                when().
-                        get(config.getGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+                                when().
+                        get(config.getAccount());
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs200(resp);
     }
 
-    @Test(dependsOnMethods={"createGroup"})
-    public void shareGroup() {
+    @Test(dependsOnMethods={"createAccount"})
+    public void shareAccount() {
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -94,18 +118,18 @@ public class GroupAPI {
 
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
-                         headers("Content-Type", header.getType()).
+                        headers("Content-Type", header.getType()).
                         //.contentType("application/json")
-                        body(body).
-                when().
-                        put(config.shareGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+                                body(body).
+                        when().
+                        put(config.shareAccount());
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs200(resp);
     }
 
 
-    @Test(dependsOnMethods={"createGroup"})
-    public void unshareGroup() {
+    @Test(dependsOnMethods={"createAccount"})
+    public void unshareAccount() {
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -120,21 +144,21 @@ public class GroupAPI {
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType()).
                         //.contentType("application/json")
-                         body(body).
-                when().
-                        put(config.unshareGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+                                body(body).
+                        when().
+                        put(config.unshareAccount());
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs200(resp);
     }
 
 
-    @Test(dependsOnMethods={"createGroup"})
-    public void updateGroup() {
+    @Test(dependsOnMethods={"createAccount"})
+    public void updateAccount() {
 
         Map<String,String> body = new HashMap<>();
-        body.put("name", "tgroup1");
-        body.put("uniqueName", "tgroup1");
-        body.put("parentGroupUniqueName", "capital");
+        body.put("name", "taccount1");
+        body.put("uniqueName", "taccount1");
+
 
         /**
          * Main test and api call initiated
@@ -147,17 +171,17 @@ public class GroupAPI {
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                when().
-                        put(config.updateGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
-                        String json = resp.asString();
-                        JsonPath jp = new JsonPath(json);
-                        assertEquals("tgroup1", jp.get("body.name"));
+                        when().
+                        put(config.updateAccount());
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs200(resp);
+        String json = resp.asString();
+        JsonPath jp = new JsonPath(json);
+        assertEquals("tAccount1", jp.get("body.name"));
     }
 
-    @Test(dependsOnMethods={"createGroup"})
-    public void deleteGroup() {
+    @Test(dependsOnMethods={"createAccount"})
+    public void deleteAccount() {
 
         /**
          * Main test and api call initiated
@@ -169,10 +193,10 @@ public class GroupAPI {
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType()).
                         //.contentType("application/json")
-                when().
-                        delete(config.deleteGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+                                when().
+                        delete(config.deleteAccount());
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs200(resp);
     }
 
 
@@ -181,5 +205,4 @@ public class GroupAPI {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
     }
 
-
- }
+}

@@ -4,15 +4,10 @@
 <suite name="API Suite" parallel="false" preserve-order="true">
 	<test name="Test on Rest API ">
 		<classes>
-			<class name="com.api.StocksAPI">
-			<!--<methods>-->
-				<!--<include name="getStocks" />-->
-				<!--<include name="verifySomething1" />-->
-				<!--<include name="verifySomething2" />-->
-				<!--<include name="logout" />-->
-			<!--</methods>-->
-			</class>
+			<class name="com.api.StocksAPI"/>
+
 			<class name="com.api.CompanyAPI"/>
+
 			<class name="com.api.GroupAPI">
 				<methods>
 				<include name="createGroup" />
@@ -21,6 +16,17 @@
 				<include name="unshareGroup" />
 				<include name="updateGroup"/>
 				<include name="deleteGroup"/>
+				</methods>
+			</class>
+
+			<class name="com.api.AccountAPI">
+				<methods>
+					<include name="createAccount" />
+					<include name="getAccount" />
+					<include name="shareAccount" />
+					<include name="unshareAccount" />
+					<include name="updateAccount"/>
+					<include name="deleteAccount"/>
 				</methods>
 			</class>
 		</classes>

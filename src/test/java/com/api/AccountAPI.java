@@ -175,7 +175,7 @@ public class AccountAPI {
                         HelperMethods.checkStatusIs200(resp);
                         String json = resp.asString();
                         JsonPath jp = new JsonPath(json);
-                        assertEquals("tsccount1", jp.get("body.name"));
+                        assertEquals("taccount1", jp.get("body.name"));
     }
 
     @Test(dependsOnMethods={"createAccount"})

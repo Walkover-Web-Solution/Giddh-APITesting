@@ -88,7 +88,6 @@ public class CompanyAPI {
                         put(config.shareCompany());
                         HelperMethods.printResponse(resp);
                         HelperMethods.checkStatusIs200(resp);
-
     }
 
 

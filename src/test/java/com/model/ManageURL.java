@@ -1,7 +1,7 @@
 package com.model;
 
 import com.ApiUtils.Url;
-import com.ApiUtils.UrlConfig;
+import com.Config.UrlConfig;
 
 import static org.aeonbits.owner.ConfigFactory.create;
 

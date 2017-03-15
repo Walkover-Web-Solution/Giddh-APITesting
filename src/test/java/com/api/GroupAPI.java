@@ -1,11 +1,10 @@
 package com.api;
 
 import com.ApiUtils.HelperMethods;
-import com.ApiUtils.UrlConfig;
+import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.RestAssured;
-import io.restassured.config.ConnectionConfig;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.*;

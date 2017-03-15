@@ -1,7 +1,7 @@
 package com.model;
 
 import  com.ApiUtils.Headers;
-import com.ApiUtils.HeadersConfig;
+import com.Config.HeadersConfig;
 
 import static org.aeonbits.owner.ConfigFactory.create;
 

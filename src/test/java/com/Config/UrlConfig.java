@@ -1,4 +1,4 @@
-package com.ApiUtils;
+package com.Config;
 
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.Sources;

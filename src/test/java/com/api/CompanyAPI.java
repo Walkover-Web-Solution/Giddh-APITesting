@@ -44,18 +44,10 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        Response resp =
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                        when().
-                        post(config.mainURL());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs201(resp);
-
+        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.mainURL(), body);
+        //System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson() + "This is the Response of create Company");
     }
 
 
@@ -67,7 +59,7 @@ public class CompanyAPI {
 
         SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
 //      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson() + "This is the Response eof Get Company");
+        System.out.println(resp.getJson() + "This is the Response of Get Company");
     }
 
 
@@ -81,16 +73,10 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        Response resp =
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                        when().
-                        put(config.shareCompany());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs200(resp);
+
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.shareCompany(), body);
+        //System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson() + "This is the Response of create Company");
     }
 
 
@@ -103,17 +89,10 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        Response resp =
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                        when().
-                        put(config.unshareCompany());
-        HelperMethods.printResponse(resp);
-        HelperMethods.checkStatusIs200(resp);
 
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.unshareCompany(), body);
+        //System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson() + "This is the Response of create Company");
     }
 
     @AfterMethod
@@ -124,17 +103,13 @@ public class CompanyAPI {
 
     @AfterSuite
     public void deleteCompany(){
+
         /**
          * Main test and api call initiated
          */
-
-        Response resp =
-                given()
-                        .headers("Auth-Key", header.getAuthKey()).
-                        when().
-                        delete(config.deleteCompany());
-        // System.out.println(resp);
-        HelperMethods.checkStatusIs200(resp);
+        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
+        //System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson() + "This is the Response of create Company");
 
     }
 

@@ -43,7 +43,7 @@ public class CompanyAPI {
 
         SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.mainURL(), body);
         //System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson() + "This is the Response of create Company");
+        System.out.println(resp.getJson());
     }
 
 
@@ -55,7 +55,7 @@ public class CompanyAPI {
 
         SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
 //      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson() + "This is the Response of Get Company");
+        System.out.println(resp.getJson());
     }
 
 

@@ -46,17 +46,9 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
-
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                when().
-                        post(config.createGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs201(resp);
+        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createGroup(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
     }
 
     @Test
@@ -69,16 +61,10 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                when().
-                        put(config.moveGroup());
-                        HelperMethods.checkStatusIs200(resp);
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.moveGroup(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
     }
 
 
@@ -105,17 +91,9 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
-
-                given()
-                        .headers("Auth-Key", header.getAuthKey()).
-                         headers("Content-Type", header.getType()).
-                        //.contentType("application/json")
-                        body(body).
-                when().
-                        put(config.shareGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.shareGroup(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
     }
 
 
@@ -129,17 +107,12 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType()).
-                        //.contentType("application/json")
-                         body(body).
-                when().
-                        put(config.unshareGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+
+
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.unshareGroup(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
     }
 
 
@@ -155,41 +128,25 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                when().
-                        put(config.updateGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
-                        String json = resp.asString();
-                        JsonPath jp = new JsonPath(json);
-                        assertEquals("tgroup1", jp.get("body.name"));
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.updateGroup(), body);
+//      System.out.println(resp.getStatusCode());
+        String json = resp.getJson();
+        JsonPath jp = new JsonPath(json);
+        assertEquals("tgroup1", jp.get("body.name"));
     }
 
-    @Test(groups = { "group" },dependsOnMethods={"createGroup"})
+    @Test(dependsOnMethods={"createGroup"})
     public void deleteGroup() {
 
         /**
          * Main test and api call initiated
          */
 
-        Response resp =
+        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteGroup());
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType()).
-                        //.contentType("application/json")
-                when().
-                        delete(config.deleteGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
     }
 
-
-
- }
+}

@@ -1,8 +1,6 @@
 package com.ApiUtils;
 
-import com.api.SmartResponse;
 import com.model.ManageHeaders;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -25,8 +23,6 @@ public class ApiManager {
                         get(URL);
         HelperMethods.checkStatusIs200(resp);
         String json = resp.asString();
-        JsonPath jp = new JsonPath(json);
-//      assertEquals("tgroup1", jp.get("body.name"));
         int statusCode = resp.getStatusCode();
         SmartResponse response = new SmartResponse(statusCode, json);
         return response;

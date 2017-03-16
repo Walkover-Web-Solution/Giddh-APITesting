@@ -1,4 +1,4 @@
-package com.api;
+package com.ApiUtils;
 
 public class SmartResponse {
     private int statusCode;

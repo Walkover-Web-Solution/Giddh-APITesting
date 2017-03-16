@@ -30,6 +30,11 @@ public class GroupAPI {
     }
 
 
+    @BeforeMethod
+    public void setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+    }
+
 
 
 

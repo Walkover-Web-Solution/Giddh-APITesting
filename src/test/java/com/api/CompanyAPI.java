@@ -28,6 +28,11 @@ public class CompanyAPI {
         baseURL.setURL();
     }
 
+    @BeforeMethod
+    public void setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+    }
+
 
     @Test
     public void createCompany(){
@@ -56,24 +61,13 @@ public class CompanyAPI {
 
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
-//        int resp = apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
+        /**
+         * Main test and api call initiated
+         */
+
         SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
-        System.out.println(resp.getStatusCode() + " this is the response code from getcompany");
-
-        System.out.println(resp.getJson() + " this is the response code from getcompany");
-//        System.out.println(resp.getJson());
-
-
-//        /**
-//          * Main test and api call initiated
-//         */
-//
-//        SmartResponse resp =
-//                given()
-//                        .headers("Auth-Key", header.getAuthKey()).
-//                when().
-//                        get(config.getCompany());
-//                        HelperMethods.checkStatusIs200(resp);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson() + "This is the Response eof Get Company");
     }
 
 

@@ -49,6 +49,11 @@ public class StocksAPI {
         header.set_Headers();
     }
 
+    @BeforeMethod
+    public void setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+    }
+
     @Test
     public void getStocks(){
         Response resp =

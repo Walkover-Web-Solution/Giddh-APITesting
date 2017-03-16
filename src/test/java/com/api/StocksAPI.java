@@ -5,6 +5,7 @@ import com.model.ManageHeaders;
 
 import io.restassured.RestAssured;
 
+import io.restassured.response.Response;
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
@@ -50,7 +51,7 @@ public class StocksAPI {
 
     @Test
     public void getStocks(){
-        SmartResponse resp =
+        Response resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
                 when().

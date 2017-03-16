@@ -4,6 +4,7 @@ import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.testng.annotations.*;
 
 import java.util.HashMap;
@@ -38,24 +39,30 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp =
+        Response resp =
 
                 given()
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                when().
+                        when().
                         post(config.mainURL());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs201(resp);
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs201(resp);
 
     }
 
 
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
-     apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
+//        int resp = apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
+        SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
+        System.out.println(resp.getStatusCode() + " this is the response code from getcompany");
+
+        System.out.println(resp.getJson() + " this is the response code from getcompany");
+//        System.out.println(resp.getJson());
+
 
 //        /**
 //          * Main test and api call initiated
@@ -80,16 +87,16 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp =
+        Response resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                when().
+                        when().
                         put(config.shareCompany());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs200(resp);
     }
 
 
@@ -102,16 +109,16 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp =
+        Response resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType())
                         //.contentType("application/json")
                         .body(body).
-                when().
+                        when().
                         put(config.unshareCompany());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+        HelperMethods.printResponse(resp);
+        HelperMethods.checkStatusIs200(resp);
 
     }
 
@@ -127,13 +134,13 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp =
+        Response resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
-                when().
+                        when().
                         delete(config.deleteCompany());
-                       // System.out.println(resp);
-                        HelperMethods.checkStatusIs200(resp);
+        // System.out.println(resp);
+        HelperMethods.checkStatusIs200(resp);
 
     }
 

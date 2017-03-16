@@ -28,10 +28,6 @@ public class CompanyAPI {
         baseURL.setURL();
     }
 
-    @BeforeMethod
-    public void setup(){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-    }
 
 
     @Test
@@ -95,10 +91,6 @@ public class CompanyAPI {
         System.out.println(resp.getJson() + "This is the Response of create Company");
     }
 
-    @AfterMethod
-    public void closeConnection(){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-    }
 
 
     @AfterSuite

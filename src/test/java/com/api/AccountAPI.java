@@ -193,10 +193,4 @@ public class AccountAPI {
                         HelperMethods.checkStatusIs200(resp);
     }
 
-
-    @AfterMethod
-    public void closeConnection(){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-    }
-
 }

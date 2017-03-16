@@ -1,14 +1,12 @@
 package com.ApiUtils;
 
 import com.model.ManageHeaders;
-import groovy.util.MapEntry;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
 import java.util.Map;
-import java.util.Objects;
+import static io.restassured.RestAssured.*;
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
 
 public class ApiManager {
 
@@ -16,6 +14,9 @@ public class ApiManager {
 
 
     public SmartResponse getAPI_with_Assert_Statuscode(String URL) {
+
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+
         header.set_Headers();
 
         Response resp =
@@ -35,6 +36,9 @@ public class ApiManager {
 
 
     public SmartResponse postAPI_with_Assert_Statuscode(String URL, Map<String,String> body) {
+
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+
         header.set_Headers();
 
         Response resp =
@@ -54,7 +58,7 @@ public class ApiManager {
     }
 
     public SmartResponse putAPI_with_Assert_Statuscode(String URL, Map<String, String> body){
-
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
         Response resp =
                 given()
                         .headers("Auth-Key",header.getAuthKey())
@@ -73,6 +77,8 @@ public class ApiManager {
 
     public SmartResponse deleteAPI_with_Assert_Statuscode(String URL){
 
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+
         Response resp =
                 given()
                         .headers("Auth-Key",header.getAuthKey())
@@ -85,6 +91,8 @@ public class ApiManager {
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
                         return response;
+
+
     }
 
 

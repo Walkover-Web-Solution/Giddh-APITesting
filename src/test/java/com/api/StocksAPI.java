@@ -49,10 +49,10 @@ public class StocksAPI {
         header.set_Headers();
     }
 
-    @BeforeMethod
-    public void setup(){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-    }
+//    @BeforeMethod
+//    public void setup(){
+//        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+//    }
 
     @Test
     public void getStocks(){
@@ -88,8 +88,8 @@ public class StocksAPI {
         //  Assert.assertEquals(resp.getStatusCode(), 200);
     }
 
-    @AfterMethod
-    public void closeConnection(){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-    }
+//    @AfterMethod
+//    public void closeConnection(){
+//        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+//    }
 }

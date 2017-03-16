@@ -4,7 +4,6 @@
 <suite name="API Suite" parallel="false" preserve-order="true" verbose="1" >
 	<test name="Test on Rest API ">
 		<classes>
-			<class name="com.api.StocksAPI"/>
 			<class name="com.api.CompanyAPI"/>
 			<class name="com.api.GroupAPI">
 				<methods>

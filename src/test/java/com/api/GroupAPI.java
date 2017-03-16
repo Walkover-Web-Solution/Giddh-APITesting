@@ -33,11 +33,6 @@ public class GroupAPI {
     }
 
 
-    @BeforeMethod
-    public void setup(){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-    }
-
 
     @Test
     public void createGroup() {
@@ -195,12 +190,6 @@ public class GroupAPI {
                         HelperMethods.checkStatusIs200(resp);
     }
 
-
-    @AfterMethod
-    public void closeConnection(){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-
-    }
 
 
  }

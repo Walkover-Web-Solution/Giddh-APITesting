@@ -13,12 +13,11 @@ import static io.restassured.RestAssured.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
-import io.restassured.response.*;
-
 
 public class CompanyAPI {
 
     ManageHeaders header = new ManageHeaders();
+    ApiManager apiManager = new ApiManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
 
@@ -39,7 +38,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        Response resp =
+        SmartResponse resp =
 
                 given()
                         .headers("Auth-Key", header.getAuthKey())
@@ -56,16 +55,18 @@ public class CompanyAPI {
 
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
-        /**
-          * Main test and api call initiated
-         */
+     apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
 
-        Response resp =
-                given()
-                        .headers("Auth-Key", header.getAuthKey()).
-                when().
-                        get(config.getCompany());
-                        HelperMethods.checkStatusIs200(resp);
+//        /**
+//          * Main test and api call initiated
+//         */
+//
+//        SmartResponse resp =
+//                given()
+//                        .headers("Auth-Key", header.getAuthKey()).
+//                when().
+//                        get(config.getCompany());
+//                        HelperMethods.checkStatusIs200(resp);
     }
 
 
@@ -79,7 +80,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        Response resp =
+        SmartResponse resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType())
@@ -101,7 +102,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        Response resp =
+        SmartResponse resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey())
                         .headers("Content-Type", header.getType())
@@ -126,7 +127,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
+        SmartResponse resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
                 when().

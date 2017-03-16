@@ -81,7 +81,7 @@ public class HelperMethods {
 
     public static void checkResponseTime (Response resp, String msg ) {
          Long time = resp.then().extract().time();
-         System.out.println("Response Time of  "+ msg + time + " ms");
+         System.out.println("SmartResponse Time of  "+ msg + time + " ms");
     }
 
     public static void printResponse( Response resp){

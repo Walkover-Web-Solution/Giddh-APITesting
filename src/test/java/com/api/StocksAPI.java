@@ -4,12 +4,10 @@ import  com.ApiUtils.*;
 import com.model.ManageHeaders;
 
 import io.restassured.RestAssured;
-import io.restassured.response.*;
 
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
-import static org.aeonbits.owner.ConfigFactory.create;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
@@ -35,7 +33,7 @@ public class StocksAPI {
 //            Header header = new Header(key, value);
 //            headerList.add(header);
 //        }
-//        Response resp =given().headers(new Header(headerList)).
+//        SmartResponse resp =given().headers(new Header(headerList)).
 //                body("  {\"id\":\"2\","
 //                        + " \"titile\":\"dummyTitle\","
 //                        + " \"author\":\"Vaibhav\" }  ").
@@ -52,7 +50,7 @@ public class StocksAPI {
 
     @Test
     public void getStocks(){
-        Response resp =
+        SmartResponse resp =
                 given()
                         .headers("Auth-Key", header.getAuthKey()).
                 when().

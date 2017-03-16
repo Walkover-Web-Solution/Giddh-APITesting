@@ -27,6 +27,9 @@ public interface UrlConfig extends  Config{
     @Key("group.Create")
     String createGroup();
 
+    @Key("group.Move")
+    String moveGroup();
+
     @Key("group.Update")
     String updateGroup();
 

@@ -58,6 +58,28 @@ public class GroupAPI {
                         HelperMethods.checkStatusIs201(resp);
     }
 
+    @Test
+    public void moveGroup() {
+
+        Map<String,String> body = new HashMap<>();
+        body.put("parentGroupUniqueName", "sundrydebtors");
+
+        /**
+         * Main test and api call initiated
+         */
+
+        Response resp =
+
+                given()
+                        .headers("Auth-Key", header.getAuthKey())
+                        .headers("Content-Type", header.getType())
+                        //.contentType("application/json")
+                        .body(body).
+                when().
+                        put(config.moveGroup());
+                        HelperMethods.checkStatusIs200(resp);
+    }
+
 
     @Test(dependsOnMethods={"createGroup"})
     public void getGroup() {

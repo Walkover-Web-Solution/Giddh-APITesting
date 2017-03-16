@@ -61,7 +61,6 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-
         SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.moveGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
@@ -74,6 +73,7 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
+
         SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getGroup());
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson() + "This is the Response eof Get Company");
@@ -107,9 +107,6 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-
-
-
         SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.unshareGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
@@ -127,7 +124,6 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
-
 
         SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.updateGroup(), body);
 //      System.out.println(resp.getStatusCode());

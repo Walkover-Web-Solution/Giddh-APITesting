@@ -53,8 +53,8 @@ public class AccountAPI {
                         .body(body).
                 when().
                         post(config.createGroup());
-                        HelperMethods.checkStatusIs201(resp);
-            }
+        HelperMethods.checkStatusIs201(resp);
+    }
 
 
     @Test
@@ -71,17 +71,10 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
+        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createAccount(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                when().
-                        post(config.createAccount());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs201(resp);
     }
 
 
@@ -94,7 +87,7 @@ public class AccountAPI {
 
         SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getAccount());
 //      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson() + "This is the Response eof Get Company");
+        System.out.println(resp.getJson());
     }
 
     @Test(dependsOnMethods={"createAccount"})
@@ -108,17 +101,9 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
-
-                given()
-                        .headers("Auth-Key", header.getAuthKey()).
-                        headers("Content-Type", header.getType()).
-                        //.contentType("application/json")
-                                body(body).
-                when().
-                        put(config.shareAccount());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.shareAccount(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
     }
 
 
@@ -132,17 +117,10 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.unshareAccount(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType()).
-                        //.contentType("application/json")
-                        body(body).
-                when().
-                        put(config.unshareAccount());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
     }
 
 
@@ -158,20 +136,14 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                when().
-                        put(config.updateAccount());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
-                        String json = resp.asString();
-                        JsonPath jp = new JsonPath(json);
-                        assertEquals("taccount1", jp.get("body.name"));
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.updateAccount(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
+
+        String json = resp.getJson();
+        JsonPath jp = new JsonPath(json);
+        assertEquals("taccount1", jp.get("body.name"));
     }
 
     @Test(dependsOnMethods={"createAccount"})
@@ -181,16 +153,10 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
+        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteAccount());
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType()).
-                        //.contentType("application/json")
-                when().
-                        delete(config.deleteAccount());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
     }
 
 }

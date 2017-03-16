@@ -44,16 +44,10 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
+        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createGroup(), body);
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
 
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType())
-                        //.contentType("application/json")
-                        .body(body).
-                when().
-                        post(config.createGroup());
-        HelperMethods.checkStatusIs201(resp);
     }
 
 

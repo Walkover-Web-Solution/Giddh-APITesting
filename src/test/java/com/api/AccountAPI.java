@@ -1,7 +1,9 @@
 package com.api;
 
 
+import com.ApiUtils.ApiManager;
 import com.ApiUtils.HelperMethods;
+import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
@@ -21,6 +23,7 @@ import static org.testng.Assert.assertEquals;
 public class AccountAPI {
 
     ManageHeaders header = new ManageHeaders();
+    ApiManager apiManager = new ApiManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
 
@@ -89,16 +92,9 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        Response resp =
-
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType()).
-                        //.contentType("application/json")
-                when().
-                        get(config.getAccount());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
+        SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getAccount());
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson() + "This is the Response eof Get Company");
     }
 
     @Test(dependsOnMethods={"createAccount"})

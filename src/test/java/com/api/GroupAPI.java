@@ -1,6 +1,8 @@
 package com.api;
 
+import com.ApiUtils.ApiManager;
 import com.ApiUtils.HelperMethods;
+import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
@@ -20,6 +22,7 @@ import static org.testng.Assert.assertEquals;
 public class GroupAPI {
 
     ManageHeaders header = new ManageHeaders();
+    ApiManager apiManager = new ApiManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
 
@@ -34,8 +37,6 @@ public class GroupAPI {
     public void setup(){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
     }
-
-
 
 
     @Test
@@ -92,17 +93,10 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
+        SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getGroup());
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson() + "This is the Response eof Get Company");
 
-        Response resp =
-
-                given()
-                        .headers("Auth-Key", header.getAuthKey())
-                        .headers("Content-Type", header.getType()).
-                        //.contentType("application/json")
-                when().
-                        get(config.getGroup());
-                        HelperMethods.printResponse(resp);
-                        HelperMethods.checkStatusIs200(resp);
     }
 
     @Test(dependsOnMethods={"createGroup"})

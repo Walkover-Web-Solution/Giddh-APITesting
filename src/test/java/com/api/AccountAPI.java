@@ -26,6 +26,7 @@ public class AccountAPI {
     ApiManager apiManager = new ApiManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
+    GroupAPI groupAPI = new GroupAPI();
 
     @BeforeTest
     public void setHeader(){
@@ -33,28 +34,12 @@ public class AccountAPI {
         baseURL.setURL();
     }
 
-    public void createGroup() {
-
-        Map<String,String> body = new HashMap<>();
-        body.put("name", "tgroup");
-        body.put("uniqueName", "tgroup");
-        body.put("parentGroupUniqueName", "capital");
-
-        /**
-         * Main test and api call initiated
-         */
-
-        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createGroup(), body);
-//      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
-
-    }
 
 
     @Test
     public void createAccount() {
 
-        createGroup();
+        groupAPI.createGroup();
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
 
         Map<String,String> body = new HashMap<>();

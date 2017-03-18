@@ -36,7 +36,7 @@ public class CompanyAPI {
 
     @Test
     public void createCompany() throws Exception{
-
+        HelperMethods.setAnsiGreen("Started :- Create Company ");
         Map<String,String> body = new HashMap<>();
         body.put("name", "audi");
         body.put("uniqueName", "audi");

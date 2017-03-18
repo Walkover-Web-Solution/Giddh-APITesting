@@ -2,6 +2,8 @@ package com.ApiUtils;
 
 import com.model.ManageHeaders;
 import io.restassured.RestAssured;
+import io.restassured.config.ConnectionConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 import java.util.Map;
 import static io.restassured.RestAssured.*;
@@ -30,12 +32,13 @@ public class ApiManager {
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
                         return response;
         //  return statusCode;
     }
 
 
-    public SmartResponse postAPI_with_Assert_Statuscode(String URL, Map<String,String> body) {
+    public SmartResponse postAPI_with_Assert_Statuscode(String URL, Object body) {
 
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
 
@@ -53,12 +56,14 @@ public class ApiManager {
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
                         return response;
 
     }
 
-    public SmartResponse putAPI_with_Assert_Statuscode(String URL, Map<String, String> body){
+    public SmartResponse putAPI_with_Assert_Statuscode(String URL, Object body){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+
         Response resp =
                 given()
                         .headers("Auth-Key",header.getAuthKey())
@@ -71,6 +76,7 @@ public class ApiManager {
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
                         return response;
     }
 
@@ -78,6 +84,9 @@ public class ApiManager {
     public SmartResponse deleteAPI_with_Assert_Statuscode(String URL){
 
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+
+        header.set_Headers();
+
 
         Response resp =
                 given()
@@ -90,6 +99,7 @@ public class ApiManager {
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
                         return response;
 
 

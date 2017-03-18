@@ -1,5 +1,7 @@
 package com.ApiUtils;
 
+
+
 public class SmartResponse {
     private int statusCode;
     private String json;

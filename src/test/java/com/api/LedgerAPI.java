@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.aeonbits.owner.ConfigFactory.create;
+import static org.testng.Assert.assertEquals;
 
 public class LedgerAPI {
 
@@ -38,10 +39,19 @@ public class LedgerAPI {
 
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
+        assertEquals("01-04-2016", jp.get("body[0].entryDate"));
         ledger_UniqueName= jp.get("body[0].uniqueName");
         System.out.println(ledger_UniqueName);
 
     }
+
+
+    @Test
+    public void getLedger(){
+        SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getLedger()+ledger_UniqueName);
+        System.out.println(resp.getJson());
+    }
+
 
     @Test
     public void deleteAllLedger() throws Exception{

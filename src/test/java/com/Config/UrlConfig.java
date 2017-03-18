@@ -66,6 +66,10 @@ public interface UrlConfig extends  Config{
     @Key("ledger.Create")
     String createLedger();
 
+    @Key("ledger.Get")
+    String getLedger();
+
+
     @Key("ledger.Delete")
     String deleteLedger();
 

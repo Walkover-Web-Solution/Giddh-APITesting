@@ -63,5 +63,8 @@ public interface UrlConfig extends  Config{
     @Key("account.Delete")
     String deleteAccount();
 
+    @Key("ledger.Create")
+    String createLedger();
+
 
 }

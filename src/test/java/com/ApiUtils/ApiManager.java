@@ -38,7 +38,7 @@ public class ApiManager {
     }
 
 
-    public SmartResponse postAPI_with_Assert_Statuscode(String URL, Map<String,String> body) {
+    public SmartResponse postAPI_with_Assert_Statuscode(String URL, Object body) {
 
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
 
@@ -61,7 +61,7 @@ public class ApiManager {
 
     }
 
-    public SmartResponse putAPI_with_Assert_Statuscode(String URL, Map<String, String> body){
+    public SmartResponse putAPI_with_Assert_Statuscode(String URL, Object body){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
 
         Response resp =

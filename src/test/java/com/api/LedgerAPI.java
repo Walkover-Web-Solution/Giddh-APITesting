@@ -1,8 +1,13 @@
 package com.api;
 
+import com.ApiUtils.ApiManager;
 import com.ApiUtils.JsonUtil;
+import com.ApiUtils.SmartResponse;
+import com.Config.UrlConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.model.Ledger;
+import com.model.ManageHeaders;
+import com.model.ManageURL;
 import com.model.TransactionInput;
 import org.testng.annotations.Test;
 
@@ -10,7 +15,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.aeonbits.owner.ConfigFactory.create;
+
 public class LedgerAPI {
+    ApiManager apiManager = new ApiManager();
+    ManageURL baseURL = new ManageURL();
+    UrlConfig config = create(UrlConfig.class);
 
 
     @Test
@@ -20,5 +30,9 @@ public class LedgerAPI {
         Ledger ledger = new Ledger(transactions, "01-04-2016", "sales");
         String body = JsonUtil.toJsonAsString(ledger);
         System.out.println(body);
+
+        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createLedger());
+        System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
     }
 }

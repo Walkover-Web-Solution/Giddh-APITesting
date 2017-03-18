@@ -26,6 +26,12 @@
 					<include name="deleteAccount"/>
 				</methods>
 			</class>
+
+			<class name="com.api.LedgerAPI">
+				<methods>
+					<include name="createLedger" />
+				</methods>
+			</class>
 		</classes>
 	</test> <!-- Test -->
 </suite> <!--thods>

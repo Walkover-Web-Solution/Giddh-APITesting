@@ -24,15 +24,12 @@ public class LedgerAPI {
 
 
     @Test
-    public void createledger() throws JsonProcessingException {
+    public void createLedger() throws JsonProcessingException {
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
         Ledger ledger = new Ledger(transactions, "01-04-2016", "sales");
         String body = JsonUtil.toJsonAsString(ledger);
-        System.out.println(body);
-
-        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createLedger());
-        System.out.println(resp.getStatusCode());
+        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createLedger(), body);
         System.out.println(resp.getJson());
     }
 }

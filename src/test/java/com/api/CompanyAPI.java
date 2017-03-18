@@ -63,6 +63,8 @@ public class CompanyAPI {
 
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
+
+        HelperMethods.setAnsiGreen("Started :- Get Company ");
         /**
          * Main test and api call initiated
          */
@@ -75,6 +77,7 @@ public class CompanyAPI {
 
     @Test(dependsOnMethods={"createCompany"})
     public void shareCompany(){
+        HelperMethods.setAnsiGreen("Started :- Share Company ");
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "walkover78@gmail.com");
@@ -92,6 +95,8 @@ public class CompanyAPI {
 
     @Test(dependsOnMethods={"createCompany"})
     public void unShareCompany(){
+
+        HelperMethods.setAnsiGreen("Started :- UnShare Company ");
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "walkover78@gmail.com");
@@ -119,6 +124,7 @@ public class CompanyAPI {
 
     @AfterSuite
     public void deleteSetup()throws Exception{
+        HelperMethods.setAnsiGreen("Started :- Delete Setup ");
         ledgerAPI.deleteAllLedger();
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();

@@ -37,6 +37,8 @@ public class GroupAPI {
     @Test
     public void createGroup() {
 
+        HelperMethods.setAnsiGreen("Started :- Create Group ");
+
         Map<String,String> body = new HashMap<>();
         body.put("name", "tgroup");
         body.put("uniqueName", "tgroup");
@@ -53,6 +55,7 @@ public class GroupAPI {
 
     @Test
     public void moveGroup() {
+        HelperMethods.setAnsiGreen("Started :- Move Group ");
 
         Map<String,String> body = new HashMap<>();
         body.put("parentGroupUniqueName", "sundrydebtors");
@@ -70,6 +73,9 @@ public class GroupAPI {
     @Test(dependsOnMethods={"createGroup"})
     public void getGroup() {
 
+        HelperMethods.setAnsiGreen("Started :- Get Group ");
+
+
         /**
          * Main test and api call initiated
          */
@@ -82,6 +88,9 @@ public class GroupAPI {
 
     @Test(dependsOnMethods={"createGroup"})
     public void shareGroup() {
+
+        HelperMethods.setAnsiGreen("Started :- Share Group ");
+
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -100,6 +109,8 @@ public class GroupAPI {
     @Test(dependsOnMethods={"createGroup"})
     public void unshareGroup() {
 
+        HelperMethods.setAnsiGreen("Started :- UnShare Group ");
+
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
 
@@ -115,6 +126,8 @@ public class GroupAPI {
 
     @Test(dependsOnMethods={"createGroup"})
     public void updateGroup() {
+
+        HelperMethods.setAnsiGreen("Started :- Update Group ");
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "tgroup1");

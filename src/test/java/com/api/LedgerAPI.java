@@ -1,6 +1,7 @@
 package com.api;
 
 import com.ApiUtils.ApiManager;
+import com.ApiUtils.HelperMethods;
 import com.ApiUtils.JsonUtil;
 import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
@@ -30,6 +31,9 @@ public class LedgerAPI {
 
     @Test
     public void createLedger() throws JsonProcessingException {
+
+        HelperMethods.setAnsiGreen("Started :- Create Ledger ");
+
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
         Ledger ledger = new Ledger(transactions, "01-04-2016", "sales");
@@ -48,6 +52,9 @@ public class LedgerAPI {
 
     @Test
     public void getLedger(){
+
+        HelperMethods.setAnsiGreen("Started :- Get Ledger ");
+
         SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getLedger()+ledger_UniqueName);
         System.out.println(resp.getJson());
     }

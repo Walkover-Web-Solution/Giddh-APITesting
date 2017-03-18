@@ -37,7 +37,7 @@ public class AccountAPI {
 
     @Test
     public void createAccount() {
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        HelperMethods.setAnsiGreen("Started :- Create Account ");
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "taccount");
@@ -57,6 +57,9 @@ public class AccountAPI {
     @Test(dependsOnMethods={"createAccount"})
     public void getAccount() {
 
+        HelperMethods.setAnsiGreen("Started :- Get Account ");
+
+
         /**
          * Main test and api call initiated
          */
@@ -68,6 +71,8 @@ public class AccountAPI {
 
     @Test(dependsOnMethods={"createAccount"})
     public void shareAccount() {
+
+        HelperMethods.setAnsiGreen("Started :- Share Account ");
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -86,6 +91,8 @@ public class AccountAPI {
     @Test(dependsOnMethods={"createAccount"})
     public void unshareAccount() {
 
+        HelperMethods.setAnsiGreen("Started :- UnShare Account ");
+
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
 
@@ -102,6 +109,8 @@ public class AccountAPI {
 
     @Test(dependsOnMethods={"createAccount"})
     public void updateAccount() {
+
+        HelperMethods.setAnsiGreen("Started :- Update Account ");
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "taccount1");

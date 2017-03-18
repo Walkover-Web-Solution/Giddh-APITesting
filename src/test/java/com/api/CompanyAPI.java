@@ -23,6 +23,8 @@ public class CompanyAPI {
     GroupAPI groupAPI = new GroupAPI();
     AccountAPI accountAPI = new AccountAPI();
 
+    int responseCode;
+
 
     @BeforeTest
     public void setHeader(){
@@ -33,7 +35,7 @@ public class CompanyAPI {
 
 
     @Test
-    public void createCompany(){
+    public void createCompany() throws Exception{
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "audi");
@@ -44,11 +46,18 @@ public class CompanyAPI {
          */
 
         SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.mainURL(), body);
-        //System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+        responseCode = resp.getStatusCode();
+        if (responseCode != 201){
+            deleteSetup();
+            System.out.println("In if situation");
+        }
+        else {
+            System.out.println(responseCode);
+            System.out.println(resp.getJson());
 
-        String json = resp.getJson();
-        JsonPath jp = new JsonPath(json);
+            String json = resp.getJson();
+            JsonPath jp = new JsonPath(json);
+        }
     }
 
 
@@ -99,6 +108,9 @@ public class CompanyAPI {
 
     public void deleteCompany(){
 
+        /**
+         * Main test and api call initiated
+         */
         SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
@@ -106,7 +118,7 @@ public class CompanyAPI {
 
 
     @AfterSuite
-    public void delteSetup()throws Exception{
+    public void deleteSetup()throws Exception{
         ledgerAPI.deleteAllLedger();
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();

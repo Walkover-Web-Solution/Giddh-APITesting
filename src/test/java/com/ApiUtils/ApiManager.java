@@ -28,7 +28,7 @@ public class ApiManager {
                         //.contentType("application/json")
                 when().
                         get(URL);
-                        HelperMethods.checkStatusIs200(resp);
+                        //HelperMethods.checkStatusIs200(resp);
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
@@ -52,7 +52,7 @@ public class ApiManager {
                          body(body).
                 when().
                         post(URL);
-                        HelperMethods.checkStatusIs201(resp);
+                        //HelperMethods.checkStatusIs201(resp);
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
@@ -72,7 +72,7 @@ public class ApiManager {
                         body(body).
                 when().
                         put(URL);
-                        HelperMethods.checkStatusIs200(resp);
+                        //HelperMethods.checkStatusIs200(resp);
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
@@ -95,7 +95,7 @@ public class ApiManager {
                         //.contentType("application/json")
                 when().
                         delete(URL);
-                        HelperMethods.checkStatusIs200(resp);
+                       // HelperMethods.checkStatusIs200(resp);
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);

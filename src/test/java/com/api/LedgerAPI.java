@@ -9,6 +9,7 @@ import com.model.Ledger;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import com.model.TransactionInput;
+import io.restassured.path.json.JsonPath;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
@@ -18,6 +19,8 @@ import java.util.List;
 import static org.aeonbits.owner.ConfigFactory.create;
 
 public class LedgerAPI {
+
+    public String ledger_UniqueName;
 
     ApiManager apiManager = new ApiManager();
     ManageURL baseURL = new ManageURL();
@@ -32,6 +35,12 @@ public class LedgerAPI {
         String body = JsonUtil.toJsonAsString(ledger);
         SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createLedger(), body);
         System.out.println(resp.getJson());
+
+        String json = resp.getJson();
+        JsonPath jp = new JsonPath(json);
+        ledger_UniqueName= jp.get("body[0].uniqueName");
+        System.out.println(ledger_UniqueName);
+
     }
 
     @Test

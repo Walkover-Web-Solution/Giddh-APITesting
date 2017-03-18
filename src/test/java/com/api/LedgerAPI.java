@@ -21,7 +21,7 @@ import static org.testng.Assert.assertEquals;
 
 public class LedgerAPI {
 
-    public String ledger_UniqueName;
+    public static String ledger_UniqueName;
 
     ApiManager apiManager = new ApiManager();
     ManageURL baseURL = new ManageURL();

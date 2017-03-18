@@ -20,6 +20,8 @@ public class CompanyAPI {
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
     LedgerAPI ledgerAPI = new LedgerAPI();
+    GroupAPI groupAPI = new GroupAPI();
+    AccountAPI accountAPI = new AccountAPI();
 
 
     @BeforeTest
@@ -99,6 +101,8 @@ public class CompanyAPI {
     @AfterSuite
     public void deleteCompany()throws Exception{
         ledgerAPI.deleteAllLedger();
+        accountAPI.deleteAccount();
+        groupAPI.deleteGroup();
         SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());

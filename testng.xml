@@ -13,7 +13,7 @@
 				<include name="shareGroup" />
 				<include name="unshareGroup" />
 				<include name="updateGroup"/>
-				<include name="deleteGroup"/>
+
 				</methods>
 			</class>
 			<class name="com.api.AccountAPI">
@@ -23,7 +23,7 @@
 					<include name="shareAccount" />
 					<include name="unshareAccount" />
 					<include name="updateAccount"/>
-					<include name="deleteAccount"/>
+
 				</methods>
 			</class>
 

@@ -132,7 +132,7 @@ public class GroupAPI {
         assertEquals("tgroup1", jp.get("body.name"));
     }
 
-    @Test(dependsOnMethods={"createGroup"})
+
     public void deleteGroup() {
 
         /**

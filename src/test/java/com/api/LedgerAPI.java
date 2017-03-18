@@ -34,7 +34,7 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
     }
 
-
+    @Test
     public void deleteAllLedger() throws Exception{
         SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteLedger());
         System.out.println(resp.getJson());

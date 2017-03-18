@@ -37,8 +37,6 @@ public class AccountAPI {
 
     @Test
     public void createAccount() {
-
-        groupAPI.createGroup();
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
 
         Map<String,String> body = new HashMap<>();
@@ -124,17 +122,17 @@ public class AccountAPI {
         assertEquals("taccount1", jp.get("body.name"));
     }
 
-//    @Test(dependsOnMethods={"createAccount"})
-//    public void deleteAccount() {
-//
-//        /**
-//         * Main test and api call initiated
-//         */
-//
-//        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteAccount());
-////      System.out.println(resp.getStatusCode());
-//        System.out.println(resp.getJson());
-//
-//    }
+
+    public void deleteAccount() {
+
+        /**
+         * Main test and api call initiated
+         */
+
+        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteAccount());
+//      System.out.println(resp.getStatusCode());
+        System.out.println(resp.getJson());
+
+    }
 
 }

@@ -97,16 +97,20 @@ public class CompanyAPI {
     }
 
 
+    public void deleteCompany(){
 
-    @AfterSuite
-    public void deleteCompany()throws Exception{
-        ledgerAPI.deleteAllLedger();
-        accountAPI.deleteAccount();
-        groupAPI.deleteGroup();
         SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
+    }
 
+
+    @AfterSuite
+    public void delteSetup()throws Exception{
+        ledgerAPI.deleteAllLedger();
+        accountAPI.deleteAccount();
+        groupAPI.deleteGroup();
+        deleteCompany();
     }
 
 }

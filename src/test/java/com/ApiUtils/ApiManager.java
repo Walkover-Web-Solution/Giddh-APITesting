@@ -52,7 +52,7 @@ public class ApiManager {
                          body(body).
                 when().
                         post(URL);
-                        //HelperMethods.checkStatusIs201(resp);
+                        HelperMethods.checkStatusIs201(resp);
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
@@ -84,6 +84,9 @@ public class ApiManager {
     public SmartResponse deleteAPI_with_Assert_Statuscode(String URL){
 
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+
+        header.set_Headers();
+
 
         Response resp =
                 given()

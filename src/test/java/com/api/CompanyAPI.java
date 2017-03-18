@@ -1,6 +1,7 @@
 package com.api;
 
 import com.Config.UrlConfig;
+import com.model.Ledger;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.path.json.JsonPath;
@@ -18,6 +19,8 @@ public class CompanyAPI {
     ApiManager apiManager = new ApiManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
+    LedgerAPI ledgerAPI = new LedgerAPI();
+
 
     @BeforeTest
     public void setHeader(){
@@ -94,11 +97,8 @@ public class CompanyAPI {
 
 
     @AfterSuite
-    public void deleteCompany(){
-
-        /**
-         * Main test and api call initiated
-         */
+    public void deleteCompany()throws Exception{
+        ledgerAPI.deleteAllLedger();
         SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());

@@ -142,7 +142,7 @@ public class GroupAPI {
 //      System.out.println(resp.getStatusCode());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
-        assertEquals("tgroup1", jp.get("body.name"));
+        assertEquals(jp.get("body.name"),"tgroup1" );
     }
 
 

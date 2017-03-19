@@ -128,7 +128,7 @@ public class AccountAPI {
 
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
-        assertEquals("taccount1", jp.get("body.name"));
+        assertEquals( jp.get("body.name"), "taccount1");
     }
 
 

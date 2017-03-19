@@ -38,9 +38,12 @@ public class LedgerAPI {
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
         Ledger ledger = new Ledger(transactions, "01-04-2016", "sales");
         String body = JsonUtil.toJsonAsString(ledger);
+        /**
+         * Main test and api call initiated
+         */
+
         SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createLedger(), body);
         System.out.println(resp.getJson());
-
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
         assertEquals("01-04-2016", jp.get("body[0].entryDate"));
@@ -52,16 +55,38 @@ public class LedgerAPI {
 
     @Test
     public void getLedger(){
-
         HelperMethods.setAnsiGreen("Started :- Get Ledger ");
-
+        /**
+         * Main test and api call initiated
+         */
         SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getLedger()+ledger_UniqueName);
         System.out.println(resp.getJson());
+    }
+
+    @Test
+    public void updateLedger() throws JsonProcessingException {
+        HelperMethods.setAnsiGreen("Started :- Update Ledger ");
+
+        List<TransactionInput> transactions = new ArrayList<>();
+        transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
+        Ledger ledger = new Ledger(transactions, "02-04-2016", "sales");
+        String body = JsonUtil.toJsonAsString(ledger);
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.updateLedger()+ledger_UniqueName, body);
+        System.out.println(resp.getJson());
+        String json = resp.getJson();
+        JsonPath jp = new JsonPath(json);
+        assertEquals(jp.get("body.entryDate"),"02-04-2016" );
     }
 
 
     @Test
     public void deleteAllLedger() throws Exception{
+        /**
+         * Main test and api call initiated
+         */
         SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteLedger());
         System.out.println(resp.getJson());
     }

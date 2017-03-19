@@ -30,6 +30,7 @@
 			<class name="com.api.LedgerAPI">
 				<methods>
 					<include name="createLedger" />
+					<include name="updateLedger"/>
 					<include name="getLedger" />
 				</methods>
 			</class>

@@ -1,4 +1,4 @@
-package com.api;
+package com.api.Smoke;
 
 
 import com.ApiUtils.ApiManager;
@@ -7,16 +7,12 @@ import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
-import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.testng.annotations.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.*;
-import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 

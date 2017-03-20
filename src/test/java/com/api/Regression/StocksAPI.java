@@ -1,4 +1,4 @@
-package com.api;
+package com.api.Regression;
 
 import  com.ApiUtils.*;
 import com.model.ManageHeaders;

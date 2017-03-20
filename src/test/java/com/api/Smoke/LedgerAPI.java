@@ -1,4 +1,4 @@
-package com.api;
+package com.api.Smoke;
 
 import com.ApiUtils.ApiManager;
 import com.ApiUtils.HelperMethods;

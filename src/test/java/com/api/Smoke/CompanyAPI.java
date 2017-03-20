@@ -1,7 +1,6 @@
-package com.api;
+package com.api.Smoke;
 
 import com.Config.UrlConfig;
-import com.model.Ledger;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.path.json.JsonPath;

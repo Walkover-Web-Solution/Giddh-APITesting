@@ -4,8 +4,9 @@
 <suite name="API Suite" parallel="false" preserve-order="true" verbose="1" >
 	<test name="Test on Rest API ">
 		<classes>
-			<class name="com.api.CompanyAPI"/>
-			<class name="com.api.GroupAPI">
+			<class name="com.api.Smoke.CompanyAPI"/>
+
+			<class name="com.api.Smoke.GroupAPI">
 				<methods>
 					<include name="createGroup" />
 					<include name="moveGroup" />
@@ -13,21 +14,18 @@
 					<include name="shareGroup" />
 					<include name="unshareGroup" />
 					<include name="updateGroup"/>
-
 				</methods>
 			</class>
-			<class name="com.api.AccountAPI">
+			<class name="com.api.Smoke.AccountAPI">
 				<methods>
 					<include name="createAccount" />
 					<include name="getAccount" />
 					<include name="shareAccount" />
 					<include name="unshareAccount" />
 					<include name="updateAccount"/>
-
 				</methods>
 			</class>
-
-			<class name="com.api.LedgerAPI">
+			<class name="com.api.Smoke.LedgerAPI">
 				<methods>
 					<include name="createLedger" />
 					<include name="updateLedger"/>

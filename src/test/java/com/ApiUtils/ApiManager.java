@@ -54,6 +54,10 @@ public class ApiManager {
                          body(body).
                 when().
                         post(URL);
+                      try {
+                          Thread.sleep(3000);
+                      }
+                      catch (Exception e){}
                         //HelperMethods.checkStatusIs201(resp);
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();

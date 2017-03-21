@@ -32,6 +32,11 @@
 					<include name="getLedger" />
 				</methods>
 			</class>
+			<class name="com.api.Smoke.InvoiceAPI">
+				<methods>
+					<include name="createInvoice" />
+				</methods>
+			</class>
 		</classes>
 	</test> <!-- Test -->
 

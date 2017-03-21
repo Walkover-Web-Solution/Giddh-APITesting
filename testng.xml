@@ -35,6 +35,7 @@
 			<class name="com.api.Smoke.InvoiceAPI">
 				<methods>
 					<include name="createInvoice" />
+					<include name="get_All_Invoices"/>
 					<include name="deleteInvoice"/>
 				</methods>
 			</class>

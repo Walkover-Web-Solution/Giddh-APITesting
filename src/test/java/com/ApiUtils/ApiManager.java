@@ -63,6 +63,31 @@ public class ApiManager {
 
     }
 
+    public SmartResponse postAPI_with_Assert_Statuscode1(String URL) {
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        header.set_Headers();
+
+        Response resp =
+                given()
+                        .headers("Auth-Key",header.getAuthKey())
+                        .headers("Content-Type",header.getType()).
+                        //.contentType("application/json")
+
+                        when().
+                        post(URL);
+        try {
+            Thread.sleep(3000);
+        }
+        catch (Exception e){}
+        //HelperMethods.checkStatusIs201(resp);
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.SECONDS));
+        return response;
+
+    }
+
     public SmartResponse putAPI_with_Assert_Statuscode(String URL, Object body){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers();

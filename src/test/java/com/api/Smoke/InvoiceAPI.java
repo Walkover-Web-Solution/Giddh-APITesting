@@ -8,6 +8,7 @@ import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.model.Invoice;
 import com.model.ManageHeaders;
+import io.restassured.path.json.JsonPath;
 import org.testng.annotations.*;
 
 import java.util.ArrayList;
@@ -38,10 +39,15 @@ public class InvoiceAPI {
         }
     }
 
-
+    @Test
     public void get_All_Invoices() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Get All Invoices");
-
+        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode1(config.getAllInvoice());
+        System.out.println(resp.getJson());
+        String json = resp.getJson();
+        JsonPath jp = new JsonPath(json);
+        Invoice_Number= jp.get("body.results[0].invoiceNumber");
+        System.out.println(Invoice_Number + "Invoice number");
     }
 
     @Test

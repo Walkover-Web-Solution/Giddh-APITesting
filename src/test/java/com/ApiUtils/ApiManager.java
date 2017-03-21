@@ -41,9 +41,7 @@ public class ApiManager {
 
 
     public SmartResponse postAPI_with_Assert_Statuscode(String URL, Object body) {
-
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-
         header.set_Headers();
 
         Response resp =
@@ -88,11 +86,8 @@ public class ApiManager {
 
 
     public SmartResponse deleteAPI_with_Assert_Statuscode(String URL){
-
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-
         header.set_Headers();
-
 
         Response resp =
                 given()

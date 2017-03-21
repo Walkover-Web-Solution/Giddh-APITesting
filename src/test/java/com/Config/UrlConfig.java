@@ -78,5 +78,8 @@ public interface UrlConfig extends  Config{
     @Key("invoice.Create")
     String createInvoice();
 
+    @Key("invoice.Delete")
+    String deleteInvoice();
+
 
 }

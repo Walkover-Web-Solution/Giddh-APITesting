@@ -36,7 +36,7 @@ public class LedgerAPI {
 
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, "01-04-2016", "sales");
+        Ledger ledger = new Ledger(transactions, "20-03-2017", "sales");
         String body = JsonUtil.toJsonAsString(ledger);
         /**
          * Main test and api call initiated
@@ -46,7 +46,7 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
-        assertEquals("01-04-2016", jp.get("body[0].entryDate"));
+        assertEquals(jp.get("body[0].entryDate"),"20-03-2017");
         ledger_UniqueName= jp.get("body[0].uniqueName");
         System.out.println(ledger_UniqueName);
 
@@ -69,7 +69,7 @@ public class LedgerAPI {
 
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, "02-04-2016", "sales");
+        Ledger ledger = new Ledger(transactions, "21-03-2017", "sales");
         String body = JsonUtil.toJsonAsString(ledger);
         /**
          * Main test and api call initiated
@@ -78,7 +78,7 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body.entryDate"),"02-04-2016" );
+        assertEquals(jp.get("body.entryDate"),"21-03-2017" );
     }
 
 

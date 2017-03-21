@@ -18,9 +18,7 @@ public class ApiManager {
 
 
     public SmartResponse getAPI_with_Assert_Statuscode(String URL) {
-
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-
         header.set_Headers();
 
         Response resp =
@@ -67,6 +65,7 @@ public class ApiManager {
 
     public SmartResponse putAPI_with_Assert_Statuscode(String URL, Object body){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        header.set_Headers();
 
         Response resp =
                 given()
@@ -102,9 +101,5 @@ public class ApiManager {
                         SmartResponse response = new SmartResponse(statusCode, json);
                         RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
                         return response;
-
-
     }
-
-
 }

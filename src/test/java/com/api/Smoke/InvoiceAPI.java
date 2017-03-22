@@ -40,7 +40,7 @@ public class InvoiceAPI {
         }
     }
 
-    @Test
+    @Test(dependsOnMethods={"createInvoice"})
     public void get_All_Invoices() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Get All Invoices");
         SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode1(config.getAllInvoice());
@@ -51,7 +51,7 @@ public class InvoiceAPI {
         System.out.println(Invoice_Number + "Invoice number");
     }
 
-    @Test
+    @Test(dependsOnMethods={"createInvoice"})
     public void deleteInvoice() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Invoice ");
         SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteInvoice()+ Invoice_Number);

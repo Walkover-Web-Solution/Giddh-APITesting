@@ -58,7 +58,7 @@ public class LedgerAPI {
     }
 
 
-    @Test
+    @Test(dependsOnMethods={"createLedger"})
     public void getLedger(){
         HelperMethods.setAnsiGreen("Started :- Get Ledger ");
         /**
@@ -68,7 +68,7 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
     }
 
-    @Test
+    @Test(dependsOnMethods={"createLedger"})
     public void updateLedger() throws JsonProcessingException {
         HelperMethods.setAnsiGreen("Started :- Update Ledger ");
 
@@ -87,7 +87,7 @@ public class LedgerAPI {
     }
 
 
-    @Test
+    @Test(dependsOnMethods={"createLedger"})
     public void deleteAllLedger() throws Exception{
         /**
          * Main test and api call initiated

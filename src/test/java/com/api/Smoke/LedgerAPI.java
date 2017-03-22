@@ -11,9 +11,11 @@ import com.model.ManageHeaders;
 import com.model.ManageURL;
 import com.model.TransactionInput;
 import io.restassured.path.json.JsonPath;
+import org.joda.time.LocalDate;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,8 @@ import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
 public class LedgerAPI {
+
+    LocalDate ld = new LocalDate();
 
     public static String ledger_UniqueName;
 
@@ -31,12 +35,13 @@ public class LedgerAPI {
 
     @Test
     public void createLedger() throws JsonProcessingException {
-
+        LocalDate ld = new LocalDate();
         HelperMethods.setAnsiGreen("Started :- Create Ledger ");
+        //System.out.println( ld.toString("dd-MM-yyyy"));
 
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, "20-03-2017", "sales");
+        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales");
         String body = JsonUtil.toJsonAsString(ledger);
         /**
          * Main test and api call initiated
@@ -46,7 +51,7 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body[0].entryDate"),"20-03-2017");
+        assertEquals(jp.get("body[0].entryDate"),ld.toString("dd-MM-yyyy"));
         ledger_UniqueName= jp.get("body[0].uniqueName");
         System.out.println(ledger_UniqueName);
 
@@ -68,8 +73,8 @@ public class LedgerAPI {
         HelperMethods.setAnsiGreen("Started :- Update Ledger ");
 
         List<TransactionInput> transactions = new ArrayList<>();
-        transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, "21-03-2017", "sales");
+        transactions.add(new TransactionInput(BigDecimal.TEN, "sales", "debit"));
+        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales");
         String body = JsonUtil.toJsonAsString(ledger);
         /**
          * Main test and api call initiated
@@ -78,7 +83,7 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body.entryDate"),"21-03-2017" );
+        assertEquals(jp.get("body.entryDate"),ld.toString("dd-MM-yyyy"));
     }
 
 

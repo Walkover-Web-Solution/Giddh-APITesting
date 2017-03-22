@@ -23,6 +23,7 @@ public class InvoiceAPI {
 
     public static String Invoice_Number;
 
+
     @Test
     public void createInvoice() throws  Exception{
         HelperMethods.setAnsiGreen("Started :- Create Invoice");
@@ -53,7 +54,7 @@ public class InvoiceAPI {
     @Test
     public void deleteInvoice() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Invoice ");
-        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteInvoice());
+        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteInvoice()+ Invoice_Number);
         System.out.println(resp.getJson());
     }
 }

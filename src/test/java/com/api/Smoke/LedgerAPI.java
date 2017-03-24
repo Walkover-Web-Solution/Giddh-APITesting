@@ -29,7 +29,6 @@ public class LedgerAPI {
     public static String ledger_UniqueName;
 
     ApiManager apiManager = new ApiManager();
-    ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
 
 

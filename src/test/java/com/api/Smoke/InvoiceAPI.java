@@ -1,13 +1,12 @@
 package com.api.Smoke;
 
 
-import com.ApiUtils.ApiManager;
+import com.ApiUtils.MethodManager;
 import com.ApiUtils.HelperMethods;
 import com.ApiUtils.JsonUtil;
 import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.model.Invoice;
-import com.model.ManageHeaders;
 import io.restassured.path.json.JsonPath;
 import org.testng.annotations.*;
 
@@ -18,7 +17,7 @@ import static org.aeonbits.owner.ConfigFactory.*;
 
 public class InvoiceAPI {
 
-    ApiManager apiManager = new ApiManager();
+    MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
     public static String Invoice_Number;
@@ -33,7 +32,7 @@ public class InvoiceAPI {
         Invoice invoice = new Invoice(uniqueNames);
         String body = JsonUtil.toJsonAsString(invoice);
         //System.out.println(invoice);
-        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createInvoice(), body);
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createInvoice(), body);
         System.out.println(resp.getJson());
         for ( String data : uniqueNames) {
             System.out.println(data);
@@ -43,7 +42,7 @@ public class InvoiceAPI {
     @Test(dependsOnMethods={"createInvoice"})
     public void get_All_Invoices() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Get All Invoices");
-        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode1(config.getAllInvoice());
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode1(config.getAllInvoice());
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
@@ -54,7 +53,7 @@ public class InvoiceAPI {
     @Test(dependsOnMethods={"createInvoice"})
     public void deleteInvoice() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Invoice ");
-        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteInvoice()+ Invoice_Number);
+        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteInvoice()+ Invoice_Number);
         System.out.println(resp.getJson());
     }
 }

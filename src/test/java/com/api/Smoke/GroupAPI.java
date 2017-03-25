@@ -1,28 +1,25 @@
 package com.api.Smoke;
 
-import com.ApiUtils.ApiManager;
+import com.ApiUtils.MethodManager;
 import com.ApiUtils.HelperMethods;
 import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
-import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.testng.annotations.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
 public class GroupAPI {
 
     ManageHeaders header = new ManageHeaders();
-    ApiManager apiManager = new ApiManager();
+    MethodManager methodManager = new MethodManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
 
@@ -48,7 +45,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createGroup(), body);
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -64,7 +61,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.moveGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.moveGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -80,7 +77,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getGroup());
+        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(config.getGroup());
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson() + "This is the Response eof Get Company");
 
@@ -100,7 +97,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.shareGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.shareGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -118,7 +115,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.unshareGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.unshareGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -138,7 +135,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.updateGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.updateGroup(), body);
 //      System.out.println(resp.getStatusCode());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
@@ -152,7 +149,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteGroup());
+        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteGroup());
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
 

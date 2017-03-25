@@ -1,7 +1,7 @@
 package com.api.Regression;
 
 
-import com.ApiUtils.ApiManager;
+import com.ApiUtils.MethodManager;
 import com.Config.UrlConfig;
 import com.api.Smoke.AccountAPI;
 import com.api.Smoke.GroupAPI;
@@ -14,7 +14,7 @@ import static org.aeonbits.owner.ConfigFactory.create;
 
 public class Company {
     ManageHeaders header = new ManageHeaders();
-    ApiManager apiManager = new ApiManager();
+    MethodManager methodManager = new MethodManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
     LedgerAPI ledgerAPI = new LedgerAPI();

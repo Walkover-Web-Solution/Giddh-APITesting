@@ -15,7 +15,7 @@ import static org.testng.Assert.assertEquals;
 public class CompanyAPI {
 
     ManageHeaders header = new ManageHeaders();
-    ApiManager apiManager = new ApiManager();
+    MethodManager methodManager = new MethodManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
     LedgerAPI ledgerAPI = new LedgerAPI();
@@ -44,7 +44,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.mainURL(), body);
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.mainURL(), body);
         responseCode = resp.getStatusCode();
         if (responseCode != 201){
             deleteSetup();
@@ -68,7 +68,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getCompany());
+        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(config.getCompany());
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -86,7 +86,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.shareCompany(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.shareCompany(), body);
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -104,7 +104,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.unshareCompany(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.unshareCompany(), body);
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -115,7 +115,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
+        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }

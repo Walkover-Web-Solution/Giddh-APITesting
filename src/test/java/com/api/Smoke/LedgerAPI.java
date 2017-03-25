@@ -1,14 +1,12 @@
 package com.api.Smoke;
 
-import com.ApiUtils.ApiManager;
+import com.ApiUtils.MethodManager;
 import com.ApiUtils.HelperMethods;
 import com.ApiUtils.JsonUtil;
 import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.model.Ledger;
-import com.model.ManageHeaders;
-import com.model.ManageURL;
 import com.model.TransactionInput;
 import io.restassured.path.json.JsonPath;
 import org.joda.time.LocalDate;
@@ -28,7 +26,7 @@ public class LedgerAPI {
 
     public static String ledger_UniqueName;
 
-    ApiManager apiManager = new ApiManager();
+    MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
 
@@ -46,7 +44,7 @@ public class LedgerAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = apiManager.postAPI_with_Assert_Statuscode(config.createLedger(), body);
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createLedger(), body);
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
@@ -63,7 +61,7 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = apiManager.getAPI_with_Assert_Statuscode(config.getLedger()+ledger_UniqueName);
+        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(config.getLedger()+ledger_UniqueName);
         System.out.println(resp.getJson());
     }
 
@@ -78,7 +76,7 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = apiManager.putAPI_with_Assert_Statuscode(config.updateLedger()+ledger_UniqueName, body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.updateLedger()+ledger_UniqueName, body);
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
@@ -91,7 +89,7 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = apiManager.deleteAPI_with_Assert_Statuscode(config.deleteLedger());
+        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteLedger());
         System.out.println(resp.getJson());
     }
 }

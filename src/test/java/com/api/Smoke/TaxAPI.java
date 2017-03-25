@@ -12,7 +12,7 @@ import static org.aeonbits.owner.ConfigFactory.create;
 
 public class TaxAPI {
 
-    ApiManager apiManager = new ApiManager();
+    MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
     @Test

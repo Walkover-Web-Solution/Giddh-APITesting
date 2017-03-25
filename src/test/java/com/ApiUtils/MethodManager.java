@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 
 
-public class ApiManager {
+public class MethodManager {
 
     ManageHeaders header = new ManageHeaders();
 

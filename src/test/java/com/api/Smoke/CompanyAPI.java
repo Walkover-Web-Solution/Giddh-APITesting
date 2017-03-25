@@ -24,7 +24,6 @@ public class CompanyAPI {
 
     int responseCode;
 
-
     @BeforeTest
     public void setHeader(){
         header.set_Headers();

@@ -58,7 +58,7 @@ public class AccountAPI {
          */
 
         SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(config.getAccount());
-//      System.out.println(resp.getStatusCode());
+     //   System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
 

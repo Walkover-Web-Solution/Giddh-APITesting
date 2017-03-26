@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class companyCreate {
+public class CompanyCreate {
 
     MethodManager methodManager = new MethodManager();
 

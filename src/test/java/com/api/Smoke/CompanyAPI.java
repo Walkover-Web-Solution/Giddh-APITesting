@@ -3,7 +3,6 @@ package com.api.Smoke;
 import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
-import io.restassured.path.json.JsonPath;
 import org.testng.annotations.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,7 @@ public class CompanyAPI {
     LedgerAPI ledgerAPI = new LedgerAPI();
     GroupAPI groupAPI = new GroupAPI();
     AccountAPI accountAPI = new AccountAPI();
-    companyCreate create = new companyCreate();
+    CompanyCreate create = new CompanyCreate();
 
 
 

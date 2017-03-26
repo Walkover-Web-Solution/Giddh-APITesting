@@ -21,8 +21,9 @@ public class CompanyAPI {
     LedgerAPI ledgerAPI = new LedgerAPI();
     GroupAPI groupAPI = new GroupAPI();
     AccountAPI accountAPI = new AccountAPI();
+    companyCreate create = new companyCreate();
 
-    int responseCode;
+
 
     @BeforeTest
     public void setHeader(){
@@ -30,31 +31,28 @@ public class CompanyAPI {
         baseURL.setURL();
     }
 
-
-
     @Test
     public void createCompany() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Create Company ");
-        Map<String,String> body = new HashMap<>();
-        body.put("name", "audi");
-        body.put("uniqueName", "audi");
+        SmartResponse response = create.companyCreate(config.mainURL(), "audi", "audi");
 
-        /**
-         * Main test and api call initiated
-         */
-
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.mainURL(), body);
-        responseCode = resp.getStatusCode();
-        if (responseCode != 201){
+        if (response.getStatusCode() == 409){
             deleteSetup();
-            System.out.println("In if situation");
+            SmartResponse response1 = create.companyCreate(config.mainURL(), "audi", "audi");
+            if (response1.getStatusCode() != 201){
+                System.out.println(response1.getStatusCode());
+                System.out.println(response1.getJson());
+            }
+            if (response1.getStatusCode() ==201){
+                HelperMethods.setAnsiGreen("Company Create Successfully");
+            }
+        }
+        if (response.getStatusCode()==201){
+            System.out.println(response.getJson());
         }
         else {
-            System.out.println(responseCode);
-            System.out.println(resp.getJson());
-
-            String json = resp.getJson();
-            JsonPath jp = new JsonPath(json);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getJson());
         }
     }
 

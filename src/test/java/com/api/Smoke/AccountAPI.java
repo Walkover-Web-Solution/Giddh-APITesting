@@ -52,10 +52,7 @@ public class AccountAPI {
 
     @Test(dependsOnMethods={"createAccount"})
     public void getAccount() {
-
         HelperMethods.setAnsiGreen("Started :- Get Account ");
-
-
         /**
          * Main test and api call initiated
          */

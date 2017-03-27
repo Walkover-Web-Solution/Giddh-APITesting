@@ -42,7 +42,7 @@ public class CompanyAPI {
                 System.out.println(response1.getStatusCode());
                 System.out.println(response1.getJson());
             }
-            if (response1.getStatusCode() ==201){
+            if (response1.getStatusCode() == 201){
                 System.out.println(response.getJson());
                 HelperMethods.setAnsiGreen("Company Create Successfully");
             }
@@ -60,8 +60,8 @@ public class CompanyAPI {
 
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
-
         HelperMethods.setAnsiGreen("Started :- Get Company ");
+
         /**
          * Main test and api call initiated
          */

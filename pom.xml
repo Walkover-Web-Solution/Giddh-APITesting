@@ -12,6 +12,15 @@
 
     <profiles>
         <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <env.id>dev</env.id>
+            </properties>
+        </profile>
+        <profile>
             <id>test</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
@@ -21,12 +30,12 @@
             </properties>
         </profile>
         <profile>
-            <id>dev</id>
+            <id>stage</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <env.id>dev</env.id>
+                <env.id>stage</env.id>
             </properties>
         </profile>
         <profile>

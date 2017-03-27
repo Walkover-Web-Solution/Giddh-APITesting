@@ -35,6 +35,8 @@ public class AccountAPI {
     public void createAccount() {
         HelperMethods.setAnsiGreen("Started :- Create Account ");
 
+        groupAPI.createGroup();
+
         Map<String,String> body = new HashMap<>();
         body.put("name", "taccount");
         body.put("uniqueName", "taccount");

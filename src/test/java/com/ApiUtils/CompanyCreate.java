@@ -29,10 +29,6 @@ public class CompanyCreate {
          */
         SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(URL, body);
         responseCode = resp.getStatusCode();
-        if(responseCode != 201){
-            HelperMethods.setAnsiRed("This is error message" + resp.getJson());
-            HelperMethods.setAnsiRed("Error Code while Create Company is = " +  responseCode);
-        }
         return resp;
     }
 }

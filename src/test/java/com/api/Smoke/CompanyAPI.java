@@ -43,11 +43,13 @@ public class CompanyAPI {
                 System.out.println(response1.getJson());
             }
             if (response1.getStatusCode() ==201){
+                System.out.println(response.getJson());
                 HelperMethods.setAnsiGreen("Company Create Successfully");
             }
         }
         if (response.getStatusCode()==201){
             System.out.println(response.getJson());
+            HelperMethods.setAnsiGreen("Company Create Successfully");
         }
         else {
             System.out.println(response.getStatusCode());

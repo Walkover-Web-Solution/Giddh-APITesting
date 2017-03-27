@@ -29,6 +29,15 @@
                 <env.id>dev</env.id>
             </properties>
         </profile>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <env.id>prod</env.id>
+            </properties>
+        </profile>
     </profiles>
 
 

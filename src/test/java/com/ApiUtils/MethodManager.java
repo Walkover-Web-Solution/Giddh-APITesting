@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
+import static io.restassured.config.SSLConfig.sslConfig;
 
 
 public class MethodManager {
@@ -22,7 +23,7 @@ public class MethodManager {
         header.set_Headers();
 
         Response resp =
-                given()
+                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
@@ -43,7 +44,7 @@ public class MethodManager {
         header.set_Headers();
 
         Response resp =
-                given()
+                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
@@ -68,7 +69,7 @@ public class MethodManager {
         header.set_Headers();
 
         Response resp =
-                given()
+                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
@@ -93,7 +94,7 @@ public class MethodManager {
         header.set_Headers();
 
         Response resp =
-                given()
+                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
@@ -114,7 +115,7 @@ public class MethodManager {
         header.set_Headers();
 
         Response resp =
-                given()
+                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")

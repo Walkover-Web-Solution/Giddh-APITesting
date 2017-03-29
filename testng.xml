@@ -44,7 +44,7 @@
 
 	<test name="Regression">
 		<classes>
-			<class name="com.api.Regression.StocksAPI"/>
+			<!--<class name="com.api.Regression.StocksAPI"/>-->
 		</classes>
 	</test> <!-- Test -->
 </suite>

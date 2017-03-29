@@ -3,10 +3,13 @@ package com.api.Smoke;
 import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
+import io.restassured.RestAssured;
 import org.testng.annotations.*;
 import java.util.HashMap;
 import java.util.Map;
 import com.ApiUtils.*;
+
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
@@ -116,6 +119,7 @@ public class CompanyAPI {
         SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
     }
 
 

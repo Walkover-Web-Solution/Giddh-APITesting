@@ -136,4 +136,19 @@ public class HelperMethods {
         }
     }
 
+    //    private void waitForAccess( String url, String username, String password, long sleep ) throws InterruptedException {
+//        while( true ) {
+//            Response response = given()
+//                    .auth().preemptive().basic( username, password )
+//                    .when().get( url ).andReturn();
+//            if( response.getStatusCode() == HttpStatus.SC_NOT_FOUND ) {
+//                Thread.sleep( sleep );
+//                continue;
+//            }
+//            assertThat( response.getContentType(), containsString( "text/plain" ) );
+//            assertThat( response.getBody().asString(), is( "test-service-response" ) );
+//            break;
+//        }
+//    }
+
 }

@@ -34,7 +34,7 @@ public class MethodManager {
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
                         return response;
     }
 
@@ -54,7 +54,7 @@ public class MethodManager {
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.SECONDS));
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
                         return response;
 
     }
@@ -83,7 +83,7 @@ public class MethodManager {
                             String json = resp.asString();
                             int statusCode = resp.getStatusCode();
                             SmartResponse response = new SmartResponse(statusCode, json);
-                            RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.SECONDS));
+                            RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
                             return response;
 
     }
@@ -103,7 +103,7 @@ public class MethodManager {
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
                         return response;
     }
 
@@ -122,7 +122,7 @@ public class MethodManager {
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
                         return response;
     }
 }

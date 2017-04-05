@@ -51,7 +51,7 @@ public class GroupAPI {
         }
     }
 
-    @Test
+    @Test(dependsOnMethods={"createGroup"})
     public void moveGroup() {
         HelperMethods.setAnsiGreen("Started :- Move Group ");
 

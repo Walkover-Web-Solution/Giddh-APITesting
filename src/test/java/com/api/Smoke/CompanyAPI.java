@@ -25,8 +25,6 @@ public class CompanyAPI {
     AccountAPI accountAPI = new AccountAPI();
     CompanyCreate create = new CompanyCreate();
 
-
-
     @BeforeTest
     public void setHeader(){
         header.set_Headers();
@@ -64,7 +62,6 @@ public class CompanyAPI {
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
         HelperMethods.setAnsiGreen("Started :- Get Company ");
-
         /**
          * Main test and api call initiated
          */

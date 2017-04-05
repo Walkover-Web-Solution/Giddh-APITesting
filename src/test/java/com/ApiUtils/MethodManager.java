@@ -5,6 +5,8 @@ import io.restassured.RestAssured;
 import io.restassured.config.ConnectionConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
+
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -27,14 +29,14 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                when().
+                                when().
                         get(URL);
-                        //HelperMethods.checkStatusIs200(resp);
-                        String json = resp.asString();
-                        int statusCode = resp.getStatusCode();
-                        SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
-                        return response;
+        //HelperMethods.checkStatusIs200(resp);
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
+        return response;
         //  return statusCode;
     }
 
@@ -48,19 +50,20 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                         body(body).
-                when().
+                                body(body).
+                        when().
                         post(URL);
-                      try {
-                          Thread.sleep(3000);
-                      }
-                      catch (Exception e){}
-                        //HelperMethods.checkStatusIs201(resp);
-                        String json = resp.asString();
-                        int statusCode = resp.getStatusCode();
-                        SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.SECONDS));
-                        return response;
+//                      try {
+//                          Thread.sleep(3000);
+//                      }
+//                      catch (Exception e){}
+        //HelperMethods.checkStatusIs201(resp);
+        System.out.println(resp.getStatusCode());
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.SECONDS));
+        return response;
 
     }
 
@@ -73,13 +76,18 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-
-                        when().
+                when().
                         post(URL);
-        try {
-            Thread.sleep(3000);
-        }
-        catch (Exception e){}
+                        while( true ) {
+                            if( resp.getBody() ==  null) {
+                                try {
+                                Thread.sleep(3000);
+                                }
+                                    catch (Exception e){}
+                                continue;
+                                }
+                            break;
+                            }
         //HelperMethods.checkStatusIs201(resp);
         String json = resp.asString();
         int statusCode = resp.getStatusCode();
@@ -98,15 +106,15 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                        body(body).
-                when().
+                                body(body).
+                        when().
                         put(URL);
-                        //HelperMethods.checkStatusIs200(resp);
-                        String json = resp.asString();
-                        int statusCode = resp.getStatusCode();
-                        SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
-                        return response;
+        //HelperMethods.checkStatusIs200(resp);
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
+        return response;
     }
 
 
@@ -119,13 +127,13 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                when().
+                                when().
                         delete(URL);
-                       // HelperMethods.checkStatusIs200(resp);
-                        String json = resp.asString();
-                        int statusCode = resp.getStatusCode();
-                        SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
-                        return response;
+        // HelperMethods.checkStatusIs200(resp);
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponse());
+        return response;
     }
 }

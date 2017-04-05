@@ -37,6 +37,9 @@ public class GroupAPI {
     @Test
     public void createGroup() {
         HelperMethods.setAnsiGreen("Started :- Create Group ");
+        /**
+         * Main test and api call initiated
+         */
         SmartResponse response= create.GroupCreate(config.createGroup(),"tgroup", "tgroup", "capital");
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
             System.out.println(response.getStatusCode());
@@ -46,21 +49,6 @@ public class GroupAPI {
         else {
             HelperMethods.setAnsiGreen("Started :- Group Create Successfully ");
         }
-
-//        Map<String,String> body = new HashMap<>();
-//        body.put("name", "tgroup");
-//        body.put("uniqueName", "tgroup");
-//        body.put("parentGroupUniqueName", "capital");
-//
-//        /**
-//         * Main test and api call initiated
-//         */
-//
-//        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createGroup(), body);
-////      System.out.println(resp.getStatusCode());
-//        System.out.println(resp.getJson());
-
-
     }
 
     @Test

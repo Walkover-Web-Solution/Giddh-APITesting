@@ -1,5 +1,6 @@
 package com.api.Smoke;
 
+import com.ApiUtils.GroupCreate;
 import com.ApiUtils.MethodManager;
 import com.ApiUtils.HelperMethods;
 import com.ApiUtils.SmartResponse;
@@ -7,6 +8,7 @@ import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.path.json.JsonPath;
+import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
 
 import java.util.HashMap;
@@ -22,6 +24,7 @@ public class GroupAPI {
     MethodManager methodManager = new MethodManager();
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
+    GroupCreate create = new GroupCreate();
 
     @BeforeClass
     public void setHeader(){
@@ -33,21 +36,31 @@ public class GroupAPI {
 
     @Test
     public void createGroup() {
-
         HelperMethods.setAnsiGreen("Started :- Create Group ");
+        SmartResponse response= create.GroupCreate(config.createGroup(),"tgroup", "tgroup", "capital");
+        if (response.getStatusCode() != HttpStatus.SC_CREATED){
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getJson());
+        }
 
-        Map<String,String> body = new HashMap<>();
-        body.put("name", "tgroup");
-        body.put("uniqueName", "tgroup");
-        body.put("parentGroupUniqueName", "capital");
+        else {
+            HelperMethods.setAnsiGreen("Started :- Group Create Successfully ");
+        }
 
-        /**
-         * Main test and api call initiated
-         */
+//        Map<String,String> body = new HashMap<>();
+//        body.put("name", "tgroup");
+//        body.put("uniqueName", "tgroup");
+//        body.put("parentGroupUniqueName", "capital");
+//
+//        /**
+//         * Main test and api call initiated
+//         */
+//
+//        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createGroup(), body);
+////      System.out.println(resp.getStatusCode());
+//        System.out.println(resp.getJson());
 
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createGroup(), body);
-//      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+
     }
 
     @Test

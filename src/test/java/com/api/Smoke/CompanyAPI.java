@@ -4,6 +4,7 @@ import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.RestAssured;
+import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,22 +37,26 @@ public class CompanyAPI {
         HelperMethods.setAnsiGreen("Started :- Create Company ");
         SmartResponse response = create.companyCreate(config.mainURL(), "audi", "audi");
 
-        if (response.getStatusCode() == 409){
+        if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
             deleteSetup();
             SmartResponse response1 = create.companyCreate(config.mainURL(), "audi", "audi");
-            if (response1.getStatusCode() != 201){
+
+            if (response1.getStatusCode() != HttpStatus.SC_CREATED){
                 System.out.println(response1.getStatusCode());
                 System.out.println(response1.getJson());
             }
-            if (response1.getStatusCode() == 201){
+
+            if (response1.getStatusCode() == HttpStatus.SC_CREATED){
                 System.out.println(response.getJson());
                 HelperMethods.setAnsiGreen("Company Create Successfully");
             }
         }
-        if (response.getStatusCode()==201){
+
+        if (response.getStatusCode()==HttpStatus.SC_CREATED){
             System.out.println(response.getJson());
             HelperMethods.setAnsiGreen("Company Create Successfully");
         }
+
         else {
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());

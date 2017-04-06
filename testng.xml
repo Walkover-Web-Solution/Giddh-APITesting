@@ -25,6 +25,11 @@
 					<include name="updateAccount"/>
 				</methods>
 			</class>
+			<class name="com.api.Smoke.TaxAPI">
+				<methods>
+					<include name="addTax" />
+				</methods>
+			</class>
 			<class name="com.api.Smoke.LedgerAPI">
 				<methods>
 					<include name="createLedger" />
@@ -37,11 +42,6 @@
 					<include name="createInvoice" />
 					<include name="get_All_Invoices"/>
 					<include name="deleteInvoice"/>
-				</methods>
-			</class>
-			<class name="com.api.Smoke.TaxAPI">
-				<methods>
-					<include name="addTax" />
 				</methods>
 			</class>
 		</classes>

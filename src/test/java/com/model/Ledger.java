@@ -19,7 +19,6 @@ public class Ledger {
     private Boolean unconfirmedEntry = Boolean.FALSE;
     private Boolean applyApplicableTaxes = Boolean.FALSE;
     private Boolean isInclusiveTax = Boolean.FALSE;
-    private Set<String> taxes = new HashSet<>();
     private Boolean isRecurring = Boolean.FALSE;
     private Boolean isSubscription = Boolean.FALSE;
 
@@ -33,15 +32,16 @@ public class Ledger {
 
 
     private List<TransactionInput> transactions = new ArrayList<>();
+    private List<LedgerTaxInput> taxes = new ArrayList<>();
 
     //parameters for entry+invoice+paymententry
     private Boolean generateInvoice = Boolean.FALSE;
 
-    public Ledger(List<TransactionInput> transactions, String entryDate, String voucherType) {
+    public Ledger(List<TransactionInput> transactions, String entryDate, String voucherType,  List<LedgerTaxInput> taxes) {
         this.transactions = transactions;
         this.entryDate = entryDate;
         this.voucherType = voucherType;
-
+        this.taxes= taxes;
     }
 
 

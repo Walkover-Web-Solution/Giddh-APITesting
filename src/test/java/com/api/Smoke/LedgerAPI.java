@@ -7,18 +7,20 @@ import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.model.Ledger;
+import com.model.LedgerTaxInput;
 import com.model.TransactionInput;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
 import org.joda.time.LocalDate;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.math.BigDecimal;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.api.Smoke.TaxAPI.Tax_UniqueName;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
@@ -38,10 +40,16 @@ public class LedgerAPI {
         HelperMethods.setAnsiGreen("Started :- Create Ledger ");
         //System.out.println( ld.toString("dd-MM-yyyy"));
 
+        List<LedgerTaxInput> ledgerTaxInputs = new ArrayList<>();
+        ledgerTaxInputs.add(new LedgerTaxInput(Tax_UniqueName));
+        System.out.println(Tax_UniqueName);
+        System.out.println(ledgerTaxInputs);
+
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales");
+        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales", ledgerTaxInputs);
         String body = JsonUtil.toJsonAsString(ledger);
+        System.out.println(body);
         /**
          * Main test and api call initiated
          */
@@ -68,23 +76,23 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
     }
 
-    @Test(dependsOnMethods={"createLedger"})
-    public void updateLedger() throws JsonProcessingException {
-        HelperMethods.setAnsiGreen("Started :- Update Ledger ");
-
-        List<TransactionInput> transactions = new ArrayList<>();
-        transactions.add(new TransactionInput(BigDecimal.TEN, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales");
-        String body = JsonUtil.toJsonAsString(ledger);
-        /**
-         * Main test and api call initiated
-         */
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.updateLedger()+ledger_UniqueName, body);
-        System.out.println(resp.getJson());
-        String json = resp.getJson();
-        JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body.entryDate"),ld.toString("dd-MM-yyyy"));
-    }
+//    @Test(dependsOnMethods={"createLedger"})
+//    public void updateLedger() throws JsonProcessingException {
+//        HelperMethods.setAnsiGreen("Started :- Update Ledger ");
+//
+//        List<TransactionInput> transactions = new ArrayList<>();
+//        transactions.add(new TransactionInput(BigDecimal.TEN, "sales", "debit"));
+//        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales");
+//        String body = JsonUtil.toJsonAsString(ledger);
+//        /**
+//         * Main test and api call initiated
+//         */
+//        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.updateLedger()+ledger_UniqueName, body);
+//        System.out.println(resp.getJson());
+//        String json = resp.getJson();
+//        JsonPath jp = new JsonPath(json);
+//        assertEquals(jp.get("body.entryDate"),ld.toString("dd-MM-yyyy"));
+//    }
 
 
     @Test(dependsOnMethods={"createLedger"})

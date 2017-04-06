@@ -47,7 +47,6 @@ public class LedgerAPI {
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
         Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales", taxes);
         String body = JsonUtil.toJsonAsString(ledger);
-        System.out.println(body);
         /**
          * Main test and api call initiated
          */
@@ -74,23 +73,24 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
     }
 
-//    @Test(dependsOnMethods={"createLedger"})
-//    public void updateLedger() throws JsonProcessingException {
-//        HelperMethods.setAnsiGreen("Started :- Update Ledger ");
-//
-//        List<TransactionInput> transactions = new ArrayList<>();
-//        transactions.add(new TransactionInput(BigDecimal.TEN, "sales", "debit"));
-//        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales");
-//        String body = JsonUtil.toJsonAsString(ledger);
-//        /**
-//         * Main test and api call initiated
-//         */
-//        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.updateLedger()+ledger_UniqueName, body);
-//        System.out.println(resp.getJson());
-//        String json = resp.getJson();
-//        JsonPath jp = new JsonPath(json);
-//        assertEquals(jp.get("body.entryDate"),ld.toString("dd-MM-yyyy"));
-//    }
+    @Test(dependsOnMethods={"createLedger"})
+    public void updateLedger() throws JsonProcessingException {
+        HelperMethods.setAnsiGreen("Started :- Update Ledger ");
+        List<String> taxes = new ArrayList<>();
+        taxes.add(Tax_UniqueName);
+        List<TransactionInput> transactions = new ArrayList<>();
+        transactions.add(new TransactionInput(BigDecimal.TEN, "sales", "debit"));
+        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales", taxes);
+        String body = JsonUtil.toJsonAsString(ledger);
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.updateLedger()+ledger_UniqueName, body);
+        System.out.println(resp.getJson());
+        String json = resp.getJson();
+        JsonPath jp = new JsonPath(json);
+        assertEquals(jp.get("body.entryDate"),ld.toString("dd-MM-yyyy"));
+    }
 
 
     @Test(dependsOnMethods={"createLedger"})

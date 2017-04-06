@@ -44,7 +44,6 @@ public class TaxAPI {
             System.out.println(resp.getStatusCode());
             System.out.println(resp.getJson());
         }
-
         else {
             HelperMethods.setAnsiGreen("Account Created Successfully for TAX");
         }

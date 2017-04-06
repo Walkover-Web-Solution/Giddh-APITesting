@@ -7,7 +7,6 @@ import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.model.Ledger;
-import com.model.LedgerTaxInput;
 import com.model.TransactionInput;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
@@ -16,9 +15,8 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.math.BigDecimal;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.api.Smoke.TaxAPI.Tax_UniqueName;
 import static org.aeonbits.owner.ConfigFactory.create;

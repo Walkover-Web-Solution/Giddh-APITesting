@@ -3,6 +3,8 @@ package com.api.Smoke;
 
 import com.ApiUtils.*;
 import com.Config.*;
+import com.api.Controller.AccountCreate;
+import com.api.Controller.GroupCreate;
 import com.model.*;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
@@ -20,6 +22,7 @@ public class TaxAPI {
 
 
 
+    @BeforeClass
     public void TaxSetup() throws Exception{
 
         SmartResponse response= groupCreate.GroupCreate(config.createGroup(),"Duties & Taxes", "duties_&_taxes", "currentliabilities");
@@ -46,7 +49,7 @@ public class TaxAPI {
     @Test
     public void addTax() throws  Exception{
         HelperMethods.setAnsiGreen("Started :- Create Tax ");
-        TaxSetup();
+
         TaxAccount taxAccount = new TaxAccount("vat");
         List<TaxDetails> taxDetail= new ArrayList<>();
         taxDetail.add(new TaxDetails("01-04-2017", 10));
@@ -63,7 +66,7 @@ public class TaxAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen(" Tax created Successfully ");
+            HelperMethods.setAnsiGreen("Tax created Successfully ");
         }
     }
 }

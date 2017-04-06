@@ -32,12 +32,12 @@ public class Ledger {
 
 
     private List<TransactionInput> transactions = new ArrayList<>();
-    private List<LedgerTaxInput> taxes = new ArrayList<>();
+    private List<String> taxes;
 
     //parameters for entry+invoice+paymententry
     private Boolean generateInvoice = Boolean.FALSE;
 
-    public Ledger(List<TransactionInput> transactions, String entryDate, String voucherType,  List<LedgerTaxInput> taxes) {
+    public Ledger(List<TransactionInput> transactions, String entryDate, String voucherType, List<String> taxes) {
         this.transactions = transactions;
         this.entryDate = entryDate;
         this.voucherType = voucherType;

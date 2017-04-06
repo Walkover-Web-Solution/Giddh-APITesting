@@ -40,14 +40,12 @@ public class LedgerAPI {
         HelperMethods.setAnsiGreen("Started :- Create Ledger ");
         //System.out.println( ld.toString("dd-MM-yyyy"));
 
-        List<LedgerTaxInput> ledgerTaxInputs = new ArrayList<>();
-        ledgerTaxInputs.add(new LedgerTaxInput(Tax_UniqueName));
-        System.out.println(Tax_UniqueName);
-        System.out.println(ledgerTaxInputs);
+        List<String> taxes = new ArrayList<>();
+        taxes.add(Tax_UniqueName);
 
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales", ledgerTaxInputs);
+        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales", taxes);
         String body = JsonUtil.toJsonAsString(ledger);
         System.out.println(body);
         /**

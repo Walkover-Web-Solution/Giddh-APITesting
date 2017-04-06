@@ -132,7 +132,7 @@ public class CompanyAPI {
         ledgerAPI.deleteAllLedger();
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
-        deleteCompany();
+        //deleteCompany();
     }
 
 }

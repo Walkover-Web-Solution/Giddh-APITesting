@@ -50,7 +50,7 @@ public class AccountAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen("Started :- Group Create Successfully ");
+            HelperMethods.setAnsiGreen("Started :- Account Created Successfully ");
         }
     }
 

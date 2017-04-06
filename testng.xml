@@ -39,6 +39,11 @@
 					<include name="deleteInvoice"/>
 				</methods>
 			</class>
+			<class name="com.api.Smoke.TaxAPI">
+				<methods>
+					<include name="addTax" />
+				</methods>
+			</class>
 		</classes>
 	</test> <!-- Test -->
 

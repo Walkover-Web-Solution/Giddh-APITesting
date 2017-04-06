@@ -7,11 +7,11 @@ import java.math.BigDecimal;
 @Setter
 public class TaxDetails {
 
-    private String taxDate;
+    private String date;
     private Float value;
 
     public TaxDetails(String taxDate, float taxRate){
-        this.taxDate= taxDate;
+        this.date= taxDate;
         this.value=taxRate;
     }
 }

@@ -51,6 +51,16 @@ public class MethodManager {
                         body(body).
                 when().
                         post(URL);
+                        while( true ) {
+                            if( resp.getBody() ==  null) {
+                                try {
+                                    Thread.sleep(3000);
+                                }
+                                catch (Exception e){}
+                                continue;
+                            }
+                            break;
+                        }
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
@@ -100,6 +110,16 @@ public class MethodManager {
                         body(body).
                 when().
                         put(URL);
+                        while( true ) {
+                            if( resp.getBody() ==  null) {
+                                try {
+                                    Thread.sleep(3000);
+                                }
+                                catch (Exception e){}
+                                continue;
+                            }
+                            break;
+                        }
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);

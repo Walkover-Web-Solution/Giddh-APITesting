@@ -1,6 +1,7 @@
 package com.api.Smoke;
 
 
+import com.ApiUtils.AccountCreate;
 import com.ApiUtils.MethodManager;
 import com.ApiUtils.HelperMethods;
 import com.ApiUtils.SmartResponse;
@@ -8,6 +9,7 @@ import com.Config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.path.json.JsonPath;
+import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
 
 import java.util.HashMap;
@@ -23,6 +25,7 @@ public class AccountAPI {
     ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
     GroupAPI groupAPI = new GroupAPI();
+    AccountCreate create = new AccountCreate();
 
     @BeforeTest
     public void setHeader(){
@@ -37,18 +40,18 @@ public class AccountAPI {
 
         groupAPI.createGroup();
 
-        Map<String,String> body = new HashMap<>();
-        body.put("name", "taccount");
-        body.put("uniqueName", "taccount");
-
         /**
          * Main test and api call initiated
          */
+        SmartResponse response= create.AccountCreate(config.createAccount(),"taccount", "taccount");
+        if (response.getStatusCode() != HttpStatus.SC_CREATED){
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getJson());
+        }
 
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createAccount(), body);
-//      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
-
+        else {
+            HelperMethods.setAnsiGreen("Started :- Group Create Successfully ");
+        }
     }
 
 

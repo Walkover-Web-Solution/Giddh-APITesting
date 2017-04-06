@@ -47,7 +47,7 @@ public class GroupAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen("Started :- Group Created Successfully ");
+            HelperMethods.setAnsiGreen("Group Created Successfully ");
         }
     }
 

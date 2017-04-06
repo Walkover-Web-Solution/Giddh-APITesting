@@ -39,7 +39,7 @@ public class TaxAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen(" Account Created Successfully for TAX ");
+            HelperMethods.setAnsiGreen("Account Created Successfully for TAX ");
         }
     }
 
@@ -47,17 +47,16 @@ public class TaxAPI {
     public void addTax() throws  Exception{
         HelperMethods.setAnsiGreen("Started :- Create Tax ");
         TaxSetup();
-
         TaxAccount taxAccount = new TaxAccount("vat");
         List<TaxDetails> taxDetail= new ArrayList<>();
         taxDetail.add(new TaxDetails("01-04-2017", 10));
         TaxInput taxInput = new TaxInput(taxDetail,"123456", "vat", "YEARLY", 01, taxAccount);
         String body = JsonUtil.toJsonAsString(taxInput);
 
-        System.out.println(body);
-
+        /**
+         * Main test and api call initiated
+         */
         SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createTax(), body);
-
         if (resp.getStatusCode() != HttpStatus.SC_CREATED){
             System.out.println(resp.getStatusCode());
             System.out.println(resp.getJson());
@@ -66,7 +65,5 @@ public class TaxAPI {
         else {
             HelperMethods.setAnsiGreen(" Tax created Successfully ");
         }
-
-
     }
 }

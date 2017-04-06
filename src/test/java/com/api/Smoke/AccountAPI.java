@@ -50,7 +50,7 @@ public class AccountAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen("Started :- Account Created Successfully ");
+            HelperMethods.setAnsiGreen("Account Created Successfully ");
         }
     }
 

@@ -8,6 +8,8 @@ import com.ApiUtils.SmartResponse;
 import com.Config.UrlConfig;
 import com.model.Invoice;
 import io.restassured.path.json.JsonPath;
+import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.ArrayList;
@@ -32,8 +34,9 @@ public class InvoiceAPI {
         Invoice invoice = new Invoice(uniqueNames);
         String body = JsonUtil.toJsonAsString(invoice);
         //System.out.println(invoice);
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createInvoice(), body);
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(config.createInvoice(), body);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        System.out.println(response.getJson());
         for ( String data : uniqueNames) {
             System.out.println(data);
         }

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.model.Ledger;
 import com.model.TransactionInput;
 import io.restassured.path.json.JsonPath;
+import org.apache.http.HttpStatus;
 import org.joda.time.LocalDate;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
@@ -44,9 +46,10 @@ public class LedgerAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(config.createLedger(), body);
-        System.out.println(resp.getJson());
-        String json = resp.getJson();
+        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(config.createLedger(), body);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+        System.out.println(response.getJson());
+        String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         assertEquals(jp.get("body[0].entryDate"),ld.toString("dd-MM-yyyy"));
         ledger_UniqueName= jp.get("body[0].uniqueName");

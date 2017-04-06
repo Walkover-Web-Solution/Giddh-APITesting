@@ -9,6 +9,7 @@ import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.HashMap;
@@ -47,6 +48,7 @@ public class GroupAPI {
         }
 
         else {
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
             HelperMethods.setAnsiGreen("Group Created Successfully ");
         }
     }

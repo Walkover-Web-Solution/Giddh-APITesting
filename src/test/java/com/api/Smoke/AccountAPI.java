@@ -10,6 +10,7 @@ import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.HashMap;
@@ -36,7 +37,7 @@ public class AccountAPI {
 
     @Test
     public void createAccount() {
-        HelperMethods.setAnsiGreen("Started :- Create Account ");
+        HelperMethods.setAnsiGreen("Started :- Create Account");
 
         groupAPI.createGroup();
 
@@ -50,14 +51,15 @@ public class AccountAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen("Account Created Successfully ");
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+            HelperMethods.setAnsiGreen("Account Created Successfully");
         }
     }
 
 
     @Test(dependsOnMethods={"createAccount"})
     public void getAccount() {
-        HelperMethods.setAnsiGreen("Started :- Get Account ");
+        HelperMethods.setAnsiGreen("Started :- Get Account");
         /**
          * Main test and api call initiated
          */
@@ -70,7 +72,7 @@ public class AccountAPI {
     @Test(dependsOnMethods={"createAccount"})
     public void shareAccount() {
 
-        HelperMethods.setAnsiGreen("Started :- Share Account ");
+        HelperMethods.setAnsiGreen("Started :- Share Account");
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -89,7 +91,7 @@ public class AccountAPI {
     @Test(dependsOnMethods={"createAccount"})
     public void unshareAccount() {
 
-        HelperMethods.setAnsiGreen("Started :- UnShare Account ");
+        HelperMethods.setAnsiGreen("Started :- UnShare Account");
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -108,7 +110,7 @@ public class AccountAPI {
     @Test(dependsOnMethods={"createAccount"})
     public void updateAccount() {
 
-        HelperMethods.setAnsiGreen("Started :- Update Account ");
+        HelperMethods.setAnsiGreen("Started :- Update Account");
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "taccount1");

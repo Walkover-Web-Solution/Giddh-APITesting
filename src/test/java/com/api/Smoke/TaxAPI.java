@@ -6,12 +6,15 @@ import com.Config.*;
 import com.api.Controller.AccountCreate;
 import com.api.Controller.GroupCreate;
 import com.model.*;
+import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import java.util.*;
 
 
 import static org.aeonbits.owner.ConfigFactory.create;
+import static org.testng.Assert.assertEquals;
 
 public class TaxAPI {
 
@@ -20,6 +23,7 @@ public class TaxAPI {
     GroupCreate groupCreate = new GroupCreate();
     AccountCreate accountCreate = new AccountCreate();
 
+    public static String Tax_UniqueName;
 
 
     @BeforeClass
@@ -32,7 +36,7 @@ public class TaxAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen("Group Created Successfully for TAX ");
+            HelperMethods.setAnsiGreen("Group Created Successfully for TAX");
         }
 
         SmartResponse resp= accountCreate.AccountCreate(config.createTaxAccount(),"vat", "vat");
@@ -42,13 +46,13 @@ public class TaxAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen("Account Created Successfully for TAX ");
+            HelperMethods.setAnsiGreen("Account Created Successfully for TAX");
         }
     }
 
     @Test
     public void addTax() throws  Exception{
-        HelperMethods.setAnsiGreen("Started :- Create Tax ");
+        HelperMethods.setAnsiGreen("Started :- Create Tax");
 
         TaxAccount taxAccount = new TaxAccount("vat");
         List<TaxDetails> taxDetail= new ArrayList<>();
@@ -66,7 +70,11 @@ public class TaxAPI {
         }
 
         else {
-            HelperMethods.setAnsiGreen("Tax created Successfully ");
+            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
+            String json = resp.getJson();
+            JsonPath jp = new JsonPath(json);
+            Tax_UniqueName= jp.get("body.uniqueName");
+            HelperMethods.setAnsiGreen("Tax created Successfully");
         }
     }
 }

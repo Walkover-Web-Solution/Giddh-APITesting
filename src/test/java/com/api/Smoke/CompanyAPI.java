@@ -1,7 +1,7 @@
 package com.api.Smoke;
 
 import com.Config.UrlConfig;
-import com.api.Controller.CompanyCreate;
+import com.Controller.CompanyCreate;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.RestAssured;

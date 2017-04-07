@@ -1,7 +1,7 @@
 package com.api.Smoke;
 
 
-import com.api.Controller.AccountCreate;
+import com.Controller.AccountCreate;
 import com.ApiUtils.MethodManager;
 import com.ApiUtils.HelperMethods;
 import com.ApiUtils.SmartResponse;

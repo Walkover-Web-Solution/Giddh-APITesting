@@ -3,8 +3,8 @@ package com.api.Smoke;
 
 import com.ApiUtils.*;
 import com.Config.*;
-import com.api.Controller.AccountCreate;
-import com.api.Controller.GroupCreate;
+import com.Controller.AccountCreate;
+import com.Controller.GroupCreate;
 import com.model.*;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;

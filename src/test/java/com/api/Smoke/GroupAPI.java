@@ -1,6 +1,6 @@
 package com.api.Smoke;
 
-import com.api.Controller.GroupCreate;
+import com.Controller.GroupCreate;
 import com.ApiUtils.MethodManager;
 import com.ApiUtils.HelperMethods;
 import com.ApiUtils.SmartResponse;

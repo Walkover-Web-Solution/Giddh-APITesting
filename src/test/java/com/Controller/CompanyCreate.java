@@ -30,7 +30,6 @@ public class CompanyCreate {
          * Main test and api call initiated
          */
         SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(URL, body);
-        responseCode = resp.getStatusCode();
         return resp;
     }
 }

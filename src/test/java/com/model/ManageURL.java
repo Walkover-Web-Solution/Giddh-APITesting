@@ -12,9 +12,4 @@ public class ManageURL {
     public void setURL(){
        b1.setURL(config.baseURL());
     }
-
-    public String getURL(){
-        return b1.getURL();
-    }
-
 }

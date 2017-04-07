@@ -29,7 +29,7 @@ public class CompanyAPI {
 
     @BeforeTest
     public void setHeader(){
-        header.set_Headers();
+        header.set_Headers(null, null);
         baseURL.setURL();
     }
 

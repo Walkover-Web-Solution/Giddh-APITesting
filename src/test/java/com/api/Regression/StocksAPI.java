@@ -46,7 +46,7 @@ public class StocksAPI {
 
     @BeforeTest
     public void setHeader(){
-        header.set_Headers();
+        header.set_Headers(null, null);
     }
 
 //    @BeforeMethod

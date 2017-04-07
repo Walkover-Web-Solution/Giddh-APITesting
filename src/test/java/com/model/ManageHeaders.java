@@ -11,9 +11,15 @@ public class ManageHeaders {
     Headers headers = new Headers();
     HeadersConfig config = create(HeadersConfig.class);
 
-     public void set_Headers(){
-         headers.setAuth_Key(config.setAuthKey());
-         headers.setType(config.setType());
+     public void set_Headers(String auth , String type){
+         if (auth == null && type == null ){
+             headers.setAuth_Key(config.setAuthKey());
+             headers.setType(config.setType());
+         }
+         else {
+             headers.setAuth_Key(auth);
+             headers.setType(type);
+         }
      }
 
     public String getAuthKey(){

@@ -22,7 +22,7 @@ public class MethodManager {
 
     public SmartResponse getAPI_with_Assert_Statuscode(String URL) {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers();
+        header.set_Headers(null, null);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
@@ -41,7 +41,7 @@ public class MethodManager {
 
     public SmartResponse postAPI_with_Assert_Statuscode(String URL, Object body) {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers();
+        header.set_Headers(null, null);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
@@ -71,7 +71,7 @@ public class MethodManager {
 
     public SmartResponse postAPI_with_Assert_Statuscode1(String URL) {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers();
+        header.set_Headers(null, null);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
@@ -100,7 +100,7 @@ public class MethodManager {
 
     public SmartResponse putAPI_with_Assert_Statuscode(String URL, Object body){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers();
+        header.set_Headers(null, null);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
@@ -130,7 +130,7 @@ public class MethodManager {
 
     public SmartResponse deleteAPI_with_Assert_Statuscode(String URL){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers();
+        header.set_Headers(null, null);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))

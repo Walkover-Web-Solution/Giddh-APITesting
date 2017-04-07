@@ -27,7 +27,7 @@ public class CompanyAPI {
     AccountAPI accountAPI = new AccountAPI();
     CompanyCreate create = new CompanyCreate();
 
-    @BeforeTest
+    @BeforeMethod
     public void setHeader(){
         header.set_Headers(null, null);
         baseURL.setURL();
@@ -36,6 +36,8 @@ public class CompanyAPI {
     @Test
     public void createCompany() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Create Company ");
+        header.set_Headers(null, null);
+
         SmartResponse response = create.companyCreate(config.mainURL(), "audi", "audi");
 
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
@@ -68,11 +70,12 @@ public class CompanyAPI {
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
         HelperMethods.setAnsiGreen("Started :- Get Company ");
+        header.set_Headers(null, null);
         /**
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(config.getCompany());
+        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getCompany());
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -90,7 +93,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.shareCompany(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareCompany(), body);
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -108,7 +111,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.unshareCompany(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareCompany(), body);
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -119,7 +122,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteCompany());
+        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteCompany());
         //System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());

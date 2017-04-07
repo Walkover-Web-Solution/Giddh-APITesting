@@ -20,9 +20,9 @@ public class MethodManager {
     ManageHeaders header = new ManageHeaders();
 
 
-    public SmartResponse getAPI_with_Assert_Statuscode(String URL) {
+    public SmartResponse getAPI_with_Assert_Statuscode(String auth, String type,String URL) {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers(null, null);
+        header.set_Headers(auth, type);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
@@ -39,9 +39,9 @@ public class MethodManager {
     }
 
 
-    public SmartResponse postAPI_with_Assert_Statuscode(String URL, Object body) {
+    public SmartResponse postAPI_with_Assert_Statuscode(String auth, String type, String URL, Object body) {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers(null, null);
+        header.set_Headers(auth, type);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
@@ -69,9 +69,9 @@ public class MethodManager {
 
     }
 
-    public SmartResponse postAPI_with_Assert_Statuscode1(String URL) {
+    public SmartResponse postAPI_with_Assert_Statuscode1(String auth, String type,String URL) {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers(null, null);
+        header.set_Headers(auth, type);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
@@ -98,9 +98,9 @@ public class MethodManager {
 
     }
 
-    public SmartResponse putAPI_with_Assert_Statuscode(String URL, Object body){
+    public SmartResponse putAPI_with_Assert_Statuscode(String auth, String type,String URL, Object body){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers(null, null);
+        header.set_Headers(auth, type);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
@@ -128,9 +128,9 @@ public class MethodManager {
     }
 
 
-    public SmartResponse deleteAPI_with_Assert_Statuscode(String URL){
+    public SmartResponse deleteAPI_with_Assert_Statuscode(String auth, String type,String URL){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        header.set_Headers(null, null);
+        header.set_Headers(auth, type);
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))

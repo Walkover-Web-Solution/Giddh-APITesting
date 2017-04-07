@@ -64,7 +64,7 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(config.getAccount());
+        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getAccount());
      //   System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -82,7 +82,7 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.shareAccount(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareAccount(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -100,7 +100,7 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.unshareAccount(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareAccount(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
 
@@ -122,7 +122,7 @@ public class AccountAPI {
          */
 
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.updateAccount(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateAccount(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
 
@@ -138,7 +138,7 @@ public class AccountAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteAccount());
+        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteAccount());
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
 

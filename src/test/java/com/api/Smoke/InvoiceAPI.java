@@ -34,7 +34,7 @@ public class InvoiceAPI {
         Invoice invoice = new Invoice(uniqueNames);
         String body = JsonUtil.toJsonAsString(invoice);
         //System.out.println(invoice);
-        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(config.createInvoice(), body);
+        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createInvoice(), body);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
         System.out.println(response.getJson());
         for ( String data : uniqueNames) {
@@ -45,7 +45,7 @@ public class InvoiceAPI {
     @Test(dependsOnMethods={"createInvoice"})
     public void get_All_Invoices() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Get All Invoices");
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode1(config.getAllInvoice());
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode1(null, null,config.getAllInvoice());
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
@@ -56,7 +56,7 @@ public class InvoiceAPI {
     @Test(dependsOnMethods={"createInvoice"})
     public void deleteInvoice() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Invoice ");
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteInvoice()+ Invoice_Number);
+        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteInvoice()+ Invoice_Number);
         System.out.println(resp.getJson());
     }
 }

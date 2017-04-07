@@ -64,7 +64,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.moveGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null, config.moveGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -80,7 +80,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(config.getGroup());
+        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getGroup());
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson() + "This is the Response eof Get Company");
 
@@ -100,7 +100,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.shareGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -118,7 +118,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.unshareGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareGroup(), body);
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
     }
@@ -138,7 +138,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(config.updateGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateGroup(), body);
 //      System.out.println(resp.getStatusCode());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
@@ -152,7 +152,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(config.deleteGroup());
+        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteGroup());
 //      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
 

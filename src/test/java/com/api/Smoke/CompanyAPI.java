@@ -27,11 +27,6 @@ public class CompanyAPI {
     AccountAPI accountAPI = new AccountAPI();
     CompanyCreate create = new CompanyCreate();
 
-    @BeforeMethod
-    public void setHeader(){
-        header.set_Headers(null, null);
-        baseURL.setURL();
-    }
 
     @Test
     public void createCompany() throws Exception{

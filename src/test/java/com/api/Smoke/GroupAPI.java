@@ -27,13 +27,6 @@ public class GroupAPI {
     UrlConfig config = create(UrlConfig.class);
     GroupCreate create = new GroupCreate();
 
-    @BeforeClass
-    public void setHeader(){
-        header.set_Headers(null, null);
-        baseURL.setURL();
-    }
-
-
 
     @Test
     public void createGroup() {

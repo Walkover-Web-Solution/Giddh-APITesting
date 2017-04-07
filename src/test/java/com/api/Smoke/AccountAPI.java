@@ -28,11 +28,6 @@ public class AccountAPI {
     GroupAPI groupAPI = new GroupAPI();
     AccountCreate create = new AccountCreate();
 
-    @BeforeTest
-    public void setHeader(){
-        header.set_Headers(null, null);
-        baseURL.setURL();
-    }
 
 
     @Test

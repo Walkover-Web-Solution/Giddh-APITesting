@@ -21,9 +21,7 @@ import static org.testng.Assert.assertEquals;
 
 public class GroupAPI {
 
-    ManageHeaders header = new ManageHeaders();
     MethodManager methodManager = new MethodManager();
-    ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
     GroupCreate create = new GroupCreate();
 

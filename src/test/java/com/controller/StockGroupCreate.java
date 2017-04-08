@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class StcokGroupCreate {
+public class StockGroupCreate {
 
     MethodManager methodManager = new MethodManager();
 
@@ -24,7 +24,6 @@ public class StcokGroupCreate {
         if (parentStockGroupUniqueName == null){
             parentStockGroupUniqueName = "";
         }
-
         Map<String,String> body = new HashMap<>();
         body.put("name", this.name=name);
         body.put("uniqueName", this.uniqueName=uniqueName);
@@ -33,7 +32,6 @@ public class StcokGroupCreate {
         /**
          * Main test and api call initiated
          */
-
         SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(auth, type, URL, body);
         return  resp;
     }

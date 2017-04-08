@@ -29,7 +29,7 @@ public class StockGroupApi {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStockGroup(),"stcokgroup1", "stcokgroup1", "");
+        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStockGroup(),"stcokgroup1","stcokgroup1","");
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
@@ -56,14 +56,37 @@ public class StockGroupApi {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= methodManager.putAPI_with_Assert_Statuscode(null, null, config.updateStockGroup() + stock_GroupName,body);
-        if (response.getStatusCode() != HttpStatus.SC_CREATED){
+        SmartResponse response= methodManager.putAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName, body);
+        if (response.getStatusCode() != HttpStatus.SC_OK){
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
         }
         else {
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
             HelperMethods.setAnsiGreen("Stock Group Updated Successfully");
+        }
+    }
+
+    @Test
+    public void get_Stock_Group() {
+        HelperMethods.setAnsiGreen("Started :- Get Stock Group");
+
+        Map<String,String> body = new HashMap<>();
+        body.put("name", "stcokgroup");
+        body.put("uniqueName", "stcokgroup");
+        body.put("parentStockGroupUniqueName", "");
+
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response= methodManager.putAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName, body);
+        if (response.getStatusCode() != HttpStatus.SC_OK){
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getJson());
+        }
+        else {
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+            HelperMethods.setAnsiGreen(" Get Stock Group Successfully");
         }
     }
 }

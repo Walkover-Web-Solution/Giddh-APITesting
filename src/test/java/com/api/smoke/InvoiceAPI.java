@@ -1,11 +1,11 @@
-package com.api.Smoke;
+package com.api.smoke;
 
 
-import com.ApiUtils.MethodManager;
-import com.ApiUtils.HelperMethods;
-import com.ApiUtils.JsonUtil;
-import com.ApiUtils.SmartResponse;
-import com.Config.UrlConfig;
+import com.apiUtils.MethodManager;
+import com.apiUtils.HelperMethods;
+import com.apiUtils.JsonUtil;
+import com.apiUtils.SmartResponse;
+import com.config.UrlConfig;
 import com.model.Invoice;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;

@@ -1,10 +1,10 @@
-package com.api.Smoke;
+package com.api.smoke;
 
-import com.ApiUtils.MethodManager;
-import com.ApiUtils.HelperMethods;
-import com.ApiUtils.JsonUtil;
-import com.ApiUtils.SmartResponse;
-import com.Config.UrlConfig;
+import com.apiUtils.MethodManager;
+import com.apiUtils.HelperMethods;
+import com.apiUtils.JsonUtil;
+import com.apiUtils.SmartResponse;
+import com.config.UrlConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.model.Ledger;
 import com.model.TransactionInput;
@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 
-import static com.api.Smoke.TaxAPI.Tax_UniqueName;
+import static com.api.smoke.TaxAPI.Tax_UniqueName;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 

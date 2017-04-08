@@ -1,14 +1,11 @@
-package com.api.Regression;
+package com.api.regression;
 
-import  com.ApiUtils.*;
+import  com.apiUtils.*;
 import com.model.ManageHeaders;
-
-import io.restassured.RestAssured;
 
 import io.restassured.response.Response;
 import org.testng.annotations.*;
 import static io.restassured.RestAssured.*;
-import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 

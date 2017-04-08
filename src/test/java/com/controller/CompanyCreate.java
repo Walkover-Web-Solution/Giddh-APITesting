@@ -1,9 +1,8 @@
-package com.Controller;
+package com.controller;
 
 
-import com.ApiUtils.MethodManager;
-import com.ApiUtils.SmartResponse;
-import com.Config.UrlConfig;
+import com.apiUtils.MethodManager;
+import com.apiUtils.SmartResponse;
 import lombok.*;
 import java.util.HashMap;
 import java.util.Map;

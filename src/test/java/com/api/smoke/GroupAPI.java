@@ -1,10 +1,10 @@
-package com.api.Smoke;
+package com.api.smoke;
 
-import com.Controller.GroupCreate;
-import com.ApiUtils.MethodManager;
-import com.ApiUtils.HelperMethods;
-import com.ApiUtils.SmartResponse;
-import com.Config.UrlConfig;
+import com.controller.GroupCreate;
+import com.apiUtils.MethodManager;
+import com.apiUtils.HelperMethods;
+import com.apiUtils.SmartResponse;
+import com.config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.path.json.JsonPath;

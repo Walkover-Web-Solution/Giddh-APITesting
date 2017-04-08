@@ -1,7 +1,7 @@
-package com.api.Smoke;
+package com.api.smoke;
 
-import com.Config.UrlConfig;
-import com.Controller.CompanyCreate;
+import com.config.UrlConfig;
+import com.controller.CompanyCreate;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.RestAssured;
@@ -9,7 +9,7 @@ import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
 import java.util.HashMap;
 import java.util.Map;
-import com.ApiUtils.*;
+import com.apiUtils.*;
 
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
@@ -52,7 +52,7 @@ public class CompanyAPI {
 
         if (response.getStatusCode()==HttpStatus.SC_CREATED){
             System.out.println(response.getJson());
-            HelperMethods.setAnsiGreen("Company Create Successfully");
+            HelperMethods.setAnsiGreen("Company Created Successfully");
         }
 
         else {

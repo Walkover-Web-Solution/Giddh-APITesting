@@ -1,10 +1,10 @@
-package com.api.Smoke;
+package com.api.smoke;
 
 
-import com.ApiUtils.*;
-import com.Config.*;
-import com.Controller.AccountCreate;
-import com.Controller.GroupCreate;
+import com.apiUtils.*;
+import com.config.*;
+import com.controller.AccountCreate;
+import com.controller.GroupCreate;
 import com.model.*;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;

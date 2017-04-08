@@ -1,13 +1,11 @@
-package com.ApiUtils;
+package com.apiUtils;
 
 import com.model.ManageHeaders;
 import io.restassured.RestAssured;
 import io.restassured.config.ConnectionConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
 
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.*;

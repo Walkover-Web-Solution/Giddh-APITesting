@@ -1,4 +1,4 @@
-package com.ApiUtils;
+package com.apiUtils;
 
 
 import io.restassured.RestAssured;

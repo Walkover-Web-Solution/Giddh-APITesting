@@ -1,11 +1,11 @@
-package com.api.Regression;
+package com.api.regression;
 
 
-import com.ApiUtils.MethodManager;
-import com.Config.UrlConfig;
-import com.api.Smoke.AccountAPI;
-import com.api.Smoke.GroupAPI;
-import com.api.Smoke.LedgerAPI;
+import com.apiUtils.MethodManager;
+import com.config.UrlConfig;
+import com.api.smoke.AccountAPI;
+import com.api.smoke.GroupAPI;
+import com.api.smoke.LedgerAPI;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import org.testng.annotations.*;

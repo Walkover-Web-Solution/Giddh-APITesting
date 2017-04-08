@@ -25,7 +25,7 @@ public class StockGroupApi {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createGroup(),"tgroup", "tgroup", "capital");
+        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStcokGroup(),"tgroup", "tgroup", "capital");
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());

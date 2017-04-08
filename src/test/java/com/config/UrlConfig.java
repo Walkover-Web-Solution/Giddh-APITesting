@@ -90,5 +90,8 @@ public interface UrlConfig extends  Config{
     @Key("tax.Create")
     String createTax();
 
+    @Key("stockGroup.Create")
+    String createStcokGroup();
+
 
 }

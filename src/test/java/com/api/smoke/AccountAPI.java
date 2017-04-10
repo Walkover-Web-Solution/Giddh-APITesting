@@ -21,9 +21,7 @@ import static org.testng.Assert.assertEquals;
 
 public class AccountAPI {
 
-    ManageHeaders header = new ManageHeaders();
     MethodManager methodManager = new MethodManager();
-    ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
     GroupAPI groupAPI = new GroupAPI();
     AccountCreate create = new AccountCreate();

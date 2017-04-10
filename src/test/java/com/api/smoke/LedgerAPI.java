@@ -24,7 +24,7 @@ import static org.testng.Assert.assertEquals;
 
 public class LedgerAPI {
 
-    LocalDate ld = new LocalDate();
+    LocalDate localDate = new LocalDate();
 
     public static String ledger_UniqueName;
 
@@ -78,7 +78,7 @@ public class LedgerAPI {
         taxes.add(Tax_UniqueName);
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.TEN, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales", taxes);
+        Ledger ledger = new Ledger(transactions, localDate.toString("dd-MM-yyyy"), "sales", taxes);
         String body = JsonUtil.toJsonAsString(ledger);
         /**
          * Main test and api call initiated
@@ -87,7 +87,7 @@ public class LedgerAPI {
         System.out.println(resp.getJson());
         String json = resp.getJson();
         JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body.entryDate"),ld.toString("dd-MM-yyyy"));
+        assertEquals(jp.get("body.entryDate"),localDate.toString("dd-MM-yyyy"));
     }
 
 

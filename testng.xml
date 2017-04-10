@@ -28,6 +28,7 @@
 			<class name="com.api.smoke.StockGroupApi">
 				<methods>
 					<include name="create_Stock_Group" />
+					<include name="get_Stock_Group"/>
 					<include name="update_Stock_Group"/>
 				</methods>
 			</class>

@@ -20,12 +20,12 @@ public class CompanyAPI {
 
     ManageHeaders header = new ManageHeaders();
     MethodManager methodManager = new MethodManager();
-    ManageURL baseURL = new ManageURL();
     UrlConfig config = create(UrlConfig.class);
     LedgerAPI ledgerAPI = new LedgerAPI();
     GroupAPI groupAPI = new GroupAPI();
     AccountAPI accountAPI = new AccountAPI();
     CompanyCreate create = new CompanyCreate();
+    StockGroupApi stockGroupApi = new StockGroupApi();
 
 
     @Test
@@ -130,6 +130,7 @@ public class CompanyAPI {
         ledgerAPI.deleteAllLedger();
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
+        stockGroupApi.delete_Stock_Group();
         deleteCompany();
     }
 

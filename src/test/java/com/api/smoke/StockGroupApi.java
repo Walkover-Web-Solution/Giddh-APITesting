@@ -31,6 +31,8 @@ public class StockGroupApi {
          */
         SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStockGroup(),"stcokgroup1","stcokgroup1","");
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
+            HelperMethods.setAnsiRed("Create Stock Group Functionality Failed ");
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
         }
@@ -41,6 +43,25 @@ public class StockGroupApi {
             stock_GroupName = jp.get("body.uniqueName");
             System.out.println(" Stock Group name is  " + stock_GroupName );
             HelperMethods.setAnsiGreen("Stock Group Created Successfully");
+        }
+    }
+
+    @Test
+    public void get_Stock_Group() {
+        HelperMethods.setAnsiGreen("Started :- Get Stock Group");
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response= methodManager.getAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName);
+        if (response.getStatusCode() != HttpStatus.SC_OK){
+            HelperMethods.setAnsiRed("Get Stock Group Functionality Failed ");
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getJson());
+        }
+        else {
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+            HelperMethods.setAnsiGreen("Get Stock Group Completed Successfully");
         }
     }
 
@@ -58,35 +79,36 @@ public class StockGroupApi {
          */
         SmartResponse response= methodManager.putAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName, body);
         if (response.getStatusCode() != HttpStatus.SC_OK){
+            HelperMethods.setAnsiRed("Update Stock Group Functionality Failed ");
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
         }
         else {
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+            String json = response.getJson();
+            JsonPath jp = new JsonPath(json);
+            stock_GroupName = jp.get("body.uniqueName");
             HelperMethods.setAnsiGreen("Stock Group Updated Successfully");
         }
     }
 
-    @Test
-    public void get_Stock_Group() {
-        HelperMethods.setAnsiGreen("Started :- Get Stock Group");
-
-        Map<String,String> body = new HashMap<>();
-        body.put("name", "stcokgroup");
-        body.put("uniqueName", "stcokgroup");
-        body.put("parentStockGroupUniqueName", "");
-
+    public void delete_Stock_Group(){
+        HelperMethods.setAnsiGreen("Started :- Delete Stock Group");
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= methodManager.putAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName, body);
+        SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName);
         if (response.getStatusCode() != HttpStatus.SC_OK){
+            HelperMethods.setAnsiRed("Delete Stock Group Functionality Failed ");
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
         }
         else {
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            HelperMethods.setAnsiGreen(" Get Stock Group Successfully");
+            HelperMethods.setAnsiGreen("Stock Group Deleted Successfully");
         }
     }
+
 }

@@ -10,13 +10,6 @@ Prerequisites
 * TestNG
 
 
-Following environment variable(s) need to be set:
-
-0. AES_128_KEY
-0. GIDDH_PGSQL_ENCRYPTION_PASSWORD
-0. SENDGRID_KEY
-
-
 
 Usual build tasks
 -----------------

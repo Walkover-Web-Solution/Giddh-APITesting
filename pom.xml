@@ -11,6 +11,16 @@
 
 
     <profiles>
+
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env.id>local</env.id>
+            </properties>
+        </profile>
         <profile>
             <id>dev</id>
             <activation>
@@ -23,7 +33,7 @@
         <profile>
             <id>test</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <env.id>test</env.id>

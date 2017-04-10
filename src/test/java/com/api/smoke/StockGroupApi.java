@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.aeonbits.owner.ConfigFactory.create;
+import static org.testng.Assert.assertEquals;
 
 public class StockGroupApi {
 
@@ -90,6 +91,29 @@ public class StockGroupApi {
             JsonPath jp = new JsonPath(json);
             stock_GroupName = jp.get("body.uniqueName");
             HelperMethods.setAnsiGreen("Stock Group Updated Successfully");
+        }
+    }
+
+    @Test
+    public void get_Hierarchical_Stock_Groups (){
+        HelperMethods.setAnsiGreen("Started :- Get Hierarchical Stock Groups");
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response= methodManager.getAPI_with_Assert_Statuscode(null, null, config.get_All_Hierarchical_Stock_Group());
+        if (response.getStatusCode() != HttpStatus.SC_OK){
+            HelperMethods.setAnsiRed("Get Hierarchical Stock Groups Functionality Failed ");
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getJson());
+        }
+        else {
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+            String json = response.getJson();
+            JsonPath jp = new JsonPath(json);
+            System.out.println(json);
+            assertEquals( jp.get("body.results[0].uniqueName"), stock_GroupName);
+            HelperMethods.setAnsiGreen("Get Hierarchical Stock Groups Completed Successfully");
         }
     }
 

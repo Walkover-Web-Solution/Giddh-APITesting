@@ -30,6 +30,7 @@
 					<include name="create_Stock_Group" />
 					<include name="get_Stock_Group"/>
 					<include name="update_Stock_Group"/>
+					<include name="get_Hierarchical_Stock_Groups"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.TaxAPI">

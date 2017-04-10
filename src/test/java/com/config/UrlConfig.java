@@ -93,8 +93,8 @@ public interface UrlConfig extends  Config{
     @Key("stockGroup.Create")
     String createStockGroup();
 
-    @Key("stockGroup.Update")
-    String updateStockGroup();
+    @Key("hierarchical_Stock_Group.Get")
+    String get_All_Hierarchical_Stock_Group();
 
 
 }

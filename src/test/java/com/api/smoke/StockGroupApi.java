@@ -134,6 +134,4 @@ public class StockGroupApi {
             HelperMethods.setAnsiGreen("Stock Group Deleted Successfully");
         }
     }
-
-
 }

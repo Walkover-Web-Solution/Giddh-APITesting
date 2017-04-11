@@ -67,7 +67,6 @@ public class TaxAPI {
             System.out.println(resp.getStatusCode());
             System.out.println(resp.getJson());
         }
-
         else {
             Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
             String json = resp.getJson();

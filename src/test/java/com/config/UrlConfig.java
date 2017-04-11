@@ -96,5 +96,8 @@ public interface UrlConfig extends  Config{
     @Key("hierarchical_Stock_Group.Get")
     String get_All_Hierarchical_Stock_Group();
 
+    @Key("trialBalance.Get")
+    String getTrialbalance();
+
 
 }

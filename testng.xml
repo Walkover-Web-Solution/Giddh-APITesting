@@ -45,6 +45,7 @@
 					<include name="getLedger" />
 				</methods>
 			</class>
+			<!--<class name="com.api.smoke.TrialBalanceAPI"/>-->
 			<class name="com.api.smoke.InvoiceAPI">
 				<methods>
 					<include name="createInvoice" />

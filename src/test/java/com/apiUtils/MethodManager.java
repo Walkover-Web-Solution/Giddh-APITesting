@@ -27,8 +27,41 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
+                                when().
+                        get(URL);
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
+        return response;
+    }
+
+    public SmartResponse getAPI_With_Params(String auth, String type, String URL, int from, int to , String search, boolean refresh) {
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        header.set_Headers(auth, type);
+
+//        if (from == null){
+//            from = "";
+//        }
+//        if (to == null){
+//            to = "";
+//        }
+        if (search == null ){
+            search = "";
+        }
+
+        Response resp =
+                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
+                        .headers("Auth-Key",header.getAuthKey())
+                        .headers("Content-Type",header.getType()).
+                        pathParam("from", "from").
+                        pathParam("to", to).
+                        pathParam("q", search).
+                        pathParam("refresh", refresh).
+                        //.contentType("application/json")
                 when().
                         get(URL);
+                        System.out.println(URL);
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);
@@ -46,8 +79,8 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                        body(body).
-                when().
+                                body(body).
+                        when().
                         post(URL);
                         while( true ) {
                             if( resp.getBody() ==  null) {
@@ -59,11 +92,11 @@ public class MethodManager {
                             }
                             break;
                         }
-                        String json = resp.asString();
-                        int statusCode = resp.getStatusCode();
-                        SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
-                        return response;
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
+        return response;
 
     }
 
@@ -76,23 +109,23 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                when().
+                                when().
                         post(URL);
-                        while( true ) {
-                            if( resp.getBody() ==  null) {
-                                try {
-                                Thread.sleep(3000);
-                                }
-                                    catch (Exception e){}
-                                continue;
-                                }
-                            break;
-                            }
-                            String json = resp.asString();
-                            int statusCode = resp.getStatusCode();
-                            SmartResponse response = new SmartResponse(statusCode, json);
-                            RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
-                            return response;
+        while( true ) {
+            if( resp.getBody() ==  null) {
+                try {
+                    Thread.sleep(3000);
+                }
+                catch (Exception e){}
+                continue;
+            }
+            break;
+        }
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
+        return response;
 
     }
 
@@ -105,24 +138,24 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                        body(body).
-                when().
+                                body(body).
+                        when().
                         put(URL);
-                        while( true ) {
-                            if( resp.getBody() ==  null) {
-                                try {
-                                    Thread.sleep(3000);
-                                }
-                                catch (Exception e){}
-                                continue;
-                            }
-                            break;
-                        }
-                        String json = resp.asString();
-                        int statusCode = resp.getStatusCode();
-                        SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
-                        return response;
+        while( true ) {
+            if( resp.getBody() ==  null) {
+                try {
+                    Thread.sleep(3000);
+                }
+                catch (Exception e){}
+                continue;
+            }
+            break;
+        }
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
+        return response;
     }
 
 
@@ -135,12 +168,12 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                when().
+                                when().
                         delete(URL);
-                        String json = resp.asString();
-                        int statusCode = resp.getStatusCode();
-                        SmartResponse response = new SmartResponse(statusCode, json);
-                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
-                        return response;
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        SmartResponse response = new SmartResponse(statusCode, json);
+        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
+        return response;
     }
 }

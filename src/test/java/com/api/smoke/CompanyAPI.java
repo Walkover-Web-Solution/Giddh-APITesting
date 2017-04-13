@@ -6,6 +6,7 @@ import com.model.ManageHeaders;
 import com.model.ManageURL;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,8 +41,10 @@ public class CompanyAPI {
             SmartResponse response1 = create.companyCreate(config.mainURL(), "audi", "audi");
 
             if (response1.getStatusCode() != HttpStatus.SC_CREATED){
-                System.out.println(response1.getStatusCode());
-                System.out.println(response1.getJson());
+                HelperMethods.setAnsiRed("Company Create Functionality Fails");
+                System.out.println(response.getStatusCode());
+                System.out.println(response.getJson());
+                Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
             }
 
             if (response1.getStatusCode() == HttpStatus.SC_CREATED){
@@ -56,8 +59,10 @@ public class CompanyAPI {
         }
 
         else {
+            HelperMethods.setAnsiRed("Company Create Functionality Fails");
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         }
     }
 

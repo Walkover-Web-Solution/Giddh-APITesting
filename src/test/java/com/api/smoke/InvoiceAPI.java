@@ -24,10 +24,10 @@ public class InvoiceAPI {
 
     public static String Invoice_Number;
 
-
     @Test
     public void createInvoice() throws  Exception{
         HelperMethods.setAnsiGreen("Started :- Create Invoice");
+        Assert.assertNotNull(LedgerAPI.ledger_UniqueName);
         List<String> uniqueNames = new ArrayList<>();
         uniqueNames.add(LedgerAPI.ledger_UniqueName);
         System.out.println(uniqueNames + "in invoice ");

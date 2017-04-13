@@ -45,10 +45,10 @@ public class LedgerAPI {
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
         Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales", taxes);
         String body = JsonUtil.toJsonAsString(ledger);
+
         /**
          * Main test and api call initiated
          */
-
         SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createLedger(), body);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         System.out.println(response.getJson());

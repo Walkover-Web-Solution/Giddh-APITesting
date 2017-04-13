@@ -35,9 +35,9 @@ public class GroupAPI {
         SmartResponse response= create.GroupCreate(config.createGroup(),"tgroup", "tgroup", "capital");
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
             HelperMethods.setAnsiRed("Group Create Functionality Fails");
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         }
 
         else {

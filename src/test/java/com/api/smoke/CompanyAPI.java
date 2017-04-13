@@ -111,7 +111,7 @@ public class CompanyAPI {
         System.out.println(resp.getJson());
     }
 
-
+    @Test
     public void deleteCompany(){
 
         /**

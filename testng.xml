@@ -5,8 +5,7 @@
 	<test name="Smoke">
 		<classes>
 			<class name="com.api.smoke.CompanyAPI"/>
-
-			 <class name="com.api.smoke.GroupAPI">
+			<class name="com.api.smoke.GroupAPI">
 				<methods>
 					<include name="createGroup" />
 					<include name="moveGroup" />
@@ -45,7 +44,7 @@
 					<include name="getLedger" />
 				</methods>
 			</class>
-			<!--<class name="com.api.smoke.TrialBalanceAPI"/>-->
+			<class name="com.api.smoke.TrialBalanceAPI"/>
 			<class name="com.api.smoke.InvoiceAPI">
 				<methods>
 					<include name="createInvoice" />

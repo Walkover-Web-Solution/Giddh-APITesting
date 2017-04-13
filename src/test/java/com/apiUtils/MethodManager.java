@@ -36,32 +36,32 @@ public class MethodManager {
         return response;
     }
 
-    public SmartResponse getAPI_With_Params(String auth, String type, String URL, int from, int to , String search, boolean refresh) {
+    public SmartResponse getAPI_With_Params(String auth, String type, String URL, String from, String to , String search, boolean refresh) {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers(auth, type);
 
-//        if (from == null){
-//            from = "";
-//        }
-//        if (to == null){
-//            to = "";
-//        }
+        if (from == null){
+            from = "";
+        }
+        if (to == null){
+            to = "";
+        }
         if (search == null ){
             search = "";
         }
+
 
         Response resp =
                 given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
-                        pathParam("from", "from").
-                        pathParam("to", to).
-                        pathParam("q", search).
-                        pathParam("refresh", refresh).
+                        param("from",from).
+                        param("to", to).
+                        param("q", search).
+                        param("refresh", refresh).
                         //.contentType("application/json")
                 when().
                         get(URL);
-                        System.out.println(URL);
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
                         SmartResponse response = new SmartResponse(statusCode, json);

@@ -37,7 +37,7 @@ public class LedgerAPI {
         LocalDate ld = new LocalDate();
         HelperMethods.setAnsiGreen("Started :- Create Ledger ");
         //System.out.println( ld.toString("dd-MM-yyyy"));
-
+        Assert.assertNotNull(Tax_UniqueName);
         List<String> taxes = new ArrayList<>();
         taxes.add(Tax_UniqueName);
 

@@ -72,6 +72,7 @@ public class TaxAPI {
             String json = resp.getJson();
             JsonPath jp = new JsonPath(json);
             Tax_UniqueName = jp.get("body.uniqueName");
+            Assert.assertNotNull(Tax_UniqueName);
             HelperMethods.setAnsiGreen("Tax created Successfully");
         }
     }

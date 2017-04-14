@@ -111,7 +111,6 @@ public class GroupAPI {
 
     @Test(dependsOnMethods={"createGroup"})
     public void unShareGroup() {
-
         HelperMethods.setAnsiGreen("Started :- UnShare Group ");
 
         Map<String,String> body = new HashMap<>();
@@ -135,7 +134,6 @@ public class GroupAPI {
 
     @Test(dependsOnMethods={"createGroup"})
     public void updateGroup() {
-
         HelperMethods.setAnsiGreen("Started :- Update Group ");
 
         Map<String,String> body = new HashMap<>();
@@ -148,7 +146,6 @@ public class GroupAPI {
          */
 
         SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateGroup(), body);
-//      System.out.println(resp.getStatusCode());
         if (resp.getStatusCode() == HttpStatus.SC_OK){
             String json = resp.getJson();
             JsonPath jp = new JsonPath(json);
@@ -164,15 +161,10 @@ public class GroupAPI {
 
 
     public void deleteGroup() {
-
         /**
          * Main test and api call initiated
          */
-
         SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteGroup());
-//      System.out.println(resp.getStatusCode());
         System.out.println(resp.getJson());
-
     }
-
 }

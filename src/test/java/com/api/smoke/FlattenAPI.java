@@ -23,8 +23,6 @@ public class FlattenAPI {
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Group_With_Accounts(), null, null, null, true);
-        System.out.println(response.getJson());
-        System.out.println(response.getStatusCode());
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         //assertEquals(jp.get("body.results[2].groupUniqueName"), "cash");

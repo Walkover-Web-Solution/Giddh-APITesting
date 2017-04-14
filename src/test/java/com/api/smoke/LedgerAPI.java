@@ -34,16 +34,14 @@ public class LedgerAPI {
 
     @Test
     public void createLedger() throws JsonProcessingException {
-        LocalDate ld = new LocalDate();
         HelperMethods.setAnsiGreen("Started :- Create Ledger ");
-        //System.out.println( ld.toString("dd-MM-yyyy"));
         Assert.assertNotNull(Tax_UniqueName);
         List<String> taxes = new ArrayList<>();
         taxes.add(Tax_UniqueName);
 
         List<TransactionInput> transactions = new ArrayList<>();
         transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
-        Ledger ledger = new Ledger(transactions, ld.toString("dd-MM-yyyy"), "sales", taxes);
+        Ledger ledger = new Ledger(transactions, localDate.toString("dd-MM-yyyy"), "sales", taxes);
         String body = JsonUtil.toJsonAsString(ledger);
 
         /**
@@ -54,7 +52,7 @@ public class LedgerAPI {
         System.out.println(response.getJson());
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body[0].entryDate"),ld.toString("dd-MM-yyyy"));
+        assertEquals(jp.get("body[0].entryDate"),localDate.toString("dd-MM-yyyy"));
         ledger_UniqueName= jp.get("body[0].uniqueName");
         System.out.println(ledger_UniqueName);
 

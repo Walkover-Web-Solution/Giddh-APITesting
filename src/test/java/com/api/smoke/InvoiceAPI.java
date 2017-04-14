@@ -30,7 +30,7 @@ public class InvoiceAPI {
         Assert.assertNotNull(LedgerAPI.ledger_UniqueName);
         List<String> uniqueNames = new ArrayList<>();
         uniqueNames.add(LedgerAPI.ledger_UniqueName);
-        System.out.println(uniqueNames + "in invoice ");
+        System.out.println(uniqueNames + "in invoice");
         Invoice invoice = new Invoice(uniqueNames);
         String body = JsonUtil.toJsonAsString(invoice);
         //System.out.println(invoice);

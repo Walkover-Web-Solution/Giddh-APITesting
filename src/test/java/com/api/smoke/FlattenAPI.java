@@ -53,11 +53,24 @@ public class FlattenAPI {
             HelperMethods.setAnsiRed(response.getJson());
             HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            HelperMethods.setAnsiRed("Get flatten group-with-accounts with_Cash_Search functionality fails");
+            HelperMethods.setAnsiRed("Get flatten group-with-accounts with_Cash_Search functionality Fails");
         }
     }
 
-   // @Test
+    @Test(dataProvider = "getData")
+    public void dataProviderTest(String a, String b){
+        System.out.println(a + b);
+    }
+
+    @DataProvider
+    public Object[][] getData(){
+        Object[][] data = new Object[1][2];
+        data[0][0] = "abcd";
+        data[0][1]= "sam";
+        return  data;
+    }
+
+    // @Test
     public void flatten_With_Accounts(){
 
     }

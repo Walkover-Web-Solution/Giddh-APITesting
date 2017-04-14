@@ -23,17 +23,32 @@ public class Company {
 
     int responseCode;
 
-    @BeforeTest
-    public void setHeader(){
-        header.set_Headers(null, null);
-        baseURL.setURL();
+//    @BeforeTest
+//    public void setHeader(){
+//        header.set_Headers(null, null);
+//        baseURL.setURL();
+//    }
+//
+//    /**
+//     * Objective to test Shared User is able to get company or not after share company
+//     */
+//    @Test
+//    public void getCompany_shareUser(){
+//
+//    }
+
+    @Test(dataProvider = "getData")
+    public void dataProviderTest(String a, String b){
+        System.out.println(a + b);
     }
 
-    /**
-     * Objective to test Shared User is able to get company or not after share company
-     */
-    @Test
-    public void getCompany_shareUser(){
-
+    @DataProvider
+    public Object[][] getData(){
+        Object[][] data = new Object[2][2];
+        data[0][0] = "abcd";
+        data[0][1]= "sam";
+        data[1][0] = "vsgvhg";
+        data[1][1]= "bkbkbki";
+        return  data;
     }
 }

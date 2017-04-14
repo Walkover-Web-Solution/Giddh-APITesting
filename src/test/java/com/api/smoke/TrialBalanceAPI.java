@@ -1,9 +1,12 @@
 package com.api.smoke;
 
 
+import com.apiUtils.HelperMethods;
 import com.apiUtils.MethodManager;
 import com.apiUtils.SmartResponse;
 import com.config.UrlConfig;
+import org.apache.http.HttpStatus;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 
@@ -16,14 +19,23 @@ public class TrialBalanceAPI {
     UrlConfig config = create(UrlConfig.class);
 
     public void  get_TrialBalance() {
+        HelperMethods.setAnsiGreen("Started :- Get Trial Balance ");
 
         /**
          * Main test and api call initiated
          */
-
         SmartResponse resp = methodManager.getAPI_With_Params(null, null, config.getTrialbalance(), "01-04-2017", "31-03-2018", null, true);
-        // System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+
+        if (resp.getStatusCode() != HttpStatus.SC_OK){
+            System.out.println(resp.getStatusCode());
+            System.out.println(resp.getJson());
+            HelperMethods.setAnsiRed("Get Trial Balance Functionality Fails");
+        }
+        else  {
+            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
+            System.out.println(resp.getJson());
+            HelperMethods.setAnsiGreen("Get Trial Balance Functionality Completed Successfully");
+        }
     }
 
 }

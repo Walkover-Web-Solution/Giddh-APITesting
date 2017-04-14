@@ -27,13 +27,13 @@ public class MethodManager {
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
-                                when().
+                when().
                         get(URL);
-        String json = resp.asString();
-        int statusCode = resp.getStatusCode();
-        SmartResponse response = new SmartResponse(statusCode, json);
-        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
-        return response;
+                        String json = resp.asString();
+                        int statusCode = resp.getStatusCode();
+                        SmartResponse response = new SmartResponse(statusCode, json);
+                        RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
+                        return response;
     }
 
     public SmartResponse getAPI_With_Params(String auth, String type, String URL, String from, String to , String search, boolean refresh) {

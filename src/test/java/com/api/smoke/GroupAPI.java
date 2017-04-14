@@ -32,17 +32,14 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= create.GroupCreate(config.createGroup(),"tgroup", "tgroup", "capital");
-        if (response.getStatusCode() != HttpStatus.SC_CREATED){
-            HelperMethods.setAnsiRed("Group Create Functionality Fails");
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+        SmartResponse resp= create.GroupCreate(config.createGroup(),"tgroup", "tgroup", "capital");
+        if (resp.getStatusCode() == HttpStatus.SC_CREATED){
+            HelperMethods.setAnsiGreen("Create Group Functionality Completed Successfully ");
         }
-
         else {
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-            HelperMethods.setAnsiGreen("Group Created Successfully ");
+            HelperMethods.setAnsiRed("Create Group Functionality fails with Response Code = " +  resp.getStatusCode());
+            HelperMethods.setAnsiRed(resp.getJson());
+            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
         }
     }
 
@@ -58,32 +55,39 @@ public class GroupAPI {
          */
 
         SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null, config.moveGroup(), body);
-//      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+        if (resp.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("Move Group Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Move Group Functionality fails with Response Code = " +  resp.getStatusCode());
+            HelperMethods.setAnsiRed(resp.getJson());
+            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
 
     @Test(dependsOnMethods={"createGroup"})
     public void getGroup() {
-
         HelperMethods.setAnsiGreen("Started :- Get Group ");
-
 
         /**
          * Main test and api call initiated
          */
 
         SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getGroup());
-//      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson() + "This is the Response eof Get Company");
-
+         if (resp.getStatusCode() == HttpStatus.SC_OK){
+             HelperMethods.setAnsiGreen("Get Group Functionality Completed Successfully ");
+         }
+         else {
+             HelperMethods.setAnsiRed("Get Group Functionality fails with Response Code = " +  resp.getStatusCode());
+             HelperMethods.setAnsiRed(resp.getJson());
+             Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
+         }
     }
 
     @Test(dependsOnMethods={"createGroup"})
     public void shareGroup() {
-
         HelperMethods.setAnsiGreen("Started :- Share Group ");
-
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -94,13 +98,19 @@ public class GroupAPI {
          */
 
         SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareGroup(), body);
-//      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+        if (resp.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("Share Group Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Share Group Functionality fails with Response Code = " +  resp.getStatusCode());
+            HelperMethods.setAnsiRed(resp.getJson());
+            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
 
     @Test(dependsOnMethods={"createGroup"})
-    public void unshareGroup() {
+    public void unShareGroup() {
 
         HelperMethods.setAnsiGreen("Started :- UnShare Group ");
 
@@ -112,8 +122,14 @@ public class GroupAPI {
          */
 
         SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareGroup(), body);
-//      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+        if (resp.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("UnShare Group Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("UnShare Group Functionality fails with Response Code = " +  resp.getStatusCode());
+            HelperMethods.setAnsiRed(resp.getJson());
+            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
 
@@ -133,9 +149,17 @@ public class GroupAPI {
 
         SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateGroup(), body);
 //      System.out.println(resp.getStatusCode());
-        String json = resp.getJson();
-        JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body.name"),"tgroup1" );
+        if (resp.getStatusCode() == HttpStatus.SC_OK){
+            String json = resp.getJson();
+            JsonPath jp = new JsonPath(json);
+            assertEquals(jp.get("body.name"),"tgroup1" );
+            HelperMethods.setAnsiGreen("Update Group Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Update Group Functionality fails with Response Code = " +  resp.getStatusCode());
+            HelperMethods.setAnsiRed(resp.getJson());
+            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
 

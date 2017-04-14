@@ -11,7 +11,7 @@
 					<include name="moveGroup" />
 					<include name="getGroup" />
 					<include name="shareGroup" />
-					<include name="unshareGroup" />
+					<include name="unShareGroup" />
 					<include name="updateGroup"/>
 				</methods>
 			</class>

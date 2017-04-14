@@ -16,7 +16,7 @@ public class FlattenAPI {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
-    @Test
+    @Test(dataProvider = "getData")
     public void flatten_Group_with_Accounts(){
 
         HelperMethods.setAnsiGreen("Started :- Get flatten group-with-accounts API");
@@ -57,16 +57,10 @@ public class FlattenAPI {
         }
     }
 
-    @Test(dataProvider = "getData")
-    public void dataProviderTest(String a, String b){
-        System.out.println(a + b);
-    }
 
     @DataProvider
     public Object[][] getData(){
-        Object[][] data = new Object[1][2];
-        data[0][0] = "abcd";
-        data[0][1]= "sam";
+        Object[][] data = new Object[3][0];
         return  data;
     }
 

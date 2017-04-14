@@ -35,6 +35,7 @@
 			<class name="com.api.smoke.FlattenAPI">
 				<methods>
 					<include name="flatten_Group_with_Accounts" />
+					<include name="flatten_Group_with_Accounts_with_Cash_Search"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.TaxAPI">

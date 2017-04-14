@@ -81,8 +81,8 @@ public class AccountAPI {
     }
 
 
-    @Test(dependsOnMethods={"createAccount"})
-    public void unshareAccount() {
+    @Test(dependsOnMethods={"createAccount"}, timeOut = 5000 )
+    public void unShareAccount() {
 
         HelperMethods.setAnsiGreen("Started :- UnShare Account");
 

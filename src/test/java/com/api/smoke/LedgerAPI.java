@@ -31,7 +31,6 @@ public class LedgerAPI {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
-
     @Test
     public void createLedger() throws JsonProcessingException {
         HelperMethods.setAnsiGreen("Started :- Create Ledger ");
@@ -55,9 +54,7 @@ public class LedgerAPI {
         assertEquals(jp.get("body[0].entryDate"),localDate.toString("dd-MM-yyyy"));
         ledger_UniqueName= jp.get("body[0].uniqueName");
         HelperMethods.setAnsiGreen("Ledger uniqueName is " + ledger_UniqueName);
-
     }
-
 
     @Test(dependsOnMethods={"createLedger"})
     public void getLedger(){
@@ -87,7 +84,6 @@ public class LedgerAPI {
         JsonPath jp = new JsonPath(json);
         assertEquals(jp.get("body.entryDate"),localDate.toString("dd-MM-yyyy"));
     }
-
 
     @Test(dependsOnMethods={"createLedger"})
     public void deleteAllLedger() throws Exception{

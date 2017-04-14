@@ -54,7 +54,7 @@ public class LedgerAPI {
         JsonPath jp = new JsonPath(json);
         assertEquals(jp.get("body[0].entryDate"),localDate.toString("dd-MM-yyyy"));
         ledger_UniqueName= jp.get("body[0].uniqueName");
-        System.out.println(ledger_UniqueName);
+        HelperMethods.setAnsiGreen("Ledger uniqueName is " + ledger_UniqueName);
 
     }
 

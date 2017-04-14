@@ -32,6 +32,11 @@
 					<include name="get_Hierarchical_Stock_Groups"/>
 				</methods>
 			</class>
+			<class name="com.api.smoke.FlattenAPI">
+				<methods>
+					<include name="flatten_Group_with_Accounts" />
+				</methods>
+			</class>
 			<class name="com.api.smoke.TaxAPI">
 				<methods>
 					<include name="addTax" />

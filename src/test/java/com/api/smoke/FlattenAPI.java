@@ -16,10 +16,11 @@ public class FlattenAPI {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
-    @Test(dataProvider = "getData")
-    public void flatten_Group_with_Accounts(){
+    @Test( parameters = "paramName")
+    public void flatten_Group_with_Accounts(String testvariable){
 
         HelperMethods.setAnsiGreen("Started :- Get flatten group-with-accounts API");
+        HelperMethods.setAnsiRed(testvariable);
 
         /**
          * Main test and api call initiated
@@ -27,14 +28,23 @@ public class FlattenAPI {
         SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Group_With_Accounts(), null, null, null, true);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
-        //assertEquals(jp.get("body.results[2].groupUniqueName"), "cash");
-        assertEquals(jp.get("body.page"), 1);
-        assertEquals(jp.get("body.count"), 5);
-        assertEquals(jp.get("body.totalPages"), 2);
-        assertEquals(jp.get("body.totalItems"), 7);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            assertEquals(jp.get("body.page"), 1);
+            assertEquals(jp.get("body.count"), 5);
+            assertEquals(jp.get("body.totalPages"), 2);
+            assertEquals(jp.get("body.totalItems"), 7);
+            HelperMethods.setAnsiGreen("Get flatten group-with-Accounts Functionality Completed Successfully");
+        }
+        else {
+            HelperMethods.setAnsiRed(response.getJson());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+            HelperMethods.setAnsiRed("Get flatten group-with-Accounts Functionality Fails");
+        }
     }
 
-    @Test(dependsOnMethods={"flatten_Group_with_Accounts"})
+
+    @Test(dataProvider = "getData", dependsOnMethods={"flatten_Group_with_Accounts"})
     public void flatten_Group_with_Accounts_with_Cash_Search(){
         HelperMethods.setAnsiGreen("Started :- Get flatten group-with-accounts with_Cash_Search");
 
@@ -48,6 +58,7 @@ public class FlattenAPI {
             assertEquals(jp.get("body.results[0].groupUniqueName"), "cash");
             assertEquals(jp.get("body.page"), 1);
             assertEquals(jp.get("body.count"), 5);
+            HelperMethods.setAnsiGreen("Get flatten group-with-accounts with_Cash_Search functionality Completed Successfully");
         }
         else {
             HelperMethods.setAnsiRed(response.getJson());

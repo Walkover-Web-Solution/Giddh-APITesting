@@ -16,7 +16,7 @@ import java.util.Map;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
-public class StockGroupApi {
+public class StockGroupAPI {
 
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
@@ -124,10 +124,10 @@ public class StockGroupApi {
          */
         SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName);
         if (response.getStatusCode() != HttpStatus.SC_OK){
-            HelperMethods.setAnsiRed("Delete Stock Group Functionality Failed ");
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
+            HelperMethods.setAnsiRed("Delete Stock Group Functionality Failed ");
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
         }
         else {
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);

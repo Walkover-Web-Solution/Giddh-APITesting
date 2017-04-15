@@ -24,7 +24,7 @@
 					<include name="updateAccount"/>
 				</methods>
 			</class>
-			<class name="com.api.smoke.StockGroupApi">
+			<class name="com.api.smoke.StockGroupAPI">
 				<methods>
 					<include name="create_Stock_Group" />
 					<include name="get_Stock_Group"/>

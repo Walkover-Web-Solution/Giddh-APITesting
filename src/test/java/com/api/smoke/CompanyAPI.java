@@ -3,7 +3,6 @@ package com.api.smoke;
 import com.config.UrlConfig;
 import com.controller.CompanyCreate;
 import com.model.ManageHeaders;
-import com.model.ManageURL;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -26,7 +25,7 @@ public class CompanyAPI {
     GroupAPI groupAPI = new GroupAPI();
     AccountAPI accountAPI = new AccountAPI();
     CompanyCreate create = new CompanyCreate();
-    StockGroupApi stockGroupApi = new StockGroupApi();
+    StockGroupAPI stockGroupAPI = new StockGroupAPI();
 
 
     @Test
@@ -135,7 +134,7 @@ public class CompanyAPI {
         ledgerAPI.deleteAllLedger();
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
-        stockGroupApi.delete_Stock_Group();
+        stockGroupAPI.delete_Stock_Group();
         deleteCompany();
     }
 

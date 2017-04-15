@@ -33,7 +33,6 @@ public class TrialBalanceAPI {
         }
         else  {
             Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-            System.out.println(resp.getJson());
             HelperMethods.setAnsiGreen("Get Trial Balance Functionality Completed Successfully");
         }
     }

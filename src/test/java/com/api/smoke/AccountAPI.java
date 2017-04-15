@@ -114,7 +114,6 @@ public class AccountAPI {
 
     @Test(dependsOnMethods={"createAccount"})
     public void updateAccount() {
-
         HelperMethods.setAnsiGreen("Started :- Update Account");
 
         Map<String,String> body = new HashMap<>();

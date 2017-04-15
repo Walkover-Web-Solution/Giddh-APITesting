@@ -27,7 +27,7 @@ public class TrialBalanceAPI {
         SmartResponse resp = methodManager.getAPI_With_Params(null, null, config.getTrialbalance(), "01-04-2017", "31-03-2018", null, true);
 
         if (resp.getStatusCode() != HttpStatus.SC_OK) {
-            HelperMethods.setAnsiRed(""+ resp.getStatusCode());
+            HelperMethods.setAnsiRed("TrialBalance Functionality fails with Response Code = " + resp.getStatusCode());
             HelperMethods.setAnsiRed(resp.getJson());
             HelperMethods.setAnsiRed("Get Trial Balance Functionality Fails");
         } else {

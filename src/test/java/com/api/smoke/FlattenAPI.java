@@ -113,13 +113,13 @@ public class FlattenAPI {
                 assertEquals(jp.get("body.results[0].stock"), null);
                 assertEquals(jp.get("body.page"), 1);
                 assertEquals(jp.get("body.count"), 1);
-                HelperMethods.setAnsiGreen("Get flatten accounts Completed Successfully");
+                HelperMethods.setAnsiGreen("Get flatten accounts Completed with Cash Account Search Successfully");
             }
             else {
                 HelperMethods.setAnsiRed(response.getJson());
                 HelperMethods.setAnsiRed(response.getJson());
                 Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-                HelperMethods.setAnsiRed("Get flatten accounts Functionality Fails");
+                HelperMethods.setAnsiRed("Get flatten accounts with Cash Account Search Functionality Fails");
             }
         }
     }

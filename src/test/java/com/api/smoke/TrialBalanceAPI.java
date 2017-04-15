@@ -18,7 +18,7 @@ public class TrialBalanceAPI {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
-    public void  get_TrialBalance() {
+    public void get_TrialBalance() {
         HelperMethods.setAnsiGreen("Started :- Get Trial Balance ");
 
         /**
@@ -26,15 +26,13 @@ public class TrialBalanceAPI {
          */
         SmartResponse resp = methodManager.getAPI_With_Params(null, null, config.getTrialbalance(), "01-04-2017", "31-03-2018", null, true);
 
-        if (resp.getStatusCode() != HttpStatus.SC_OK){
-            System.out.println(resp.getStatusCode());
-            System.out.println(resp.getJson());
+        if (resp.getStatusCode() != HttpStatus.SC_OK) {
+            HelperMethods.setAnsiRed(""+ resp.getStatusCode());
+            HelperMethods.setAnsiRed(resp.getJson());
             HelperMethods.setAnsiRed("Get Trial Balance Functionality Fails");
-        }
-        else  {
+        } else {
             Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
             HelperMethods.setAnsiGreen("Get Trial Balance Functionality Completed Successfully");
         }
     }
-
 }

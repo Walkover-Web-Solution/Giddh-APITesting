@@ -16,6 +16,20 @@ public class FlattenAPI {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
+    @DataProvider
+    public Object[][] getData(){
+        Object[][] data = new Object[1][0];
+        return  data;
+    }
+
+    @DataProvider
+    public Object[][] getSearchValue(){
+        Object[][] searchValue = new  Object[2][1];
+        searchValue[0][0]= "";
+        searchValue[1][0]= "cash";
+        return  searchValue;
+    }
+
     @Test( parameters = "paramName")
     public void flatten_Group_with_Accounts(String testvariable){
 
@@ -64,19 +78,32 @@ public class FlattenAPI {
             HelperMethods.setAnsiRed(response.getJson());
             HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            HelperMethods.setAnsiRed("Get flatten group-with-accounts with_Cash_Search functionality Fails");
+            HelperMethods.setAnsiRed("Get flatten group-with-accounts with_Cash_Search Functionality Fails");
         }
     }
 
 
-    @DataProvider
-    public Object[][] getData(){
-        Object[][] data = new Object[3][0];
-        return  data;
-    }
-
-    // @Test
-    public void flatten_With_Accounts(){
-
+    @Test(dataProvider = "getSearchValue")
+    public void flatten_With_Accounts(String searchValue){
+        HelperMethods.setAnsiGreen("Started :- Get flatten_with-Accounts");
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Accounts(), null, null, searchValue, true);
+        String json = response.getJson();
+        JsonPath jp = new JsonPath(json);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiRed(json);
+//            assertEquals(jp.get("body.results[0].groupUniqueName"), "cash");
+//            assertEquals(jp.get("body.page"), 1);
+//            assertEquals(jp.get("body.count"), 5);
+            HelperMethods.setAnsiGreen("Get flatten accounts Completed Successfully");
+        }
+        else {
+            HelperMethods.setAnsiRed(response.getJson());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+            HelperMethods.setAnsiRed("Get flatten accounts Functionality Fails");
+        }
     }
 }

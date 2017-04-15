@@ -102,5 +102,8 @@ public interface UrlConfig extends  Config{
     @Key("Flatten_Group_With_Accounts.Get")
     String get_Flatten_Group_With_Accounts();
 
+    @Key("flatten_Accounts.Get")
+    String get_Flatten_Accounts();
+
 
 }

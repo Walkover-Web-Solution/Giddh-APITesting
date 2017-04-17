@@ -2,6 +2,7 @@ package com.api.smoke;
 
 import com.apiUtils.*;
 import com.config.UrlConfig;
+import com.controller.*;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -15,6 +16,7 @@ public class FlattenAPI {
 
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
+    getFlattenGroupWithAccountsAPI getFlatten =  new getFlattenGroupWithAccountsAPI();
 
     @DataProvider
     public Object[][] getData(){
@@ -47,7 +49,7 @@ public class FlattenAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Group_With_Accounts(), fromDate, toDate, searchValue, refreshValue);
+        SmartResponse response = getFlatten.getFlattenGroupWithAccountsAPI(null, null, config.get_Flatten_Group_With_Accounts(), fromDate, toDate, searchValue, refreshValue);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (response.getStatusCode() == HttpStatus.SC_OK){

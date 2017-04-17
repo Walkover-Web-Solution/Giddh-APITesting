@@ -30,16 +30,24 @@ public class FlattenAPI {
         return searchValue;
     }
 
-    @Test( parameters = "paramName")
-    public void flatten_Group_with_Accounts(String testvariable){
+    @DataProvider
+    public  Object[][] getFlattenData(){
+        Object[][] newdData = new  Object[1][4];
+        newdData [0][0] = null;
+        newdData [0][1] = null;
+        newdData [0][2]= "";
+        newdData [0][3]= false;
+        return  newdData;
+    }
 
+    @Test(dataProvider = "getFlattenData")
+    public void flatten_Group_with_Accounts(String fromDate, String toDate, String searchValue, Boolean refreshValue){
         HelperMethods.setAnsiGreen("Started :- Get flatten group-with-accounts API");
-        HelperMethods.setAnsiRed(testvariable);
 
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Group_With_Accounts(), null, null, null, true);
+        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Group_With_Accounts(), fromDate, toDate, searchValue, refreshValue);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (response.getStatusCode() == HttpStatus.SC_OK){
@@ -64,7 +72,7 @@ public class FlattenAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Group_With_Accounts(), null, null, "cash", true);
+        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Group_With_Accounts(), null, null, "cash", false);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (response.getStatusCode() == HttpStatus.SC_OK){
@@ -88,7 +96,7 @@ public class FlattenAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Accounts(), null, null, searchValue, true);
+        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Accounts(), null, null, searchValue, false);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (searchValue == ""){

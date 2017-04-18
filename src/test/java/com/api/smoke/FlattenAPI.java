@@ -13,12 +13,9 @@ import static org.testng.Assert.assertEquals;
 
 public class FlattenAPI {
 
-
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
     getFlattenGroupWithAccountsAPI getFlatten =  new getFlattenGroupWithAccountsAPI();
-
-
 
     @DataProvider
     public Object[][] getSearchValue(){
@@ -50,17 +47,20 @@ public class FlattenAPI {
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (response.getStatusCode() == HttpStatus.SC_OK){
-            if (searchValue == "cash"){
+            if (searchValue.equalsIgnoreCase("cash")){
                 assertEquals(jp.get("body.totalPages"), 1);
                 assertEquals(jp.get("body.totalItems"), 1);
-            }else {
+            }
+            else {
                 assertEquals(jp.get("body.totalPages"), 2);
                 assertEquals(jp.get("body.totalItems"), 7);
             }
             assertEquals(jp.get("body.page"), 1);
             assertEquals(jp.get("body.count"), 5);
             HelperMethods.setAnsiGreen("Get flatten group-with-Accounts Functionality Completed Successfully");
-        } else {
+        }
+
+        else {
             HelperMethods.setAnsiRed(response.getJson());
             HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
@@ -77,7 +77,7 @@ public class FlattenAPI {
         SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Accounts(), null, null, searchValue, false);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
-        if (searchValue == ""){
+        if (searchValue.equalsIgnoreCase("")){
             if (response.getStatusCode() == HttpStatus.SC_OK){
                 assertEquals(jp.get("body.results[1].uniqueName"), "giddh");
                 assertEquals(jp.get("body.results[0].stock"), null);
@@ -93,7 +93,7 @@ public class FlattenAPI {
             }
         }
 
-        if (searchValue == "cash"){
+        if (searchValue.equalsIgnoreCase("cash")){
             if (response.getStatusCode() == HttpStatus.SC_OK){
                 assertEquals(jp.get("body.results[0].uniqueName"), "cash");
                 assertEquals(jp.get("body.results[0].stock"), null);

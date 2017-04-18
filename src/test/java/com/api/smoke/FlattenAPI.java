@@ -34,22 +34,20 @@ public class FlattenAPI {
 
     @DataProvider
     public  Object[][] getFlattenData(){
-        Object[][] newdData = new  Object[1][4];
-        newdData [0][0] = null;
-        newdData [0][1] = null;
-        newdData [0][2]= "";
-        newdData [0][3]= false;
+        Object[][] newdData = new  Object[1][2];
+        newdData [0][0]= "";
+        newdData [0][1]= false;
         return  newdData;
     }
 
     @Test(dataProvider = "getFlattenData")
-    public void flatten_Group_with_Accounts(String fromDate, String toDate, String searchValue, Boolean refreshValue){
+    public void flatten_Group_with_Accounts(String searchValue, Boolean refreshValue){
         HelperMethods.setAnsiGreen("Started :- Get flatten group-with-accounts API");
 
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = getFlatten.getFlattenGroupWithAccountsAPI(null, null, config.get_Flatten_Group_With_Accounts(), fromDate, toDate, searchValue, refreshValue);
+        SmartResponse response = getFlatten.getFlattenGroupWithAccountsAPI(null, null, searchValue, refreshValue);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (response.getStatusCode() == HttpStatus.SC_OK){

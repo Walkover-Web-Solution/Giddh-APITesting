@@ -27,11 +27,15 @@ public class FlattenAPI {
 
     @DataProvider
     public  Object[][] getFlattenData(){
-        Object[][] newdData = new  Object[2][2];
+        Object[][] newdData = new  Object[4][2];
         newdData [0][0]= "";
         newdData [0][1]= false;
         newdData [1][0]= "cash";
         newdData [1][1]= false;
+        newdData [2][0]= "";
+        newdData [2][1]= true;
+        newdData [3][0]= "cash";
+        newdData [3][1]= true;
         return  newdData;
     }
 

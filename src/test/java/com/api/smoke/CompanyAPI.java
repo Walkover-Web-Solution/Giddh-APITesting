@@ -47,20 +47,17 @@ public class CompanyAPI {
             }
 
             if (response1.getStatusCode() == HttpStatus.SC_CREATED){
-                System.out.println(response.getJson());
                 HelperMethods.setAnsiGreen("Company Create Successfully");
             }
         }
 
         if (response.getStatusCode()==HttpStatus.SC_CREATED){
-            System.out.println(response.getJson());
             HelperMethods.setAnsiGreen("Company Created Successfully");
         }
 
         else {
-            HelperMethods.setAnsiRed("Company Create Functionality Fails");
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getJson());
+            HelperMethods.setAnsiRed("Company Create Functionality Fails with response code = "+ response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         }
     }
@@ -70,13 +67,19 @@ public class CompanyAPI {
     public void getCompany(){
         HelperMethods.setAnsiGreen("Started :- Get Company ");
         header.set_Headers(null, null);
-        /**
+
+       /**
          * Main test and api call initiated
          */
-
-        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getCompany());
-//      System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getCompany());
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("Get Company Functionality Completed Successfully");
+        }
+        else {
+            HelperMethods.setAnsiRed("Get Company Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
 
@@ -91,16 +94,20 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareCompany(), body);
-        //System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareCompany(), body);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("Share Company Functionality Completed Successfully");
+        }
+        else {
+            HelperMethods.setAnsiRed("Share Company Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
 
     @Test(dependsOnMethods={"createCompany"})
     public void unShareCompany(){
-
         HelperMethods.setAnsiGreen("Started :- UnShare Company ");
 
         Map<String,String> body = new HashMap<>();
@@ -109,10 +116,15 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareCompany(), body);
-        //System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareCompany(), body);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("UnShare Company Functionality Completed Successfully");
+        }
+        else {
+            HelperMethods.setAnsiRed("UnShare Company Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
 

@@ -6,7 +6,7 @@ Prerequisites
 -------------
 
 * jdk 1.8
-* maven 3.3.3
+* maven 3.3.5
 * TestNG
 
 
@@ -25,4 +25,4 @@ Usual build tasks
 
 
 
-Giddh & copy; 2017
+Giddh & Copy; 2017

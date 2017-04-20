@@ -13,16 +13,9 @@ import static org.testng.Assert.assertEquals;
 
 public class FlattenAPI {
 
-
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
     getFlattenGroupWithAccountsAPI getFlatten =  new getFlattenGroupWithAccountsAPI();
-
-    @DataProvider
-    public Object[][] getData(){
-        Object[][] data = new Object[1][0];
-        return  data;
-    }
 
     @DataProvider
     public Object[][] getSearchValue(){
@@ -34,11 +27,18 @@ public class FlattenAPI {
 
     @DataProvider
     public  Object[][] getFlattenData(){
-        Object[][] newdData = new  Object[1][2];
+        Object[][] newdData = new  Object[4][2];
         newdData [0][0]= "";
         newdData [0][1]= false;
+        newdData [1][0]= "cash";
+        newdData [1][1]= false;
+        newdData [2][0]= "";
+        newdData [2][1]= true;
+        newdData [3][0]= "cash";
+        newdData [3][1]= true;
         return  newdData;
     }
+
 
     @Test(dataProvider = "getFlattenData")
     public void flatten_Group_with_Accounts(String searchValue, Boolean refreshValue){
@@ -51,12 +51,19 @@ public class FlattenAPI {
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (response.getStatusCode() == HttpStatus.SC_OK){
+            if (searchValue.equalsIgnoreCase("cash")){
+                assertEquals(jp.get("body.totalPages"), 1);
+                assertEquals(jp.get("body.totalItems"), 1);
+            }
+            else {
+                assertEquals(jp.get("body.totalPages"), 2);
+                assertEquals(jp.get("body.totalItems"), 7);
+            }
             assertEquals(jp.get("body.page"), 1);
             assertEquals(jp.get("body.count"), 5);
-            assertEquals(jp.get("body.totalPages"), 2);
-            assertEquals(jp.get("body.totalItems"), 7);
             HelperMethods.setAnsiGreen("Get flatten group-with-Accounts Functionality Completed Successfully");
         }
+
         else {
             HelperMethods.setAnsiRed(response.getJson());
             HelperMethods.setAnsiRed(response.getJson());
@@ -64,31 +71,6 @@ public class FlattenAPI {
             HelperMethods.setAnsiRed("Get flatten group-with-Accounts Functionality Fails");
         }
     }
-
-
-    @Test(dataProvider = "getData", dependsOnMethods={"flatten_Group_with_Accounts"})
-    public void flatten_Group_with_Accounts_with_Cash_Search(){
-        HelperMethods.setAnsiGreen("Started :- Get flatten group-with-accounts with_Cash_Search");
-        /**
-         * Main test and api call initiated
-         */
-        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Group_With_Accounts(), null, null, "cash", false);
-        String json = response.getJson();
-        JsonPath jp = new JsonPath(json);
-        if (response.getStatusCode() == HttpStatus.SC_OK){
-            assertEquals(jp.get("body.results[0].groupUniqueName"), "cash");
-            assertEquals(jp.get("body.page"), 1);
-            assertEquals(jp.get("body.count"), 5);
-            HelperMethods.setAnsiGreen("Get flatten group-with-accounts with_Cash_Search functionality Completed Successfully");
-        }
-        else {
-            HelperMethods.setAnsiRed(response.getJson());
-            HelperMethods.setAnsiRed(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            HelperMethods.setAnsiRed("Get flatten group-with-accounts with_Cash_Search Functionality Fails");
-        }
-    }
-
 
     @Test(dataProvider = "getSearchValue")
     public void flatten_With_Accounts(String searchValue){
@@ -99,7 +81,7 @@ public class FlattenAPI {
         SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Accounts(), null, null, searchValue, false);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
-        if (searchValue == ""){
+        if (searchValue.equalsIgnoreCase("")){
             if (response.getStatusCode() == HttpStatus.SC_OK){
                 assertEquals(jp.get("body.results[1].uniqueName"), "giddh");
                 assertEquals(jp.get("body.results[0].stock"), null);
@@ -115,7 +97,7 @@ public class FlattenAPI {
             }
         }
 
-        if (searchValue == "cash"){
+        if (searchValue.equalsIgnoreCase("cash")){
             if (response.getStatusCode() == HttpStatus.SC_OK){
                 assertEquals(jp.get("body.results[0].uniqueName"), "cash");
                 assertEquals(jp.get("body.results[0].stock"), null);

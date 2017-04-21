@@ -27,16 +27,16 @@ public class FlattenAPI {
 
     @DataProvider
     public  Object[][] getFlattenData(){
-        Object[][] newdData = new  Object[4][2];
-        newdData [0][0]= "";
-        newdData [0][1]= false;
-        newdData [1][0]= "cash";
-        newdData [1][1]= false;
-        newdData [2][0]= "";
-        newdData [2][1]= true;
-        newdData [3][0]= "cash";
-        newdData [3][1]= true;
-        return  newdData;
+        Object[][] newData = new  Object[4][2];
+        newData [0][0]= "";
+        newData [0][1]= false;
+        newData [1][0]= "cash";
+        newData [1][1]= false;
+        newData [2][0]= "";
+        newData [2][1]= true;
+        newData [3][0]= "cash";
+        newData [3][1]= true;
+        return  newData;
     }
 
 
@@ -63,12 +63,10 @@ public class FlattenAPI {
             assertEquals(jp.get("body.count"), 5);
             HelperMethods.setAnsiGreen("Get flatten group-with-Accounts Functionality Completed Successfully");
         }
-
         else {
             HelperMethods.setAnsiRed(response.getJson());
-            HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            HelperMethods.setAnsiRed("Get flatten group-with-Accounts Functionality Fails");
+            HelperMethods.setAnsiRed("Get flatten group-with-Accounts Functionality Fails with Status code = " + response.getStatusCode());
         }
     }
 

@@ -13,5 +13,4 @@ public class StockAccountDetails {
         this.accountUniqueName=accountUniqueName;
         this.UnitRateInput=UnitRateInput;
     }
-
 }

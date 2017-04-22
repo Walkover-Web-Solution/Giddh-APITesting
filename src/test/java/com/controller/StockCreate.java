@@ -16,15 +16,7 @@ public class StockCreate {
     private String uniqueName;
     private String parentStockGroupUniqueName;
 
-    public SmartResponse StockCreate(String auth , String type, String URL, String name, String uniqueName, String parentStockGroupUniqueName){
-
-        if (parentStockGroupUniqueName == null){
-            parentStockGroupUniqueName = "";
-        }
-        Map<String,String> body = new HashMap<>();
-        body.put("name", this.name=name);
-        body.put("uniqueName", this.uniqueName=uniqueName);
-        body.put("parentStockGroupUniqueName", this.parentStockGroupUniqueName=parentStockGroupUniqueName);
+    public SmartResponse StockCreate(String auth , String type, String URL, String body){
 
         /**
          * Main test and api call initiated

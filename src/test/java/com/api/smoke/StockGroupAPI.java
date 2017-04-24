@@ -30,7 +30,7 @@ public class StockGroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStockGroup(),"stcokgroup1","stcokgroup1","");
+        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStockGroup(),"stockgroup1","stockgroup1","");
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
             HelperMethods.setAnsiRed("Create Stock Group Functionality Failed ");
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
@@ -71,8 +71,8 @@ public class StockGroupAPI {
         HelperMethods.setAnsiGreen("Started :- Update Stock Group");
 
         Map<String,String> body = new HashMap<>();
-        body.put("name", "stcokgroup");
-        body.put("uniqueName", "stcokgroup");
+        body.put("name", "stockgroup");
+        body.put("uniqueName", "stockgroup");
         body.put("parentStockGroupUniqueName", "");
 
         /**

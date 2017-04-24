@@ -46,21 +46,25 @@ public class StockAccountAPI {
     @Test(dataProvider = "stock")
     public void createStock(String auth , String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
                             BigDecimal purchaseValue, String salesAccountUniqueName, String purchaseAccountUniqueName, String stockName,
-                            String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty) throws JsonProcessingException  {
+                            String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty) throws JsonProcessingException {
 
-        SmartResponse response = stockCreate.StockCreate(auth, type,  URL,  salesStockUnitCode,  saleValue, purchaseStockUnitCode, purchaseValue,  salesAccountUniqueName,
-                purchaseAccountUniqueName,  stockName,  stockUniqueCode,  openingAmount,  openingQty);
+        HelperMethods.setAnsiGreen("Started :- Create Stock ");
 
-        if (response.getStatusCode() != HttpStatus.SC_CREATED){
-            HelperMethods.setAnsiRed("Create Stock Functionality Failed");
-            //Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getJson());
+        /**
+         * Main test and api call initiated
+         */
+
+        SmartResponse response = stockCreate.StockCreate(auth, type,  URL,  salesStockUnitCode,  saleValue, purchaseStockUnitCode,
+                purchaseValue,  salesAccountUniqueName, purchaseAccountUniqueName,  stockName,  stockUniqueCode,  openingAmount,
+                openingQty);
+
+        if (response.getStatusCode() == HttpStatus.SC_CREATED){
+            HelperMethods.setAnsiGreen("Create Stock Functionality Completed Successfully ");
         }
         else {
+            HelperMethods.setAnsiRed("Create Stock Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-            HelperMethods.setAnsiGreen(response.getJson());
-            HelperMethods.setAnsiGreen("Stock Created Successfully");
         }
     }
 }

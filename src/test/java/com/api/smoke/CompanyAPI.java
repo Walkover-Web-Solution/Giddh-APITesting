@@ -33,6 +33,10 @@ public class CompanyAPI {
         HelperMethods.setAnsiGreen("Started :- Create Company ");
         header.set_Headers(null, null);
 
+        /**
+         * Main test and api call initiated
+         */
+
         SmartResponse response = create.companyCreate(config.mainURL(), "audi",   "audi");
 
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){

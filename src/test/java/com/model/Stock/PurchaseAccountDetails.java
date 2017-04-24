@@ -7,10 +7,10 @@ import java.util.List;
 public class PurchaseAccountDetails {
 
     private String accountUniqueName;
-    private List<UnitRateInput> UnitRateInput = new ArrayList<>();
+    private List<UnitRateInput> unitRates = new ArrayList<>();
 
     public PurchaseAccountDetails(String accountUniqueName, List<UnitRateInput> UnitRateInput ){
         this.accountUniqueName=accountUniqueName;
-        this.UnitRateInput=UnitRateInput;
+        this.unitRates=UnitRateInput;
     }
 }

@@ -1,6 +1,7 @@
 package com.controller;
 
 
+import com.apiUtils.HelperMethods;
 import com.apiUtils.JsonUtil;
 import com.apiUtils.MethodManager;
 import com.apiUtils.SmartResponse;
@@ -42,6 +43,7 @@ public class StockCreate {
         PurchaseAccountDetails purchaseAccountDetails = new PurchaseAccountDetails(purchaseAccountUniqueName, purchaseUnitRateInputs);
         Stock stock = new Stock(stockName, openingAmount, openingQty, stockUniqueCode, purchaseAccountDetails, salesAccountDetails);
         String body = JsonUtil.toJsonAsString(stock);
+        HelperMethods.setAnsiRed(body);
 
         /**
          * Main test and api call initiated

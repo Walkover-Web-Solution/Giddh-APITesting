@@ -105,5 +105,8 @@ public interface UrlConfig extends  Config{
     @Key("flatten_Accounts.Get")
     String get_Flatten_Accounts();
 
+    @Key("stock.Create")
+    String createStock();
+
 
 }

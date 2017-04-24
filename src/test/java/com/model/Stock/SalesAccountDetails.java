@@ -5,10 +5,10 @@ import java.util.List;
 
 public class SalesAccountDetails {
     private String accountUniqueName;
-    private List<UnitRateInput> UnitRateInput = new ArrayList<>();
+    private List<UnitRateInput> unitRates = new ArrayList<>();
 
     public SalesAccountDetails(String accountUniqueName, List<UnitRateInput> UnitRateInput ){
         this.accountUniqueName=accountUniqueName;
-        this.UnitRateInput=UnitRateInput;
+        this.unitRates=UnitRateInput;
     }
 }

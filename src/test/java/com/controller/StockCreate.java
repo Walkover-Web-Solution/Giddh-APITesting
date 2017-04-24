@@ -21,11 +21,6 @@ import java.util.Map;
 @Setter
 public class StockCreate {
     MethodManager methodManager = new MethodManager();
-
-    private String name;
-    private String uniqueName;
-    private String parentStockGroupUniqueName;
-
     public SmartResponse StockCreate (String auth , String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
                                       BigDecimal purchaseValue, String salesAccountUniqueName,
                                       String purchaseAccountUniqueName, String stockName, String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty)
@@ -47,7 +42,6 @@ public class StockCreate {
         PurchaseAccountDetails purchaseAccountDetails = new PurchaseAccountDetails(purchaseAccountUniqueName, purchaseUnitRateInputs);
         Stock stock = new Stock(stockName, openingAmount, openingQty, stockUniqueCode, purchaseAccountDetails, salesAccountDetails);
         String body = JsonUtil.toJsonAsString(stock);
-        System.out.println(body);
 
         /**
          * Main test and api call initiated

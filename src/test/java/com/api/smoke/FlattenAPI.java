@@ -3,11 +3,13 @@ package com.api.smoke;
 import com.apiUtils.*;
 import com.config.UrlConfig;
 import com.controller.*;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
@@ -110,5 +112,11 @@ public class FlattenAPI {
                 HelperMethods.setAnsiRed("Get flatten accounts with Cash Account Search Functionality Fails");
             }
         }
+    }
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        RestAssured.reset();
     }
 }

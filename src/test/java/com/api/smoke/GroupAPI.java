@@ -7,6 +7,7 @@ import com.apiUtils.SmartResponse;
 import com.config.UrlConfig;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
@@ -166,5 +168,12 @@ public class GroupAPI {
          */
         SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteGroup());
         System.out.println(resp.getJson());
+    }
+
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        RestAssured.reset();
     }
 }

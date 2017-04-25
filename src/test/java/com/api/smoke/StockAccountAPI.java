@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
 
@@ -66,5 +67,11 @@ public class StockAccountAPI {
             HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         }
+    }
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        RestAssured.reset();
     }
 }

@@ -5,6 +5,7 @@ import com.apiUtils.MethodManager;
 import com.apiUtils.SmartResponse;
 import com.config.UrlConfig;
 import com.controller.StockGroupCreate;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
 import org.testng.*;
@@ -13,6 +14,7 @@ import org.testng.annotations.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
@@ -133,5 +135,11 @@ public class StockGroupAPI {
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
             HelperMethods.setAnsiGreen("Stock Group Deleted Successfully");
         }
+    }
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        RestAssured.reset();
     }
 }

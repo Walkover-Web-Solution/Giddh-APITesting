@@ -147,11 +147,18 @@ public class CompanyAPI {
     @AfterSuite
     public void deleteSetup()throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Setup ");
+        RestAssured.reset();
         ledgerAPI.deleteAllLedger();
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
         stockGroupAPI.delete_Stock_Group();
         deleteCompany();
+    }
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        RestAssured.reset();
     }
 
 }

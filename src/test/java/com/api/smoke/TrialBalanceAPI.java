@@ -5,11 +5,13 @@ import com.apiUtils.HelperMethods;
 import com.apiUtils.MethodManager;
 import com.apiUtils.SmartResponse;
 import com.config.UrlConfig;
+import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
 @Test
@@ -34,5 +36,11 @@ public class TrialBalanceAPI {
             Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
             HelperMethods.setAnsiGreen("Get Trial Balance Functionality Completed Successfully");
         }
+    }
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        RestAssured.reset();
     }
 }

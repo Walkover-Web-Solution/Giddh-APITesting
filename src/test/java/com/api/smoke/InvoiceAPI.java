@@ -7,6 +7,7 @@ import com.apiUtils.JsonUtil;
 import com.apiUtils.SmartResponse;
 import com.config.UrlConfig;
 import com.model.Invoice;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -58,5 +59,10 @@ public class InvoiceAPI {
         HelperMethods.setAnsiGreen("Started :- Delete Invoice ");
         SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteInvoice()+ Invoice_Number);
         System.out.println(resp.getJson());
+    }
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.reset();
     }
 }

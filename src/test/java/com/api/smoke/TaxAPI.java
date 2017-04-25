@@ -6,6 +6,7 @@ import com.config.*;
 import com.controller.AccountCreate;
 import com.controller.GroupCreate;
 import com.model.*;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
@@ -13,6 +14,7 @@ import org.testng.annotations.*;
 import java.util.*;
 
 
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
 
@@ -75,5 +77,11 @@ public class TaxAPI {
             Assert.assertNotNull(Tax_UniqueName);
             HelperMethods.setAnsiGreen("Tax created Successfully");
         }
+    }
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        RestAssured.reset();
     }
 }

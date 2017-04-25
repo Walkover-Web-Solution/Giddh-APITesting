@@ -33,6 +33,10 @@ public class CompanyAPI {
         HelperMethods.setAnsiGreen("Started :- Create Company ");
         header.set_Headers(null, null);
 
+        /**
+         * Main test and api call initiated
+         */
+
         SmartResponse response = create.companyCreate(config.mainURL(), "audi",   "audi");
 
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
@@ -143,11 +147,18 @@ public class CompanyAPI {
     @AfterSuite
     public void deleteSetup()throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Setup ");
+        RestAssured.reset();
         ledgerAPI.deleteAllLedger();
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
         stockGroupAPI.delete_Stock_Group();
         deleteCompany();
+    }
+
+    @AfterMethod
+    public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        RestAssured.reset();
     }
 
 }

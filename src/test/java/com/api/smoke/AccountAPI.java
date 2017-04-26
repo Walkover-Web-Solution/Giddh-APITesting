@@ -24,7 +24,6 @@ public class AccountAPI {
     @Test
     public void createAccount() {
         HelperMethods.setAnsiGreen("Started :- Create Account");
-
         groupAPI.createGroup();
 
         /**

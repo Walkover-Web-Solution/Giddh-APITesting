@@ -4,6 +4,7 @@ import com.config.UrlConfig;
 import com.controller.CompanyCreate;
 import com.model.ManageHeaders;
 import io.restassured.RestAssured;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -27,21 +28,33 @@ public class CompanyAPI {
     CompanyCreate create = new CompanyCreate();
     StockGroupAPI stockGroupAPI = new StockGroupAPI();
 
+    public static String companyName;
+
+    public String getRandomCompanyName(){
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        String randomString = "";
+        int length = chars.length();
+        for (int i = 0; i < 8; i++) {
+            randomString += chars.split("")[(int) (Math.random() * (length - 1))];
+        }
+        return randomString;
+    }
 
     @Test
     public void createCompany() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Create Company ");
         header.set_Headers(null, null);
-
         /**
          * Main test and api call initiated
          */
+        companyName = getRandomCompanyName();
+        HelperMethods.setAnsiGreen("Company Name is = "+ companyName);
 
-        SmartResponse response = create.companyCreate(config.mainURL(), "audi",   "audi");
+        SmartResponse response = create.companyCreate(config.mainURL(), "automationCompany", companyName);
 
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
             deleteSetup();
-            SmartResponse response1 = create.companyCreate(config.mainURL(), "audi", "audi");
+            SmartResponse response1 = create.companyCreate(config.mainURL(), "automationCompany", companyName);
 
             if (response1.getStatusCode() != HttpStatus.SC_CREATED){
                 HelperMethods.setAnsiRed("Company Create Functionality Fails");
@@ -51,7 +64,7 @@ public class CompanyAPI {
             }
 
             if (response1.getStatusCode() == HttpStatus.SC_CREATED){
-                HelperMethods.setAnsiGreen("Company Create Successfully");
+                HelperMethods.setAnsiGreen("Company Created Successfully");
             }
         }
 
@@ -72,7 +85,7 @@ public class CompanyAPI {
         HelperMethods.setAnsiGreen("Started :- Get Company ");
         header.set_Headers(null, null);
 
-       /**
+        /**
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getCompany());

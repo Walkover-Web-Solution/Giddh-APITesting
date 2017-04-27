@@ -42,7 +42,7 @@ public class CompanyAPI {
         return randomString;
     }
 
-    @BeforeMethod
+
     public void prerequisites(){
         RestAssured.baseURI= config.baseURL();
          baseURL = RestAssured.baseURI;
@@ -51,6 +51,9 @@ public class CompanyAPI {
 
     @Test
     public void createCompany() throws Exception{
+        prerequisites();
+        long id = Thread.currentThread().getId();
+        System.out.println("Create test-class. Thread id is: " + id);
         HelperMethods.setAnsiGreen("Started :- Create Company ");
         header.set_Headers(null, null);
         /**
@@ -62,7 +65,7 @@ public class CompanyAPI {
         SmartResponse response = create.companyCreate(config.mainURL(), "automationCompany", companyName);
 
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
-            deleteSetup();
+            //deleteSetup();
             SmartResponse response1 = create.companyCreate(config.mainURL(), "automationCompany", companyName);
 
             if (response1.getStatusCode() != HttpStatus.SC_CREATED){
@@ -154,28 +157,30 @@ public class CompanyAPI {
 //    }
 //
 
+    @Test
     public void deleteCompany(){
-
-        /**
-         * Main test and api call initiated
-         */
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,mainURL + companyName);
-        //System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        long id = Thread.currentThread().getId();
+        System.out.println("Delete  test-class. Thread id is: " + id);
+//        /**
+//         * Main test and api call initiated
+//         */
+//        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,mainURL + companyName);
+//        //System.out.println(resp.getStatusCode());
+//        System.out.println(resp.getJson());
+//        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
     }
 
 
-    @AfterSuite
-    public void deleteSetup()throws Exception{
-        HelperMethods.setAnsiGreen("Started :- Delete Setup ");
-//        RestAssured.reset();
-//        ledgerAPI.deleteAllLedger();
-//        accountAPI.deleteAccount();
-//        groupAPI.deleteGroup();
-//        stockGroupAPI.delete_Stock_Group();
-        deleteCompany();
-    }
+//    @AfterSuite
+//    public void deleteSetup()throws Exception{
+//        HelperMethods.setAnsiGreen("Started :- Delete Setup ");
+////        RestAssured.reset();
+////        ledgerAPI.deleteAllLedger();
+////        accountAPI.deleteAccount();
+////        groupAPI.deleteGroup();
+////        stockGroupAPI.delete_Stock_Group();
+//        deleteCompany();
+//    }
 
     @AfterMethod
     public void  setup(){

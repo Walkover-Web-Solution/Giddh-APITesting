@@ -77,14 +77,14 @@ public class GroupAPI {
          */
 
         SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getGroup());
-         if (resp.getStatusCode() == HttpStatus.SC_OK){
-             HelperMethods.setAnsiGreen("Get Group Functionality Completed Successfully ");
-         }
-         else {
-             HelperMethods.setAnsiRed("Get Group Functionality fails with Response Code = " +  resp.getStatusCode());
-             HelperMethods.setAnsiRed(resp.getJson());
-             Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-         }
+        if (resp.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("Get Group Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Get Group Functionality fails with Response Code = " +  resp.getStatusCode());
+            HelperMethods.setAnsiRed(resp.getJson());
+            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
     @Test(dependsOnMethods={"createGroup"})
@@ -166,8 +166,8 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteGroup());
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteGroup());
+        HelperMethods.assertCode("Delete Group", response.getStatusCode(), response.getJson());
     }
 
 

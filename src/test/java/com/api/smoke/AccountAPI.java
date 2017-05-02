@@ -142,8 +142,8 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteAccount());
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteAccount());
+        HelperMethods.assertCode("Delete Account", response.getStatusCode(), response.getJson());
     }
 
     @AfterMethod

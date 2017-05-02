@@ -70,7 +70,7 @@ public class StockAccountAPI {
     }
 
     @AfterMethod
-    public void  setup(){
+    public void setup(){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
         RestAssured.reset();
     }

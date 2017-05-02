@@ -72,7 +72,7 @@ public class CompanyAPI {
         HelperMethods.setAnsiGreen("Started :- Get Company ");
         header.set_Headers(null, null);
 
-       /**
+        /**
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getCompany());
@@ -133,14 +133,11 @@ public class CompanyAPI {
 
 
     public void deleteCompany(){
-
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteCompany());
-        //System.out.println(resp.getStatusCode());
-        System.out.println(resp.getJson());
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteCompany());
+        HelperMethods.assertCode("Delete Company", response.getStatusCode(), response.getJson());
     }
 
 
@@ -160,5 +157,4 @@ public class CompanyAPI {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
         RestAssured.reset();
     }
-
 }

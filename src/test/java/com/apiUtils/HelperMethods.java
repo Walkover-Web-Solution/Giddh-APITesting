@@ -3,6 +3,8 @@ package com.apiUtils;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.apache.commons.lang3.Validate;
+import org.apache.http.HttpStatus;
+import org.testng.Assert;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -133,6 +135,17 @@ public class HelperMethods {
 
         public TimeUnit getTimeUnit() {
             return timeUnit;
+        }
+    }
+
+    public static void assertCode(String functionalityName, int responseCode, String reponseJson){
+        if ( responseCode == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen(functionalityName +" Functionality Completed Successfully");
+        }
+        else {
+            HelperMethods.setAnsiRed(functionalityName +" Functionality fails with Response Code = " +  responseCode);
+            HelperMethods.setAnsiRed(reponseJson);
+            Assert.assertEquals(reponseJson, HttpStatus.SC_OK);
         }
     }
 

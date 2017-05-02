@@ -70,14 +70,7 @@ public class InvoiceAPI {
     public void deleteInvoice() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Invoice ");
         SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteInvoice()+ Invoice_Number);
-        if (response.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Delete Invoice Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("Delete Invoice Functionality fails with Response Code = " +  response.getStatusCode());
-            HelperMethods.setAnsiRed(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        }
+        HelperMethods.assertCode("Delete Invoice", response.getStatusCode(), response.getJson());
     }
 
     @AfterMethod

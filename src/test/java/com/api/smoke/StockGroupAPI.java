@@ -103,19 +103,16 @@ public class StockGroupAPI {
          * Main test and api call initiated
          */
         SmartResponse response= methodManager.getAPI_with_Assert_Statuscode(null, null, config.get_All_Hierarchical_Stock_Group());
-        if (response.getStatusCode() != HttpStatus.SC_OK){
-            HelperMethods.setAnsiRed("Get Hierarchical Stock Groups Functionality Failed ");
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getJson());
-        }
-        else {
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
-            System.out.println(json);
             assertEquals( jp.get("body.results[0].uniqueName"), stock_GroupName);
             HelperMethods.setAnsiGreen("Get Hierarchical Stock Groups Completed Successfully");
+        }
+        else {
+            HelperMethods.setAnsiRed("Get Hierarchical Stock Groups Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
         }
     }
 
@@ -125,16 +122,7 @@ public class StockGroupAPI {
          * Main test and api call initiated
          */
         SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName);
-        if (response.getStatusCode() != HttpStatus.SC_OK){
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getJson());
-            HelperMethods.setAnsiRed("Delete Stock Group Functionality Failed ");
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        }
-        else {
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            HelperMethods.setAnsiGreen("Stock Group Deleted Successfully");
-        }
+        HelperMethods.assertCode("Delete Stock Group", response.getStatusCode(), response.getJson());
     }
 
     @AfterMethod

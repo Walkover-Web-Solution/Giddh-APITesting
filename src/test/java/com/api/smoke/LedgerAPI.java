@@ -47,13 +47,20 @@ public class LedgerAPI {
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createLedger(), body);
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-        System.out.println(response.getJson());
-        String json = response.getJson();
-        JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body[0].entryDate"),localDate.toString("dd-MM-yyyy"));
-        ledger_UniqueName= jp.get("body[0].uniqueName");
-        HelperMethods.setAnsiGreen("Ledger uniqueName is " + ledger_UniqueName);
+        if (response.getStatusCode() == HttpStatus.SC_CREATED){
+            String json = response.getJson();
+            JsonPath jp = new JsonPath(json);
+            assertEquals(jp.get("body[0].entryDate"),localDate.toString("dd-MM-yyyy"));
+            ledger_UniqueName= jp.get("body[0].uniqueName");
+            HelperMethods.setAnsiGreen("Ledger uniqueName is " + ledger_UniqueName);
+            HelperMethods.setAnsiGreen("Create Ledger Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Create Ledger Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+        }
+
     }
 
     @Test(dependsOnMethods={"createLedger"})
@@ -62,8 +69,15 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getLedger()+ledger_UniqueName);
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getLedger()+ledger_UniqueName);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("Get Ledger Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Get Ledger Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
     @Test(dependsOnMethods={"createLedger"})
@@ -78,11 +92,19 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateLedger()+ledger_UniqueName, body);
-        System.out.println(resp.getJson());
-        String json = resp.getJson();
-        JsonPath jp = new JsonPath(json);
-        assertEquals(jp.get("body.entryDate"),localDate.toString("dd-MM-yyyy"));
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateLedger()+ledger_UniqueName, body);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            String json = response.getJson();
+            JsonPath jp = new JsonPath(json);
+            assertEquals(jp.get("body.entryDate"),localDate.toString("dd-MM-yyyy"));
+            HelperMethods.setAnsiGreen("Update Ledger Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Update Ledger Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        }
+
     }
 
     @Test(dependsOnMethods={"createLedger"})
@@ -90,8 +112,15 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteLedger());
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteLedger());
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("Delete All Ledger Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Delete All Ledger Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
     @AfterMethod

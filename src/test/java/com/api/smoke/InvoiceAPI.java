@@ -16,6 +16,7 @@ import org.testng.annotations.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.*;
 
 public class InvoiceAPI {
@@ -31,38 +32,58 @@ public class InvoiceAPI {
         Assert.assertNotNull(LedgerAPI.ledger_UniqueName);
         List<String> uniqueNames = new ArrayList<>();
         uniqueNames.add(LedgerAPI.ledger_UniqueName);
-        System.out.println(uniqueNames + "in invoice");
         Invoice invoice = new Invoice(uniqueNames);
         String body = JsonUtil.toJsonAsString(invoice);
-        //System.out.println(invoice);
         SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createInvoice(), body);
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        System.out.println(response.getJson());
-        for ( String data : uniqueNames) {
-            System.out.println(data);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            for ( String data : uniqueNames) {
+                System.out.println(data);
+            }
+            HelperMethods.setAnsiGreen("Create Invoice Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Create Invoice Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
         }
     }
 
     @Test(dependsOnMethods={"createInvoice"})
     public void get_All_Invoices() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Get All Invoices");
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode1(null, null,config.getAllInvoice());
-        System.out.println(resp.getJson());
-        String json = resp.getJson();
-        JsonPath jp = new JsonPath(json);
-        Invoice_Number= jp.get("body.results[0].invoiceNumber");
-        System.out.println(Invoice_Number + "Invoice number");
+        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode1(null, null,config.getAllInvoice());
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            System.out.println(response.getJson());
+            String json = response.getJson();
+            JsonPath jp = new JsonPath(json);
+            Invoice_Number= jp.get("body.results[0].invoiceNumber");
+            System.out.println(Invoice_Number + "Invoice number");
+            HelperMethods.setAnsiGreen("Get All Invoice Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Get All Invoice Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
     @Test(dependsOnMethods={"createInvoice"})
     public void deleteInvoice() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Invoice ");
-        SmartResponse resp = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteInvoice()+ Invoice_Number);
-        System.out.println(resp.getJson());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteInvoice()+ Invoice_Number);
+        if (response.getStatusCode() == HttpStatus.SC_OK){
+            HelperMethods.setAnsiGreen("Delete Invoice Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Delete Invoice Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
+        }
     }
 
     @AfterMethod
     public void  setup(){
+        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
         RestAssured.reset();
     }
 }

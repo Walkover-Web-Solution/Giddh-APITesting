@@ -53,7 +53,6 @@ public class InvoiceAPI {
         HelperMethods.setAnsiGreen("Started :- Get All Invoices");
         SmartResponse response = methodManager.postAPI_with_Assert_Statuscode1(null, null,config.getAllInvoice());
         if (response.getStatusCode() == HttpStatus.SC_OK){
-            System.out.println(response.getJson());
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
             Invoice_Number= jp.get("body.results[0].invoiceNumber");

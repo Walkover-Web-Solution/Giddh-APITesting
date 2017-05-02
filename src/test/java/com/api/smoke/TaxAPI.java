@@ -35,9 +35,11 @@ public class TaxAPI {
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
+            assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         }
 
         else {
+            assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
             HelperMethods.setAnsiGreen("Group Created Successfully for TAX");
         }
 
@@ -45,8 +47,10 @@ public class TaxAPI {
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
             System.out.println(resp.getStatusCode());
             System.out.println(resp.getJson());
+            assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
         }
         else {
+            assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
             HelperMethods.setAnsiGreen("Account Created Successfully for TAX");
         }
     }
@@ -68,9 +72,10 @@ public class TaxAPI {
         if (resp.getStatusCode() != HttpStatus.SC_CREATED){
             System.out.println(resp.getStatusCode());
             System.out.println(resp.getJson());
+            assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
         }
         else {
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
+            assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
             String json = resp.getJson();
             JsonPath jp = new JsonPath(json);
             Tax_UniqueName = jp.get("body.uniqueName");

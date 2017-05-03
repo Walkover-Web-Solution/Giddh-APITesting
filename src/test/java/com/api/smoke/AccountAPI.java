@@ -36,15 +36,8 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp= create.AccountCreate(config.createAccount(),"taccount", "taccount");
-        if (resp.getStatusCode() == HttpStatus.SC_CREATED){
-            HelperMethods.setAnsiGreen("Create Account Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("Create Account Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
-        }
+        SmartResponse response= create.AccountCreate(config.createAccount(),"taccount", "taccount");
+        HelperMethods.assertCode("Create Account", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }
 
 
@@ -55,15 +48,8 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getAccount());
-        if (resp.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Get Account Functionality Completed Successfully");
-        }
-        else {
-            HelperMethods.setAnsiRed("Get Account Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-        }
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getAccount());
+        HelperMethods.assertCode("Get Account", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     @Test(dependsOnMethods={"createAccount"})
@@ -77,15 +63,8 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareAccount(), body);
-        if (resp.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Share Account Functionality Completed Successfully");
-        }
-        else {
-            HelperMethods.setAnsiRed("Share Account Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-        }
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareAccount(), body);
+        HelperMethods.assertCode("Share Account", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 
@@ -99,15 +78,8 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareAccount(), body);
-        if (resp.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("UnShare Account Functionality Completed Successfully");
-        }
-        else {
-            HelperMethods.setAnsiRed("UnShare Account Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-        }
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareAccount(), body);
+        HelperMethods.assertCode("UnShare Account", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 

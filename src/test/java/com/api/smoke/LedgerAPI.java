@@ -113,7 +113,7 @@ public class LedgerAPI {
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteLedger());
-        HelperMethods.assertCode("Delete All Ledger", response.getStatusCode(), response.getJson());
+        HelperMethods.assertCode("Delete All Ledger", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     @AfterMethod

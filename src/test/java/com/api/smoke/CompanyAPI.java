@@ -137,7 +137,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteCompany());
-        HelperMethods.assertCode("Delete Company", response.getStatusCode(), response.getJson());
+        HelperMethods.assertCode("Delete Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 

@@ -122,7 +122,7 @@ public class StockGroupAPI {
          * Main test and api call initiated
          */
         SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName);
-        HelperMethods.assertCode("Delete Stock Group", response.getStatusCode(), response.getJson());
+        HelperMethods.assertCode("Delete Stock Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     @AfterMethod

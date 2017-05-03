@@ -145,7 +145,7 @@ public class HelperMethods {
         else {
             HelperMethods.setAnsiRed(functionalityName +" Functionality fails with Response Code = " +  responseCode);
             HelperMethods.setAnsiRed(reponseJson);
-            Assert.assertEquals(reponseJson, HttpStatus.SC_OK);
+            Assert.assertEquals(responseCode, expectedCode);
         }
     }
 

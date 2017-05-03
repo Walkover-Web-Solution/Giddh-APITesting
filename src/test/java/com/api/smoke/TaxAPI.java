@@ -32,27 +32,10 @@ public class TaxAPI {
     public void TaxSetup() throws Exception{
 
         SmartResponse response= groupCreate.GroupCreate(config.createGroup(),"Duties & Taxes", "duties_&_taxes", "currentliabilities");
-        if (response.getStatusCode() != HttpStatus.SC_CREATED){
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getJson());
-            assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-        }
-
-        else {
-            assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-            HelperMethods.setAnsiGreen("Group Created Successfully for TAX");
-        }
+        HelperMethods.assertCode("Group Created for TAX", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
 
         SmartResponse resp= accountCreate.AccountCreate(config.createTaxAccount(),"vat", "vat");
-        if (response.getStatusCode() != HttpStatus.SC_CREATED){
-            System.out.println(resp.getStatusCode());
-            System.out.println(resp.getJson());
-            assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
-        }
-        else {
-            assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
-            HelperMethods.setAnsiGreen("Account Created Successfully for TAX");
-        }
+        HelperMethods.assertCode("Account Created for TAX", resp.getStatusCode(), HttpStatus.SC_CREATED, resp.getJson());
     }
 
     @Test

@@ -138,7 +138,7 @@ public class HelperMethods {
         }
     }
 
-    public static void assertCode(String functionalityName, int responseCode,int expectedCode, String reponseJson){
+    public static void assertCode(String functionalityName, int responseCode, int expectedCode, String reponseJson){
         if ( responseCode == expectedCode){
             HelperMethods.setAnsiGreen(functionalityName +" Functionality Completed Successfully");
         }

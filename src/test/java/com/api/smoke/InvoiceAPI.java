@@ -35,17 +35,10 @@ public class InvoiceAPI {
         Invoice invoice = new Invoice(uniqueNames);
         String body = JsonUtil.toJsonAsString(invoice);
         SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createInvoice(), body);
-        if (response.getStatusCode() == HttpStatus.SC_OK){
-            for ( String data : uniqueNames) {
-                System.out.println(data);
-            }
-            HelperMethods.setAnsiGreen("Create Invoice Functionality Completed Successfully ");
+        for ( String data : uniqueNames) {
+            System.out.println(data);
         }
-        else {
-            HelperMethods.setAnsiRed("Create Invoice Functionality fails with Response Code = " +  response.getStatusCode());
-            HelperMethods.setAnsiRed(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        }
+        HelperMethods.assertCode("Create Invoice", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     @Test(dependsOnMethods={"createInvoice"})

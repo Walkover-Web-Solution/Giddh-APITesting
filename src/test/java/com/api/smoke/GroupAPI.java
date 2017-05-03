@@ -61,7 +61,6 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
-
         SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getGroup());
         HelperMethods.assertCode("Get Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }

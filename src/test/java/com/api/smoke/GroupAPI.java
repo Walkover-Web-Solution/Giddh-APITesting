@@ -34,15 +34,8 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp= create.GroupCreate(config.createGroup(),"tgroup", "tgroup", "capital");
-        if (resp.getStatusCode() == HttpStatus.SC_CREATED){
-            HelperMethods.setAnsiGreen("Create Group Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("Create Group Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_CREATED);
-        }
+        SmartResponse response= create.GroupCreate(config.createGroup(),"tgroup", "tgroup", "capital");
+        HelperMethods.assertCode("Create Group", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }
 
     @Test(dependsOnMethods={"createGroup"})
@@ -56,15 +49,8 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null, config.moveGroup(), body);
-        if (resp.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Move Group Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("Move Group Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-        }
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null, config.moveGroup(), body);
+        HelperMethods.assertCode("Move Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 
@@ -76,15 +62,8 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getGroup());
-        if (resp.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Get Group Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("Get Group Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-        }
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getGroup());
+        HelperMethods.assertCode("Get Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     @Test(dependsOnMethods={"createGroup"})
@@ -99,15 +78,8 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareGroup(), body);
-        if (resp.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Share Group Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("Share Group Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-        }
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareGroup(), body);
+        HelperMethods.assertCode("Share Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 
@@ -122,15 +94,8 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareGroup(), body);
-        if (resp.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("UnShare Group Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("UnShare Group Functionality fails with Response Code = " +  resp.getStatusCode());
-            HelperMethods.setAnsiRed(resp.getJson());
-            Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
-        }
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareGroup(), body);
+        HelperMethods.assertCode("UnShare Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 

@@ -76,14 +76,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getCompany());
-        if (response.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Get Company Functionality Completed Successfully");
-        }
-        else {
-            HelperMethods.setAnsiRed("Get Company Functionality fails with Response Code = " +  response.getStatusCode());
-            HelperMethods.setAnsiRed(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        }
+        HelperMethods.assertCode("Get Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 
@@ -99,14 +92,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareCompany(), body);
-        if (response.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Share Company Functionality Completed Successfully");
-        }
-        else {
-            HelperMethods.setAnsiRed("Share Company Functionality fails with Response Code = " +  response.getStatusCode());
-            HelperMethods.setAnsiRed(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        }
+        HelperMethods.assertCode("Share Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 
@@ -121,14 +107,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareCompany(), body);
-        if (response.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("UnShare Company Functionality Completed Successfully");
-        }
-        else {
-            HelperMethods.setAnsiRed("UnShare Company Functionality fails with Response Code = " +  response.getStatusCode());
-            HelperMethods.setAnsiRed(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        }
+        HelperMethods.assertCode("UnShare Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 

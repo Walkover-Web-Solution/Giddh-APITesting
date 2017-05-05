@@ -9,15 +9,17 @@ import com.config.UrlConfig;
 import com.model.Invoice;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
-import org.apache.http.HttpStatus;
 import org.testng.Assert;
+import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.api.smoke.LedgerAPI.ledger_UniqueName;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.*;
+import static org.testng.Assert.assertNotNull;
 
 public class InvoiceAPI {
 
@@ -29,9 +31,9 @@ public class InvoiceAPI {
     @Test
     public void createInvoice() throws  Exception{
         HelperMethods.setAnsiGreen("Started :- Create Invoice");
-        Assert.assertNotNull(LedgerAPI.ledger_UniqueName);
+        assertNotNull(ledger_UniqueName);
         List<String> uniqueNames = new ArrayList<>();
-        uniqueNames.add(LedgerAPI.ledger_UniqueName);
+        uniqueNames.add(ledger_UniqueName);
         Invoice invoice = new Invoice(uniqueNames);
         String body = JsonUtil.toJsonAsString(invoice);
         SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createInvoice(), body);

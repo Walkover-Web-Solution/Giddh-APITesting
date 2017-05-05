@@ -21,6 +21,7 @@ import static com.api.smoke.TaxAPI.Tax_UniqueName;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class LedgerAPI {
 
@@ -34,7 +35,7 @@ public class LedgerAPI {
     @Test
     public void createLedger() throws JsonProcessingException {
         HelperMethods.setAnsiGreen("Started :- Create Ledger ");
-        Assert.assertNotNull(Tax_UniqueName);
+        assertNotNull(Tax_UniqueName);
         List<String> taxes = new ArrayList<>();
         taxes.add(Tax_UniqueName);
 

@@ -58,7 +58,7 @@ public class InvoiceAPI {
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
             Invoice_Number= jp.get("body.results[0].invoiceNumber");
-            System.out.println(Invoice_Number + "Invoice number");
+            HelperMethods.setAnsiGreen(Invoice_Number + "Invoice number");
             HelperMethods.setAnsiGreen("Get All Invoice Functionality Completed Successfully ");
         }
         else {

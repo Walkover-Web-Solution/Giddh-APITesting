@@ -4,7 +4,15 @@
 <suite name="Giddh API Suite" parallel="false" preserve-order="true" verbose="1" >
 	<test name="Smoke">
 		<classes>
-			<class name="com.api.smoke.CompanyAPI"/>
+			<class name="com.api.smoke.CompanyAPI">
+				<methods>
+					<include name="createCompany" />
+					<include name="getCompany" />
+					<include name="shareCompany" />
+					<include name="unShareCompany" />
+					<include name="deleteCompany"/>
+				</methods>
+			</class>
 			<class name="com.api.smoke.GroupAPI">
 				<methods>
 					<include name="createGroup" />
@@ -34,7 +42,7 @@
 			</class>
 			<class name="com.api.smoke.StockAccountAPI">
 				<methods>
-					<include name="createStock"/>
+					<!--<include name="createStock"/>-->
 				</methods>
 			</class>
 			<class name="com.api.smoke.FlattenAPI">

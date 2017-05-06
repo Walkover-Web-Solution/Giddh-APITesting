@@ -59,14 +59,7 @@ public class StockAccountAPI {
                 purchaseValue,  salesAccountUniqueName, purchaseAccountUniqueName,  stockName,  stockUniqueCode,  openingAmount,
                 openingQty);
 
-        if (response.getStatusCode() == HttpStatus.SC_CREATED){
-            HelperMethods.setAnsiGreen("Create Stock Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("Create Stock Functionality fails with Response Code = " +  response.getStatusCode());
-            HelperMethods.setAnsiRed(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-        }
+        HelperMethods.assertCode("Create Stock", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }
 
     @AfterMethod

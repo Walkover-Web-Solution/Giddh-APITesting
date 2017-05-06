@@ -56,16 +56,7 @@ public class StockGroupAPI {
          * Main test and api call initiated
          */
         SmartResponse response= methodManager.getAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName);
-        if (response.getStatusCode() != HttpStatus.SC_OK){
-            HelperMethods.setAnsiRed("Get Stock Group Functionality Failed ");
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getJson());
-        }
-        else {
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-            HelperMethods.setAnsiGreen("Get Stock Group Completed Successfully");
-        }
+        HelperMethods.assertCode("Get Stock Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     @Test

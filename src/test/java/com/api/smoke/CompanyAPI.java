@@ -37,7 +37,7 @@ public class CompanyAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse response = create.companyCreate(config.mainURL(), "audi",   "audi");
+        SmartResponse response = create.companyCreate(config.mainURL(), "AutomationCompany",   "automationcompany");
 
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
             deleteSetup();

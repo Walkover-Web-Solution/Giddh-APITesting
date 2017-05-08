@@ -27,7 +27,7 @@ public class StockAccountAPI {
 
     @DataProvider
     public Object[][] stock(){
-        Object[][] createStock = new  Object[1][13];
+        Object[][] createStock = new  Object[1][18];
         createStock [0][0]= null;
         createStock [0][1]= null;
         createStock [0][2]= config.createStock();
@@ -41,13 +41,19 @@ public class StockAccountAPI {
         createStock [0][10]= "nos";
         createStock [0][11]= BigDecimal.ZERO;
         createStock [0][12]= BigDecimal.ZERO;
+        createStock [0][13]= BigDecimal.ZERO;
+        createStock [0][14]= "nos";
+        createStock [0][15]= "";
+        createStock [0][16]= BigDecimal.ZERO;
+        createStock [0][17]= "nos";
         return  createStock;
     }
 
     @Test(dataProvider = "stock")
     public void createStock(String auth, String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
                             BigDecimal purchaseValue, String salesAccountUniqueName, String purchaseAccountUniqueName, String stockName,
-                            String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty) throws JsonProcessingException {
+                            String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty, BigDecimal manufacturingQuantity,
+                            String manufacturingUnitCode,String stockUniqueName, BigDecimal quantity,String stockUnitCode) throws JsonProcessingException {
 
         HelperMethods.setAnsiGreen("Started :- Create Stock ");
 
@@ -57,7 +63,7 @@ public class StockAccountAPI {
 
         SmartResponse response = stockCreate.StockCreate(auth, type, URL, salesStockUnitCode, saleValue, purchaseStockUnitCode,
                 purchaseValue,  salesAccountUniqueName, purchaseAccountUniqueName,  stockName,  stockUniqueCode,  openingAmount,
-                openingQty);
+                openingQty, manufacturingQuantity, manufacturingUnitCode, stockUniqueName, quantity, stockUnitCode);
 
         HelperMethods.assertCode("Create Stock", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }

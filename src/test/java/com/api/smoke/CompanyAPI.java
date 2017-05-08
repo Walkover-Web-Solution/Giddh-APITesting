@@ -12,7 +12,7 @@ import com.apiUtils.*;
 
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
-import static org.testng.Assert.assertEquals;
+
 
 
 public class CompanyAPI {

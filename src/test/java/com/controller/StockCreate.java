@@ -6,25 +6,22 @@ import com.apiUtils.JsonUtil;
 import com.apiUtils.MethodManager;
 import com.apiUtils.SmartResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.model.Stock.PurchaseAccountDetails;
-import com.model.Stock.SalesAccountDetails;
-import com.model.Stock.Stock;
-import com.model.Stock.UnitRateInput;
+import com.model.Stock.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @Getter
 @Setter
 public class StockCreate {
     MethodManager methodManager = new MethodManager();
     public SmartResponse StockCreate (String auth , String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
-                                      BigDecimal purchaseValue, String salesAccountUniqueName,
-                                      String purchaseAccountUniqueName, String stockName, String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty)
+                                      BigDecimal purchaseValue, String salesAccountUniqueName, String purchaseAccountUniqueName, String stockName,
+                                      String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty, BigDecimal manufacturingQuantity,
+                                      String manufacturingUnitCode,String stockUniqueName, BigDecimal quantity,String stockUnitCode)
             throws JsonProcessingException {
 
         if (salesAccountUniqueName == null ){
@@ -41,8 +38,12 @@ public class StockCreate {
         purchaseUnitRateInputs.add(new UnitRateInput(purchaseValue,purchaseStockUnitCode ));
         SalesAccountDetails salesAccountDetails = new SalesAccountDetails(salesAccountUniqueName, salesUnitRateInputs);
         PurchaseAccountDetails purchaseAccountDetails = new PurchaseAccountDetails(purchaseAccountUniqueName, purchaseUnitRateInputs);
-        Stock stock = new Stock(stockName, openingAmount, openingQty, stockUniqueCode, purchaseAccountDetails, salesAccountDetails);
+        List<LinkedStocks> linkedStocks = new ArrayList<>();
+        linkedStocks.add(new LinkedStocks(stockUniqueName, quantity, stockUnitCode));
+        ManufacturingDetails manufacturingDetails = new ManufacturingDetails(manufacturingQuantity,manufacturingUnitCode,linkedStocks);
+        Stock stock = new Stock(stockName, openingAmount, openingQty, stockUniqueCode, purchaseAccountDetails, salesAccountDetails,manufacturingDetails);
         String body = JsonUtil.toJsonAsString(stock);
+        HelperMethods.setAnsiRed(body);
 
         /**
          * Main test and api call initiated

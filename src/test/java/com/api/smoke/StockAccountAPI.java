@@ -45,7 +45,7 @@ public class StockAccountAPI {
     }
 
     @Test(dataProvider = "stock")
-    public void createStock(String auth , String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
+    public void createStock(String auth, String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
                             BigDecimal purchaseValue, String salesAccountUniqueName, String purchaseAccountUniqueName, String stockName,
                             String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty) throws JsonProcessingException {
 
@@ -55,7 +55,7 @@ public class StockAccountAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse response = stockCreate.StockCreate(auth, type,  URL,  salesStockUnitCode,  saleValue, purchaseStockUnitCode,
+        SmartResponse response = stockCreate.StockCreate(auth, type, URL, salesStockUnitCode, saleValue, purchaseStockUnitCode,
                 purchaseValue,  salesAccountUniqueName, purchaseAccountUniqueName,  stockName,  stockUniqueCode,  openingAmount,
                 openingQty);
 

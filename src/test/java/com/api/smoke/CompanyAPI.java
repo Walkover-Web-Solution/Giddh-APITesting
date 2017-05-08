@@ -7,8 +7,7 @@ import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import com.apiUtils.*;
 
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
@@ -132,7 +131,7 @@ public class CompanyAPI {
     }
 
     @AfterMethod
-    public void  setup(){
+    public void setup(){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
         RestAssured.reset();
     }

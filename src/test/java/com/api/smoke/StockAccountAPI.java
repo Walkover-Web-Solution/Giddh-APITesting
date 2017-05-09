@@ -4,17 +4,10 @@ import com.apiUtils.*;
 import com.config.UrlConfig;
 import com.controller.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import com.model.Stock.*;
 import io.restassured.*;
-import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
-import org.testng.Assert;
 import org.testng.annotations.*;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;

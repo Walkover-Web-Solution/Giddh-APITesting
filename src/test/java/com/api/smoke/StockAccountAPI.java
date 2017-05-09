@@ -25,6 +25,8 @@ public class StockAccountAPI {
     StockCreate stockCreate = new StockCreate();
     UrlConfig config = create(UrlConfig.class);
 
+    public static String stock_UniqueName = "Bulksms";
+
     @DataProvider
     public Object[][] stock(){
         Object[][] createStock = new  Object[1][18];
@@ -37,7 +39,7 @@ public class StockAccountAPI {
         createStock [0][6]= BigDecimal.valueOf(25);
         createStock [0][7]= "sales";
         createStock [0][8]= "purchases";
-        createStock [0][9]= "bulksms";
+        createStock [0][9]= stock_UniqueName;
         createStock [0][10]= "nos";
         createStock [0][11]= BigDecimal.ZERO;
         createStock [0][12]= BigDecimal.ZERO;

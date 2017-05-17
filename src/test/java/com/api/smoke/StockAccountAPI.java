@@ -64,6 +64,19 @@ public class StockAccountAPI {
         HelperMethods.assertCode("Create Stock", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }
 
+
+    @Test(dependsOnMethods = {"createStock"})
+    public void getStock()  {
+        HelperMethods.setAnsiGreen("Started :- Get Stock ");
+
+        /**
+         * Main test and api call initiated
+         */
+
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null, config.createStock() + stock_UniqueName);
+        HelperMethods.assertCode("Get Stock", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+
+    }
     @Test(dependsOnMethods = {"createStock"})
     public void deleteStock()  {
         HelperMethods.setAnsiGreen("Started :- Delete Stock ");

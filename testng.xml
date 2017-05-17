@@ -43,6 +43,7 @@
 			<class name="com.api.smoke.StockAccountAPI">
 				<methods>
 					<include name="createStock"/>
+					<include name="getStock"/>
 					<include name="deleteStock"/>
 				</methods>
 			</class>

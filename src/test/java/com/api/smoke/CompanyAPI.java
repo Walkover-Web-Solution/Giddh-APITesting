@@ -25,6 +25,7 @@ public class CompanyAPI {
     AccountAPI accountAPI = new AccountAPI();
     CompanyCreate create = new CompanyCreate();
     StockGroupAPI stockGroupAPI = new StockGroupAPI();
+    StockAccountAPI stockAccountAPI = new StockAccountAPI();
 
 
     @Test
@@ -127,6 +128,7 @@ public class CompanyAPI {
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
         stockGroupAPI.delete_Stock_Group();
+        stockAccountAPI.deleteStock();
         deleteCompany();
     }
 

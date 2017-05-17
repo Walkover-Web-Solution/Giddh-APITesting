@@ -121,7 +121,7 @@ public class StockAccountAPI {
         HelperMethods.assertCode("Update Stock", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
-    @Test(dependsOnMethods = {"createStock"})
+
     public void deleteStock()  {
         HelperMethods.setAnsiGreen("Started :- Delete Stock ");
 

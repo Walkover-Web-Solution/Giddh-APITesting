@@ -42,7 +42,6 @@ public class StockCreate {
         ManufacturingDetails manufacturingDetails = new ManufacturingDetails(manufacturingQuantity,manufacturingUnitCode,linkedStocks);
         Stock stock = new Stock(stockName, openingAmount, openingQty, stockUniqueCode, purchaseAccountDetails, salesAccountDetails,manufacturingDetails);
         String body = JsonUtil.toJsonAsString(stock);
-        HelperMethods.setAnsiRed(body);
 
         /**
          * Main test and api call initiated

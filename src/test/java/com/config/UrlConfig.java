@@ -108,5 +108,8 @@ public interface UrlConfig extends  Config{
     @Key("stock.Create")
     String createStock();
 
+    @Key("stock.Delete")
+    String deleteStock();
+
 
 }

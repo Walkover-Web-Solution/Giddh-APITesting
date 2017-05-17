@@ -15,10 +15,11 @@ import static org.aeonbits.owner.ConfigFactory.create;
 
 public class StockAccountAPI {
 
+    MethodManager methodManager = new MethodManager();
     StockCreate stockCreate = new StockCreate();
     UrlConfig config = create(UrlConfig.class);
 
-    public static String stock_UniqueName = "Bulksms";
+    public static String stock_UniqueName = "bulksms";
 
     @DataProvider
     public Object[][] stock(){
@@ -27,19 +28,19 @@ public class StockAccountAPI {
         createStock [0][1]= null;
         createStock [0][2]= config.createStock();
         createStock [0][3]= "nos";
-        createStock [0][4]= BigDecimal.valueOf(50);
+        createStock [0][4]= BigDecimal.valueOf(1);
         createStock [0][5]= "nos";
-        createStock [0][6]= BigDecimal.valueOf(25);
+        createStock [0][6]= BigDecimal.valueOf(1);
         createStock [0][7]= "sales";
         createStock [0][8]= "purchases";
         createStock [0][9]= stock_UniqueName;
         createStock [0][10]= "nos";
         createStock [0][11]= BigDecimal.ZERO;
         createStock [0][12]= BigDecimal.ZERO;
-        createStock [0][13]= BigDecimal.ZERO;
+        createStock [0][13]= BigDecimal.valueOf(1);
         createStock [0][14]= "nos";
-        createStock [0][15]= "";
-        createStock [0][16]= BigDecimal.ZERO;
+        createStock [0][15]= stock_UniqueName;
+        createStock [0][16]= BigDecimal.valueOf(1);
         createStock [0][17]= "nos";
         return  createStock;
     }
@@ -63,9 +64,22 @@ public class StockAccountAPI {
         HelperMethods.assertCode("Create Stock", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }
 
+    @Test(dependsOnMethods = {"createStock"})
+    public void deleteStock()  {
+        HelperMethods.setAnsiGreen("Started :- Delete Stock ");
+
+        /**
+         * Main test and api call initiated
+         */
+
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.deleteStock() + stock_UniqueName);
+        HelperMethods.assertCode("Delete Stock", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+
+    }
+
     @AfterMethod
     public void setup(){
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
-        RestAssured.reset();
+        //RestAssured.reset();
     }
 }

@@ -40,11 +40,12 @@
 					<include name="get_Hierarchical_Stock_Groups"/>
 				</methods>
 			</class>
-			<!--<class name="com.api.smoke.StockAccountAPI">-->
-				<!--<methods>-->
-					<!--&lt;!&ndash;<include name="createStock"/>&ndash;&gt;-->
-				<!--</methods>-->
-			<!--</class>-->
+			<class name="com.api.smoke.StockAccountAPI">
+				<methods>
+					<include name="createStock"/>
+					<include name="deleteStock"/>
+				</methods>
+			</class>
 			<class name="com.api.smoke.FlattenAPI">
 				<methods>
 					<include name="flatten_Group_with_Accounts" />

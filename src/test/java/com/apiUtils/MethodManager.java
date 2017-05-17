@@ -97,6 +97,8 @@ public class MethodManager {
                 return response;
     }
 
+    /** APi mention below is with no body */
+
     public SmartResponse postAPI_with_Assert_Statuscode1(String auth, String type,String URL) {
         RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers(auth, type);

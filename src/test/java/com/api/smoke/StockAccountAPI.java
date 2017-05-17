@@ -45,6 +45,30 @@ public class StockAccountAPI {
         return  createStock;
     }
 
+    @DataProvider
+    public Object[][] updateStock(){
+        Object[][] updateStock = new  Object[1][18];
+        updateStock [0][0]= null;
+        updateStock [0][1]= null;
+        updateStock [0][2]= config.createStock()+ stock_UniqueName;
+        updateStock [0][3]= "nos";
+        updateStock [0][4]= BigDecimal.valueOf(2);
+        updateStock [0][5]= "nos";
+        updateStock [0][6]= BigDecimal.valueOf(2);
+        updateStock [0][7]= "sales";
+        updateStock [0][8]= "purchases";
+        updateStock [0][9]= stock_UniqueName;
+        updateStock [0][10]= "nos";
+        updateStock [0][11]= BigDecimal.ZERO;
+        updateStock [0][12]= BigDecimal.ZERO;
+        updateStock [0][13]= BigDecimal.valueOf(1);
+        updateStock [0][14]= "nos";
+        updateStock [0][15]= stock_UniqueName;
+        updateStock [0][16]= BigDecimal.valueOf(1);
+        updateStock [0][17]= "nos";
+        return  updateStock;
+    }
+
     @Test(dataProvider = "stock")
     public void createStock(String auth, String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
                             BigDecimal purchaseValue, String salesAccountUniqueName, String purchaseAccountUniqueName, String stockName,
@@ -77,6 +101,26 @@ public class StockAccountAPI {
         HelperMethods.assertCode("Get Stock", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
 
     }
+
+    @Test(dependsOnMethods = {"createStock"}, dataProvider = "updateStock")
+    public void updateStock(String auth, String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
+                            BigDecimal purchaseValue, String salesAccountUniqueName, String purchaseAccountUniqueName, String stockName,
+                            String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty, BigDecimal manufacturingQuantity,
+                            String manufacturingUnitCode,String stockUniqueName, BigDecimal quantity,String stockUnitCode) throws JsonProcessingException {
+
+        HelperMethods.setAnsiGreen("Started :- Create Stock ");
+
+        /**
+         * Main test and api call initiated
+         */
+
+        SmartResponse response = stockCreate.StockUpdate(auth, type, URL, salesStockUnitCode, saleValue, purchaseStockUnitCode,
+                purchaseValue,  salesAccountUniqueName, purchaseAccountUniqueName,  stockName,  stockUniqueCode,  openingAmount,
+                openingQty, manufacturingQuantity, manufacturingUnitCode, stockUniqueName, quantity, stockUnitCode);
+
+        HelperMethods.assertCode("Update Stock", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+    }
+
     @Test(dependsOnMethods = {"createStock"})
     public void deleteStock()  {
         HelperMethods.setAnsiGreen("Started :- Delete Stock ");

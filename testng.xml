@@ -44,6 +44,7 @@
 				<methods>
 					<include name="createStock"/>
 					<include name="getStock"/>
+					<include name="updateStock"/>
 					<include name="deleteStock"/>
 				</methods>
 			</class>

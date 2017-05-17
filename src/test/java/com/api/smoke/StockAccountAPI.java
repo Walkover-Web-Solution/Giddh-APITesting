@@ -108,7 +108,7 @@ public class StockAccountAPI {
                             String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty, BigDecimal manufacturingQuantity,
                             String manufacturingUnitCode,String stockUniqueName, BigDecimal quantity,String stockUnitCode) throws JsonProcessingException {
 
-        HelperMethods.setAnsiGreen("Started :- Create Stock ");
+        HelperMethods.setAnsiGreen("Started :- Update Stock ");
 
         /**
          * Main test and api call initiated

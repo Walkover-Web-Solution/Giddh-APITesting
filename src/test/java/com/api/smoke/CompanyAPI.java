@@ -127,8 +127,8 @@ public class CompanyAPI {
         ledgerAPI.deleteAllLedger();
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
-        stockGroupAPI.delete_Stock_Group();
         stockAccountAPI.deleteStock();
+        stockGroupAPI.delete_Stock_Group();
         deleteCompany();
     }
 

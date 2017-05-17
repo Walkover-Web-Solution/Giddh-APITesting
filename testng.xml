@@ -45,7 +45,6 @@
 					<include name="createStock"/>
 					<include name="getStock"/>
 					<include name="updateStock"/>
-					<include name="deleteStock"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.FlattenAPI">

@@ -2,10 +2,12 @@ package com.api.regression;
 
 
 import com.apiUtils.MethodManager;
+import com.apiUtils.SmartResponse;
 import com.config.UrlConfig;
 import com.api.smoke.AccountAPI;
 import com.api.smoke.GroupAPI;
 import com.api.smoke.LedgerAPI;
+import com.controller.CompanyCreate;
 import com.model.ManageHeaders;
 import com.model.ManageURL;
 import org.testng.annotations.*;
@@ -16,6 +18,7 @@ public class Company {
     ManageHeaders header = new ManageHeaders();
     MethodManager methodManager = new MethodManager();
     ManageURL baseURL = new ManageURL();
+    CompanyCreate create = new CompanyCreate();
     UrlConfig config = create(UrlConfig.class);
     LedgerAPI ledgerAPI = new LedgerAPI();
     GroupAPI groupAPI = new GroupAPI();
@@ -23,19 +26,35 @@ public class Company {
 
     int responseCode;
 
-//    @BeforeTest
-//    public void setHeader(){
-//        header.set_Headers(null, null);
-//        baseURL.setURL();
-//    }
-//
-//    /**
-//     * Objective to test Shared User is able to get company or not after share company
-//     */
-//    @Test
-//    public void getCompany_shareUser(){
-//
-//    }
+    public String getRandomCompanyName(){
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        String randomString = "";
+        int length = chars.length();
+        for (int i = 0; i < 8; i++) {
+            randomString += chars.split("")[(int) (Math.random() * (length - 1))];
+        }
+        return randomString;
+    }
+
+    @BeforeTest
+    public void setHeader(){
+        header.set_Headers(null, null);
+        baseURL.setURL();
+    }
+
+
+    @Test
+    public void createCompany(){
+        SmartResponse response = create.companyCreate( null, config.mainURL(), "AutomationCompany",   "automationcompany");
+
+    }
+    /**
+     * Objective to test Shared User is able to get company or not after share company
+     */
+    @Test
+    public void getCompany_shareUser(){
+
+    }
 
     @Test(dataProvider = "getData")
     public void dataProviderTest(String a, String b){

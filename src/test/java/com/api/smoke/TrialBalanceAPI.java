@@ -1,15 +1,12 @@
 package com.api.smoke;
 
 
-import com.apiUtils.HelperMethods;
-import com.apiUtils.MethodManager;
-import com.apiUtils.SmartResponse;
+import com.apiUtils.*;
 import com.config.UrlConfig;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
-import org.testng.Assert;
-import org.testng.annotations.*;
 
+import org.testng.annotations.*;
 
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;

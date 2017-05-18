@@ -1,13 +1,9 @@
 package com.api.smoke;
 
 
-import com.controller.AccountCreate;
-import com.apiUtils.MethodManager;
-import com.apiUtils.HelperMethods;
-import com.apiUtils.SmartResponse;
+import com.controller.*;
+import com.apiUtils.*;
 import com.config.UrlConfig;
-import com.model.ManageHeaders;
-import com.model.ManageURL;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;

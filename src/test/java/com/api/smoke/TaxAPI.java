@@ -3,7 +3,7 @@ package com.api.smoke;
 
 import com.apiUtils.*;
 import com.config.*;
-import com.controller.AccountCreate;
+import com.controller.*;
 import com.controller.GroupCreate;
 import com.model.*;
 import io.restassured.RestAssured;

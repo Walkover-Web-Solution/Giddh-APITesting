@@ -1,8 +1,6 @@
 package com.api.smoke;
 
-import com.apiUtils.HelperMethods;
-import com.apiUtils.MethodManager;
-import com.apiUtils.SmartResponse;
+import com.apiUtils.*;
 import com.config.UrlConfig;
 import com.controller.StockGroupCreate;
 import io.restassured.RestAssured;
@@ -10,9 +8,7 @@ import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
 import org.testng.*;
 import org.testng.annotations.*;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;

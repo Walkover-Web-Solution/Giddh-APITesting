@@ -11,12 +11,12 @@ import org.testng.annotations.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
-@Test
 public class TrialBalanceAPI {
 
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
+    @Test
     public void get_TrialBalance() {
         HelperMethods.setAnsiGreen("Started :- Get Trial Balance ");
 

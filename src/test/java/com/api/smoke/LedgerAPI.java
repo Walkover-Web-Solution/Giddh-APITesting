@@ -71,14 +71,7 @@ public class LedgerAPI {
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getLedger()+ledger_UniqueName);
-        if (response.getStatusCode() == HttpStatus.SC_OK){
-            HelperMethods.setAnsiGreen("Get Ledger Functionality Completed Successfully ");
-        }
-        else {
-            HelperMethods.setAnsiRed("Get Ledger Functionality fails with Response Code = " +  response.getStatusCode());
-            HelperMethods.setAnsiRed(response.getJson());
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
-        }
+        HelperMethods.assertCode("Get Ledger", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     @Test(dependsOnMethods={"createLedger"})

@@ -41,19 +41,13 @@ public class Company {
         companyName = getRandomCompanyName();
     }
 
-    @BeforeTest
-    public void setHeader(){
-        header.set_Headers(null, null);
-    }
-
-
     @Test
     public void createCompany(){
         prerequisites();
         HelperMethods.setAnsiRed("Company UniqueName is "  +  companyName);
         SmartResponse response = create.companyCreate( null, mainURL, "AutomationCompany", companyName);
         HelperMethods.assertCode("Create Company ", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
-        deleteCompany();
+
     }
 
 
@@ -63,5 +57,10 @@ public class Company {
          */
         SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,mainURL + companyName);
         HelperMethods.assertCode("Delete Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+    }
+
+    @AfterSuite
+    public void deleteSetup(){
+       deleteCompany();
     }
 }

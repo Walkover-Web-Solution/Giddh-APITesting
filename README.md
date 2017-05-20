@@ -23,6 +23,4 @@ Usual build tasks
 * Report updates on dependencies
 `mvn versions:display-dependency-updates`
 
-
-
 Giddh & Copy; 2017

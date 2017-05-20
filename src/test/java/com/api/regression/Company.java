@@ -5,7 +5,6 @@ import com.apiUtils.*;
 import com.config.UrlConfig;
 
 import com.controller.CompanyCreate;
-import com.model.*;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
@@ -13,7 +12,7 @@ import org.testng.annotations.*;
 import static org.aeonbits.owner.ConfigFactory.create;
 
 public class Company {
-    ManageHeaders header = new ManageHeaders();
+
     CompanyCreate create = new CompanyCreate();
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
@@ -21,7 +20,7 @@ public class Company {
     public static String companyName;
     public static String baseURL;
     public static String mainURL;
-    public static String apiURL;
+
 
     public String getRandomCompanyName(){
         String chars = "abcdefghijklmnopqrstuvwxyz";
@@ -46,12 +45,11 @@ public class Company {
         prerequisites();
         HelperMethods.setAnsiRed("Company UniqueName is "  +  companyName);
         SmartResponse response = create.companyCreate( null, mainURL, "AutomationCompany", companyName);
-        HelperMethods.assertCode("Create Company ", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
-
+        HelperMethods.assertCode("Create Company", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }
 
-
     public void deleteCompany(){
+
         /**
          * Main test and api call initiated
          */

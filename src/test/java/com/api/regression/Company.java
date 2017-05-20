@@ -9,6 +9,9 @@ import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.aeonbits.owner.ConfigFactory.create;
 
 public class Company {
@@ -20,6 +23,7 @@ public class Company {
     public static String companyName;
     public static String baseURL;
     public static String mainURL;
+    public String apiURL;
 
 
     public String getRandomCompanyName(){
@@ -46,6 +50,34 @@ public class Company {
         HelperMethods.setAnsiRed("Company UniqueName is "  +  companyName);
         SmartResponse response = create.companyCreate( null, mainURL, "AutomationCompany", companyName);
         HelperMethods.assertCode("Create Company", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
+    }
+
+
+    @Test(dependsOnMethods={"createCompany"})
+    public void getCompany(){
+        HelperMethods.setAnsiGreen("Started :- Get Company ");
+
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null, mainURL + companyName);
+        HelperMethods.assertCode("Get Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+    }
+
+    @Test(dependsOnMethods={"createCompany"})
+    public void shareCompany(){
+        HelperMethods.setAnsiGreen("Started :- Share Company");
+        apiURL = mainURL + companyName + "/share";
+
+        Map<String,String> body = new HashMap<>();
+        body.put("user", "walkover78@gmail.com");
+        body.put("role", "edit");
+
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null, apiURL, body);
+        HelperMethods.assertCode("Share Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     public void deleteCompany(){

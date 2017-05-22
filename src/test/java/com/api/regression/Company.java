@@ -82,6 +82,7 @@ public class Company {
         HelperMethods.assertCode("Share Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
+
     //@Test(dependsOnMethods={"createCompany"})
     public void getSharedCompany(int statusCode){
         HelperMethods.setAnsiGreen("Started :- Get Company with Shared User");
@@ -107,6 +108,7 @@ public class Company {
         SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null, apiURL, body);
         HelperMethods.assertCode("UnShare Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
+
 
     public void deleteCompany(){
 

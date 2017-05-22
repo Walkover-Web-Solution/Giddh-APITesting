@@ -70,7 +70,6 @@ public class CompanyAPI {
     @Test(dependsOnMethods={"createCompany"})
     public void getCompany(){
         HelperMethods.setAnsiGreen("Started :- Get Company ");
-        header.set_Headers(null, null);
 
         /**
          * Main test and api call initiated

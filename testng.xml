@@ -82,10 +82,12 @@
 			<!--<class name="com.api.regression.StocksAPI"/>-->
 			<class name="com.api.regression.Company">
 				<methods>
-					<include name="createCompany" />
-					<include name="getCompany" />
-					<include name="shareCompany" />
-					<include name="getSharedCompany" />
+					<!--<include name="createCompany" />-->
+					<!--<include name="getCompany" />-->
+					<!--<include name="shareCompany" />-->
+					<!--<include name="getSharedCompany" />-->
+					<!--<include name="unShareCompany"/>-->
+					<include name="xyz"/>
 				</methods>
 			</class>
 		</classes>

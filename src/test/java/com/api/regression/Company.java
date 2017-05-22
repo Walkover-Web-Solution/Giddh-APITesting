@@ -46,7 +46,7 @@ public class Company {
         companyName = getRandomCompanyName();
     }
 
-    @Test
+    //@Test
     public void createCompany(){
         prerequisites();
         HelperMethods.setAnsiRed("Company UniqueName is "  +  companyName);
@@ -55,18 +55,18 @@ public class Company {
     }
 
 
-    @Test(dependsOnMethods={"createCompany"})
-    public void getCompany(){
+   // @Test(dependsOnMethods={"createCompany"})
+    public void getCompany(int statusCode){
         HelperMethods.setAnsiGreen("Started :- Get Company ");
 
         /**
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null, mainURL + companyName);
-        HelperMethods.assertCode("Get Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+        HelperMethods.assertCode("Get Company", response.getStatusCode(), statusCode, response.getJson());
     }
 
-    @Test(dependsOnMethods={"createCompany"})
+   // @Test(dependsOnMethods={"createCompany"})
     public void shareCompany(){
         HelperMethods.setAnsiGreen("Started :- Share Company");
         apiURL = mainURL + companyName + "/share";
@@ -82,15 +82,30 @@ public class Company {
         HelperMethods.assertCode("Share Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
-    @Test(dependsOnMethods={"createCompany"})
-    public void getSharedCompany(){
+    //@Test(dependsOnMethods={"createCompany"})
+    public void getSharedCompany(int statusCode){
         HelperMethods.setAnsiGreen("Started :- Get Company with Shared User");
 
         /**
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(headersConfig.getSharedUserAuthKey(), headersConfig.setType(), mainURL + companyName);
-        HelperMethods.assertCode("Get Company with Shared User", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+        HelperMethods.assertCode("Get Company with Shared User", response.getStatusCode(), statusCode, response.getJson());
+    }
+
+   // @Test(dependsOnMethods={"createCompany"})
+    public void unShareCompany(){
+        HelperMethods.setAnsiGreen("Started :- UnShare Company ");
+        apiURL = mainURL + companyName + "/unshare";
+
+        Map<String,String> body = new HashMap<>();
+        body.put("user", "walkover78@gmail.com");
+
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null, apiURL, body);
+        HelperMethods.assertCode("UnShare Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     public void deleteCompany(){
@@ -100,6 +115,16 @@ public class Company {
          */
         SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,mainURL + companyName);
         HelperMethods.assertCode("Delete Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+    }
+
+    @Test
+    public void xyz(){
+        createCompany();
+        getCompany(HttpStatus.SC_OK);
+        shareCompany();
+        getSharedCompany(HttpStatus.SC_OK);
+        unShareCompany();
+        getSharedCompany(HttpStatus.SC_UNAUTHORIZED);
     }
 
     @AfterSuite

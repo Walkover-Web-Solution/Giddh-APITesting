@@ -87,7 +87,7 @@
 					<!--<include name="shareCompany" />-->
 					<!--<include name="getSharedCompany" />-->
 					<!--<include name="unShareCompany"/>-->
-					<include name="xyz"/>
+					<include name="getCompanyAfterUnshareCompany"/>
 				</methods>
 			</class>
 		</classes>

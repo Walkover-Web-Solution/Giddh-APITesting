@@ -118,9 +118,11 @@ public class Company {
         SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,mainURL + companyName);
         HelperMethods.assertCode("Delete Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
-
+    /** Scenerio :-
+     * After unShare Company  User should Not able to get Company
+     * */
     @Test
-    public void xyz(){
+    public void getCompanyAfterUnshareCompany(){
         createCompany();
         getCompany(HttpStatus.SC_OK);
         shareCompany();

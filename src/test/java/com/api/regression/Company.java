@@ -84,14 +84,13 @@ public class Company {
 
     @Test(dependsOnMethods={"createCompany"})
     public void getSharedCompany(){
-        HelperMethods.setAnsiGreen("Started :- Get Company ");
-        HelperMethods.setAnsiRed(headersConfig.getSharedUserAuthKey() +  "is Shared User Auth-Key");
+        HelperMethods.setAnsiGreen("Started :- Get Company with Shared User");
 
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(headersConfig.getSharedUserAuthKey(), null, mainURL + companyName);
-        HelperMethods.assertCode("Get Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(headersConfig.getSharedUserAuthKey(), headersConfig.setType(), mainURL + companyName);
+        HelperMethods.assertCode("Get Company with Shared User", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     public void deleteCompany(){

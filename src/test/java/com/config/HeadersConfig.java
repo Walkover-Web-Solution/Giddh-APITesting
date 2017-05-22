@@ -9,6 +9,9 @@ public interface HeadersConfig extends Config{
     @Key("AuthKey")
     String setAuthKey();
 
+    @Key("AuthKey1")
+    String getSharedUserAuthKey();
+
     @Key("contentType")
     String setType();
 

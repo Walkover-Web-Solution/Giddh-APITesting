@@ -80,7 +80,14 @@
 	<test name="Regression">
 		<classes>
 			<!--<class name="com.api.regression.StocksAPI"/>-->
-			<class name="com.api.regression.Company"/>
+			<class name="com.api.regression.Company">
+				<methods>
+					<include name="createCompany" />
+					<include name="getCompany" />
+					<include name="shareCompany" />
+					<include name="getSharedCompany" />
+				</methods>
+			</class>
 		</classes>
 	</test> <!-- Test -->
 </suite>

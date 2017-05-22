@@ -2,6 +2,7 @@ package com.api.regression;
 
 
 import com.apiUtils.*;
+import com.config.HeadersConfig;
 import com.config.UrlConfig;
 
 import com.controller.CompanyCreate;
@@ -19,6 +20,7 @@ public class Company {
     CompanyCreate create = new CompanyCreate();
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
+    HeadersConfig headersConfig = create(HeadersConfig.class);
 
     public static String companyName;
     public static String baseURL;
@@ -78,6 +80,18 @@ public class Company {
          */
         SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null, apiURL, body);
         HelperMethods.assertCode("Share Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+    }
+
+    @Test(dependsOnMethods={"createCompany"})
+    public void getSharedCompany(){
+        HelperMethods.setAnsiGreen("Started :- Get Company ");
+        HelperMethods.setAnsiRed(headersConfig.getSharedUserAuthKey() +  "is Shared User Auth-Key");
+
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(headersConfig.getSharedUserAuthKey(), null, mainURL + companyName);
+        HelperMethods.assertCode("Get Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     public void deleteCompany(){

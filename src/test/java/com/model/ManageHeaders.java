@@ -18,7 +18,7 @@ public class ManageHeaders {
          }
          else {
              headers.setAuth_Key(auth);
-             headers.setType(type);
+             headers.setType(config.setType());
          }
      }
 

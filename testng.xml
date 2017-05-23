@@ -88,6 +88,9 @@
 					<!--<include name="getSharedCompany" />-->
 					<!--<include name="unShareCompany"/>-->
 					<include name="getCompanyAfterUnshareCompany"/>
+					<include name="getCompanyAfterUnshareCompany1"/>
+					<include name="getCompanyAfterUnshareCompany2"/>
+					<include name="getCompanyAfterUnshareCompany3"/>
 				</methods>
 			</class>
 		</classes>

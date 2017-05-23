@@ -46,7 +46,7 @@ public class Company {
         companyName = getRandomCompanyName();
     }
 
-    //@Test
+    @BeforeSuite
     public void createCompany(){
         prerequisites();
         HelperMethods.setAnsiRed("Company UniqueName is "  +  companyName);
@@ -67,13 +67,13 @@ public class Company {
     }
 
    // @Test(dependsOnMethods={"createCompany"})
-    public void shareCompany(){
+    public void shareCompany(String role){
         HelperMethods.setAnsiGreen("Started :- Share Company");
         apiURL = mainURL + companyName + "/share";
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "walkover78@gmail.com");
-        body.put("role", "edit");
+        body.put("role", role);
 
         /**
          * Main test and api call initiated
@@ -118,14 +118,55 @@ public class Company {
         SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,mainURL + companyName);
         HelperMethods.assertCode("Delete Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
-    /** Scenerio :-
-     * After unShare Company  User should Not able to get Company
-     * */
+
+
+
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'view only' permission and then 'A' User unShare Company with 'B' User,
+     * After that 'B' User should not able to Get Company
+     */
     @Test
     public void getCompanyAfterUnshareCompany(){
-        createCompany();
         getCompany(HttpStatus.SC_OK);
-        shareCompany();
+        shareCompany("view_only");
+        getSharedCompany(HttpStatus.SC_OK);
+        unShareCompany();
+        getSharedCompany(HttpStatus.SC_UNAUTHORIZED);
+    }
+
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'edit' permission and then 'A' User unShare Company with 'B' User,
+     * After that 'B' User should not able to Get Company
+     */
+    @Test
+    public void getCompanyAfterUnshareCompany1(){
+        getCompany(HttpStatus.SC_OK);
+        shareCompany("edit");
+        getSharedCompany(HttpStatus.SC_OK);
+        unShareCompany();
+        getSharedCompany(HttpStatus.SC_UNAUTHORIZED);
+    }
+
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'admin' permission and then 'A' User unShare Company with 'B' User,
+     * After that 'B' User should not able to Get Company
+     */
+    @Test
+    public void getCompanyAfterUnshareCompany2(){
+        getCompany(HttpStatus.SC_OK);
+        shareCompany("admin");
+        getSharedCompany(HttpStatus.SC_OK);
+        unShareCompany();
+        getSharedCompany(HttpStatus.SC_UNAUTHORIZED);
+    }
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'super_admin' permission and then 'A' User unShare Company with 'B' User,
+     * After that 'B' User should not able to Get Company
+     */
+    @Test
+    public void getCompanyAfterUnshareCompany3(){
+        getCompany(HttpStatus.SC_OK);
+        shareCompany("super_admin");
         getSharedCompany(HttpStatus.SC_OK);
         unShareCompany();
         getSharedCompany(HttpStatus.SC_UNAUTHORIZED);

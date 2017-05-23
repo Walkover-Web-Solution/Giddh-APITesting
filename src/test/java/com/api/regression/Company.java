@@ -126,7 +126,7 @@ public class Company {
      * After that 'B' User should not able to Get Company
      */
     @Test
-    public void getCompany_After_UnshareCompany_for_View(){
+    public void getCompany_after_unShareCompany_for_View(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("view_only");
         getSharedCompany(HttpStatus.SC_OK);
@@ -139,7 +139,7 @@ public class Company {
      * After that 'B' User should not able to Get Company
      */
     @Test
-    public void getCompany_After_UnshareCompany_for_Edit(){
+    public void getCompany_after_unShareCompany_for_Edit(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("edit");
         getSharedCompany(HttpStatus.SC_OK);
@@ -152,7 +152,7 @@ public class Company {
      * After that 'B' User should not able to Get Company
      */
     @Test
-    public void getCompany_After_UnshareCompany_for_Admin(){
+    public void getCompany_after_unShareCompany_for_Admin(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("admin");
         getSharedCompany(HttpStatus.SC_OK);
@@ -164,7 +164,7 @@ public class Company {
      * After that 'B' User should not able to Get Company
      */
     @Test
-    public void getCompany_After_UnshareCompany_for_SuperAdmin(){
+    public void getCompany_after_unShareCompany_for_superAdmin(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("super_admin");
         getSharedCompany(HttpStatus.SC_OK);
@@ -172,10 +172,58 @@ public class Company {
         getSharedCompany(HttpStatus.SC_UNAUTHORIZED);
     }
 
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'view only' permission and
+     * then 'A' User Should not Able to Delete Company shared by 'A' User,
+     */
+
     @Test
     public void deleteCompany_after_shareCompany_for_View(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("view_only");
+        getSharedCompany(HttpStatus.SC_OK);
+        deleteCompany(headersConfig.getSharedUserAuthKey(), HttpStatus.SC_UNAUTHORIZED);
+    }
+
+
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'Edit' permission and
+     * then 'A' User Should not Able to Delete Company shared by 'A' User,
+     */
+
+
+    @Test
+    public void deleteCompany_after_shareCompany_for_Edit(){
+        getCompany(HttpStatus.SC_OK);
+        shareCompany("edit");
+        getSharedCompany(HttpStatus.SC_OK);
+        deleteCompany(headersConfig.getSharedUserAuthKey(), HttpStatus.SC_UNAUTHORIZED);
+    }
+
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'Admin' permission and
+     * then 'A' User Should not Able to Delete Company shared by 'A' User,
+     */
+
+
+    @Test
+    public void deleteCompany_after_shareCompany_for_Admin(){
+        getCompany(HttpStatus.SC_OK);
+        shareCompany("admin");
+        getSharedCompany(HttpStatus.SC_OK);
+        deleteCompany(headersConfig.getSharedUserAuthKey(), HttpStatus.SC_UNAUTHORIZED);
+    }
+
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'Super Admin' permission and
+     * then 'A' User Should not Able to Delete Company shared by 'A' User,
+     */
+
+
+    @Test
+    public void deleteCompany_after_shareCompany_for_superAdmin(){
+        getCompany(HttpStatus.SC_OK);
+        shareCompany("super_admin");
         getSharedCompany(HttpStatus.SC_OK);
         deleteCompany(headersConfig.getSharedUserAuthKey(), HttpStatus.SC_UNAUTHORIZED);
     }

@@ -82,16 +82,14 @@
 			<!--<class name="com.api.regression.StocksAPI"/>-->
 			<class name="com.api.regression.Company">
 				<methods>
-					<!--<include name="createCompany" />-->
-					<!--<include name="getCompany" />-->
-					<!--<include name="shareCompany" />-->
-					<!--<include name="getSharedCompany" />-->
-					<!--<include name="unShareCompany"/>-->
-					<include name="getCompany_After_UnshareCompany_for_View"/>
-					<include name="getCompany_After_UnshareCompany_for_Edit"/>
-					<include name="getCompany_After_UnshareCompany_for_Admin"/>
-					<include name="getCompany_After_UnshareCompany_for_SuperAdmin"/>
+					<include name="getCompany_after_unShareCompany_for_View"/>
+					<include name="getCompany_after_unShareCompany_for_Edit"/>
+					<include name="getCompany_after_unShareCompany_for_Admin"/>
+					<include name="getCompany_after_unShareCompany_for_superAdmin"/>
 					<include name="deleteCompany_after_shareCompany_for_View"/>
+					<include name="deleteCompany_after_shareCompany_for_Edit"/>
+					<include name="deleteCompany_after_shareCompany_for_Admin"/>
+					<include name="deleteCompany_after_shareCompany_for_superAdmin"/>
 				</methods>
 			</class>
 		</classes>

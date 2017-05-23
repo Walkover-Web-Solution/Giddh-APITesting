@@ -2,16 +2,14 @@ package com.api.regression;
 
 
 import com.apiUtils.*;
-import com.config.HeadersConfig;
-import com.config.UrlConfig;
+import com.config.*;
 
-import com.controller.CompanyCreate;
+import com.controller.*;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.aeonbits.owner.ConfigFactory.create;
 

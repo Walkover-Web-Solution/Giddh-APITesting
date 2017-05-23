@@ -55,7 +55,7 @@ public class Company {
 
    // @Test(dependsOnMethods={"createCompany"})
     public void getCompany(int statusCode){
-        HelperMethods.setAnsiGreen("Started :- Get Company ");
+
 
         /**
          * Main test and api call initiated
@@ -66,7 +66,7 @@ public class Company {
 
    // @Test(dependsOnMethods={"createCompany"})
     public void shareCompany(String role){
-        HelperMethods.setAnsiGreen("Started :- Share Company");
+
         apiURL = mainURL + companyName + "/share";
 
         Map<String,String> body = new HashMap<>();
@@ -83,7 +83,7 @@ public class Company {
 
     //@Test(dependsOnMethods={"createCompany"})
     public void getSharedCompany(int statusCode){
-        HelperMethods.setAnsiGreen("Started :- Get Company with Shared User");
+
 
         /**
          * Main test and api call initiated
@@ -94,7 +94,7 @@ public class Company {
 
    // @Test(dependsOnMethods={"createCompany"})
     public void unShareCompany(){
-        HelperMethods.setAnsiGreen("Started :- UnShare Company ");
+
         apiURL = mainURL + companyName + "/unshare";
 
         Map<String,String> body = new HashMap<>();
@@ -109,7 +109,6 @@ public class Company {
 
 
     public void deleteCompany(String auth, int statusCode){
-
         /**
          * Main test and api call initiated
          */
@@ -125,6 +124,11 @@ public class Company {
      */
     @Test
     public void getCompany_after_unShareCompany_for_View(){
+        HelperMethods.setAnsiGreen("getCompany_after_unShareCompany_for_View");
+
+        /**
+         * Main test and api call initiated
+         */
         getCompany(HttpStatus.SC_OK);
         shareCompany("view_only");
         getSharedCompany(HttpStatus.SC_OK);
@@ -138,6 +142,11 @@ public class Company {
      */
     @Test
     public void getCompany_after_unShareCompany_for_Edit(){
+        HelperMethods.setAnsiGreen("Started :- getCompany_after_unShareCompany_for_Edit");
+
+        /**
+         * Main test and api call initiated
+         */
         getCompany(HttpStatus.SC_OK);
         shareCompany("edit");
         getSharedCompany(HttpStatus.SC_OK);
@@ -151,6 +160,11 @@ public class Company {
      */
     @Test
     public void getCompany_after_unShareCompany_for_Admin(){
+        HelperMethods.setAnsiGreen("Started :- getCompany_after_unShareCompany_for_Admin");
+
+        /**
+         * Main test and api call initiated
+         */
         getCompany(HttpStatus.SC_OK);
         shareCompany("admin");
         getSharedCompany(HttpStatus.SC_OK);
@@ -163,6 +177,11 @@ public class Company {
      */
     @Test
     public void getCompany_after_unShareCompany_for_superAdmin(){
+        HelperMethods.setAnsiGreen("Started :- getCompany_after_unShareCompany_for_superAdmin");
+
+        /**
+         * Main test and api call initiated
+         */
         getCompany(HttpStatus.SC_OK);
         shareCompany("super_admin");
         getSharedCompany(HttpStatus.SC_OK);
@@ -177,6 +196,11 @@ public class Company {
 
     @Test
     public void deleteCompany_after_shareCompany_for_View(){
+        HelperMethods.setAnsiGreen("Started :- deleteCompany_after_shareCompany_for_View");
+
+        /**
+         * Main test and api call initiated
+         */
         getCompany(HttpStatus.SC_OK);
         shareCompany("view_only");
         getSharedCompany(HttpStatus.SC_OK);
@@ -192,6 +216,11 @@ public class Company {
 
     @Test
     public void deleteCompany_after_shareCompany_for_Edit(){
+        HelperMethods.setAnsiGreen("Started :- deleteCompany_after_shareCompany_for_Edit");
+
+        /**
+         * Main test and api call initiated
+         */
         getCompany(HttpStatus.SC_OK);
         shareCompany("edit");
         getSharedCompany(HttpStatus.SC_OK);
@@ -206,6 +235,11 @@ public class Company {
 
     @Test
     public void deleteCompany_after_shareCompany_for_Admin(){
+        HelperMethods.setAnsiGreen("Started :- deleteCompany_after_shareCompany_for_Admin");
+
+        /**
+         * Main test and api call initiated
+         */
         getCompany(HttpStatus.SC_OK);
         shareCompany("admin");
         getSharedCompany(HttpStatus.SC_OK);
@@ -220,6 +254,11 @@ public class Company {
 
     @Test
     public void deleteCompany_after_shareCompany_for_superAdmin(){
+        HelperMethods.setAnsiGreen("Started :- deleteCompany_after_shareCompany_for_superAdmin");
+
+        /**
+         * Main test and api call initiated
+         */
         getCompany(HttpStatus.SC_OK);
         shareCompany("super_admin");
         getSharedCompany(HttpStatus.SC_OK);

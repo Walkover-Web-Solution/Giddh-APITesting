@@ -62,7 +62,7 @@ public class Company {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null, mainURL + companyName);
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, mainURL + companyName);
         HelperMethods.assertCode("Get Company", response.getStatusCode(), statusCode, response.getJson());
     }
 
@@ -78,7 +78,7 @@ public class Company {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null, apiURL, body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, apiURL, body);
         HelperMethods.assertCode("Share Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -90,7 +90,7 @@ public class Company {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(headersConfig.getSharedUserAuthKey(), headersConfig.setType(), mainURL + companyName);
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(headersConfig.getSharedUserAuthKey(), mainURL + companyName);
         HelperMethods.assertCode("Get Company with Shared User", response.getStatusCode(), statusCode, response.getJson());
     }
 
@@ -105,18 +105,18 @@ public class Company {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null, apiURL, body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, apiURL, body);
         HelperMethods.assertCode("UnShare Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
 
-    public void deleteCompany(){
+    public void deleteCompany(String auth, int statusCode){
 
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,mainURL + companyName);
-        HelperMethods.assertCode("Delete Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(auth,mainURL + companyName);
+        HelperMethods.assertCode("Delete Company", response.getStatusCode(), statusCode, response.getJson());
     }
 
 
@@ -126,7 +126,7 @@ public class Company {
      * After that 'B' User should not able to Get Company
      */
     @Test
-    public void getCompanyAfterUnshareCompany(){
+    public void getCompany_After_UnshareCompany_for_View(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("view_only");
         getSharedCompany(HttpStatus.SC_OK);
@@ -139,7 +139,7 @@ public class Company {
      * After that 'B' User should not able to Get Company
      */
     @Test
-    public void getCompanyAfterUnshareCompany1(){
+    public void getCompany_After_UnshareCompany_for_Edit(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("edit");
         getSharedCompany(HttpStatus.SC_OK);
@@ -152,7 +152,7 @@ public class Company {
      * After that 'B' User should not able to Get Company
      */
     @Test
-    public void getCompanyAfterUnshareCompany2(){
+    public void getCompany_After_UnshareCompany_for_Admin(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("admin");
         getSharedCompany(HttpStatus.SC_OK);
@@ -164,7 +164,7 @@ public class Company {
      * After that 'B' User should not able to Get Company
      */
     @Test
-    public void getCompanyAfterUnshareCompany3(){
+    public void getCompany_After_UnshareCompany_for_SuperAdmin(){
         getCompany(HttpStatus.SC_OK);
         shareCompany("super_admin");
         getSharedCompany(HttpStatus.SC_OK);
@@ -172,8 +172,16 @@ public class Company {
         getSharedCompany(HttpStatus.SC_UNAUTHORIZED);
     }
 
+    @Test
+    public void deleteCompany_after_shareCompany_for_View(){
+        getCompany(HttpStatus.SC_OK);
+        shareCompany("view_only");
+        getSharedCompany(HttpStatus.SC_OK);
+        deleteCompany(headersConfig.getSharedUserAuthKey(), HttpStatus.SC_UNAUTHORIZED);
+    }
+
     @AfterSuite
     public void deleteSetup(){
-       deleteCompany();
+       deleteCompany(headersConfig.setAuthKey(), HttpStatus.SC_OK);
     }
 }

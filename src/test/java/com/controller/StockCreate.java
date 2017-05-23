@@ -46,7 +46,7 @@ public class StockCreate {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(auth, type, URL, body);
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(auth, URL, body);
         return  resp;
     }
 
@@ -78,7 +78,7 @@ public class StockCreate {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(auth, type, URL, body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(auth, URL, body);
         return  resp;
     }
 }

@@ -19,7 +19,7 @@ public class StockGroupCreate {
 
 
 
-    public SmartResponse StcokGroupCreate(String auth , String type, String URL, String name, String uniqueName, String parentStockGroupUniqueName){
+    public SmartResponse StcokGroupCreate(String auth , String URL, String name, String uniqueName, String parentStockGroupUniqueName){
 
         if (parentStockGroupUniqueName == null){
             parentStockGroupUniqueName = "";
@@ -32,7 +32,7 @@ public class StockGroupCreate {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(auth, type, URL, body);
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(auth, URL, body);
         return  resp;
     }
 }

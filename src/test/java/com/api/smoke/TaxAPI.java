@@ -51,7 +51,7 @@ public class TaxAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(null, null,config.createTax(), body);
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(null,config.createTax(), body);
         if (resp.getStatusCode() != HttpStatus.SC_CREATED){
             System.out.println(resp.getStatusCode());
             System.out.println(resp.getJson());

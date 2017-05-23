@@ -44,7 +44,7 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getAccount());
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, config.getAccount());
         HelperMethods.assertCode("Get Account", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -59,7 +59,7 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareAccount(), body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, config.shareAccount(), body);
         HelperMethods.assertCode("Share Account", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -74,7 +74,7 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareAccount(), body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, config.unshareAccount(), body);
         HelperMethods.assertCode("UnShare Account", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -91,7 +91,7 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateAccount(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, config.updateAccount(), body);
         if (resp.getStatusCode() == HttpStatus.SC_OK){
             String json = resp.getJson();
             JsonPath jp = new JsonPath(json);
@@ -110,7 +110,7 @@ public class AccountAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteAccount());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, config.deleteAccount());
         HelperMethods.assertCode("Delete Account", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 

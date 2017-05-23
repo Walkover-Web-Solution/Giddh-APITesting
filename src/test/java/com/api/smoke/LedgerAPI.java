@@ -47,7 +47,7 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createLedger(), body);
+        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, config.createLedger(), body);
         if (response.getStatusCode() == HttpStatus.SC_CREATED){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
@@ -70,7 +70,7 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getLedger()+ledger_UniqueName);
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, config.getLedger()+ledger_UniqueName);
         HelperMethods.assertCode("Get Ledger", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -86,7 +86,7 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateLedger()+ledger_UniqueName, body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, config.updateLedger()+ledger_UniqueName, body);
         if (response.getStatusCode() == HttpStatus.SC_OK){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
@@ -106,7 +106,7 @@ public class LedgerAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteLedger());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, config.deleteLedger());
         HelperMethods.assertCode("Delete All Ledger", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 

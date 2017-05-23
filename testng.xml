@@ -87,10 +87,11 @@
 					<!--<include name="shareCompany" />-->
 					<!--<include name="getSharedCompany" />-->
 					<!--<include name="unShareCompany"/>-->
-					<include name="getCompanyAfterUnshareCompany"/>
-					<include name="getCompanyAfterUnshareCompany1"/>
-					<include name="getCompanyAfterUnshareCompany2"/>
-					<include name="getCompanyAfterUnshareCompany3"/>
+					<include name="getCompany_After_UnshareCompany_for_View"/>
+					<include name="getCompany_After_UnshareCompany_for_Edit"/>
+					<include name="getCompany_After_UnshareCompany_for_Admin"/>
+					<include name="getCompany_After_UnshareCompany_for_SuperAdmin"/>
+					<include name="deleteCompany_after_shareCompany_for_View"/>
 				</methods>
 			</class>
 		</classes>

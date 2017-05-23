@@ -23,7 +23,7 @@ public class getFlattenGroupWithAccountsAPI {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
-    public SmartResponse getFlattenGroupWithAccountsAPI(String auth, String type, String searchValue, Boolean refreshValue ){
+    public SmartResponse getFlattenGroupWithAccountsAPI(String auth, String searchValue, Boolean refreshValue ){
 
         if (searchValue == null && refreshValue == null){
             searchValue = "";
@@ -33,7 +33,7 @@ public class getFlattenGroupWithAccountsAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.getAPI_With_Params(auth, type, config.get_Flatten_Group_With_Accounts(), "", "", searchValue, refreshValue);
+        SmartResponse resp = methodManager.getAPI_With_Params(auth, config.get_Flatten_Group_With_Accounts(), "", "", searchValue, refreshValue);
         return  resp;
     }
 }

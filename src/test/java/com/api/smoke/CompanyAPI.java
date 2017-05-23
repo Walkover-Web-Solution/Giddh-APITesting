@@ -31,8 +31,6 @@ public class CompanyAPI {
     @Test
     public void createCompany() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Create Company ");
-        header.set_Headers(null, null);
-
         /**
          * Main test and api call initiated
          */
@@ -74,7 +72,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getCompany());
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, config.getCompany());
         HelperMethods.assertCode("Get Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -90,7 +88,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareCompany(), body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null,config.shareCompany(), body);
         HelperMethods.assertCode("Share Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -105,7 +103,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareCompany(), body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null,config.unshareCompany(), body);
         HelperMethods.assertCode("UnShare Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -114,7 +112,7 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteCompany());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null,config.deleteCompany());
         HelperMethods.assertCode("Delete Company", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 

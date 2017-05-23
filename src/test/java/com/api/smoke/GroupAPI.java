@@ -41,7 +41,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null, config.moveGroup(), body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, config.moveGroup(), body);
         HelperMethods.assertCode("Move Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -53,7 +53,7 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getGroup());
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, config.getGroup());
         HelperMethods.assertCode("Get Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -69,7 +69,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.shareGroup(), body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, config.shareGroup(), body);
         HelperMethods.assertCode("Share Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -85,7 +85,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, null,config.unshareGroup(), body);
+        SmartResponse response = methodManager.putAPI_with_Assert_Statuscode(null, config.unshareGroup(), body);
         HelperMethods.assertCode("UnShare Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -103,7 +103,7 @@ public class GroupAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, null,config.updateGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, config.updateGroup(), body);
         if (resp.getStatusCode() == HttpStatus.SC_OK){
             String json = resp.getJson();
             JsonPath jp = new JsonPath(json);
@@ -122,7 +122,7 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null,config.deleteGroup());
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, config.deleteGroup());
         HelperMethods.assertCode("Delete Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 

@@ -28,7 +28,7 @@ public class StockGroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStockGroup(),"stockgroup1","stockgroup1","");
+        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, config.createStockGroup(),"stockgroup1","stockgroup1","");
         if (response.getStatusCode() != HttpStatus.SC_CREATED){
             HelperMethods.setAnsiRed("Create Stock Group Functionality Failed ");
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
@@ -51,7 +51,7 @@ public class StockGroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= methodManager.getAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName);
+        SmartResponse response= methodManager.getAPI_with_Assert_Statuscode(null, config.createStockGroup() + stock_GroupName);
         HelperMethods.assertCode("Get Stock Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -67,7 +67,7 @@ public class StockGroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= methodManager.putAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName, body);
+        SmartResponse response= methodManager.putAPI_with_Assert_Statuscode(null, config.createStockGroup() + stock_GroupName, body);
         if (response.getStatusCode() != HttpStatus.SC_OK){
             HelperMethods.setAnsiRed("Update Stock Group Functionality Failed ");
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
@@ -89,7 +89,7 @@ public class StockGroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= methodManager.getAPI_with_Assert_Statuscode(null, null, config.get_All_Hierarchical_Stock_Group());
+        SmartResponse response= methodManager.getAPI_with_Assert_Statuscode(null, config.get_All_Hierarchical_Stock_Group());
         if (response.getStatusCode() == HttpStatus.SC_OK){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
@@ -108,7 +108,7 @@ public class StockGroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName);
+        SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, config.createStockGroup() + stock_GroupName);
         HelperMethods.assertCode("Delete Stock Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 

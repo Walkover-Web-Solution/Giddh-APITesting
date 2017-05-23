@@ -97,7 +97,7 @@ public class StockAccountAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null, config.createStock() + stock_UniqueName);
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, config.createStock() + stock_UniqueName);
         HelperMethods.assertCode("Get Stock", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
 
     }
@@ -129,7 +129,7 @@ public class StockAccountAPI {
          * Main test and api call initiated
          */
 
-        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.deleteStock() + stock_UniqueName);
+        SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, config.deleteStock() + stock_UniqueName);
         HelperMethods.assertCode("Delete Stock", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
 
     }

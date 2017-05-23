@@ -23,7 +23,7 @@ public class TrialBalanceAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.getTrialbalance(), "01-04-2017", "31-03-2018", null, true);
+        SmartResponse response = methodManager.getAPI_With_Params(null, config.getTrialbalance(), "01-04-2017", "31-03-2018", null, true);
         HelperMethods.assertCode("TrialBalance", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 

@@ -49,7 +49,7 @@ public class FlattenAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = getFlatten.getFlattenGroupWithAccountsAPI(null, null, searchValue, refreshValue);
+        SmartResponse response = getFlatten.getFlattenGroupWithAccountsAPI(null, searchValue, refreshValue);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (response.getStatusCode() == HttpStatus.SC_OK){
@@ -78,7 +78,7 @@ public class FlattenAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_With_Params(null, null, config.get_Flatten_Accounts(), null, null, searchValue, false);
+        SmartResponse response = methodManager.getAPI_With_Params(null, config.get_Flatten_Accounts(), null, null, searchValue, false);
         String json = response.getJson();
         JsonPath jp = new JsonPath(json);
         if (searchValue.equalsIgnoreCase("")){

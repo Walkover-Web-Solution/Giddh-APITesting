@@ -73,7 +73,7 @@ public class StockAccountAPI {
     public void createStock(String auth, String type, String URL, String salesStockUnitCode, BigDecimal saleValue,String purchaseStockUnitCode,
                             BigDecimal purchaseValue, String salesAccountUniqueName, String purchaseAccountUniqueName, String stockName,
                             String stockUniqueCode, BigDecimal openingAmount, BigDecimal openingQty, BigDecimal manufacturingQuantity,
-                            String manufacturingUnitCode,String stockUniqueName, BigDecimal quantity,String stockUnitCode) throws JsonProcessingException {
+                            String manufacturingUnitCode, String stockUniqueName, BigDecimal quantity,String stockUnitCode) throws JsonProcessingException {
 
         HelperMethods.setAnsiGreen("Started :- Create Stock ");
 

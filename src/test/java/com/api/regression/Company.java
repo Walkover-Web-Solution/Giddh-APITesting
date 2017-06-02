@@ -124,7 +124,7 @@ public class Company {
      */
     @Test
     public void getCompany_after_unShareCompany_for_View(){
-        HelperMethods.setAnsiGreen("getCompany_after_unShareCompany_for_View");
+        HelperMethods.setAnsiGreen("Started :- getCompany_after_unShareCompany_for_View");
 
         /**
          * Main test and api call initiated

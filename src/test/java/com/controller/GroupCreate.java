@@ -18,7 +18,7 @@ public class GroupCreate {
 
 
 
-    public SmartResponse GroupCreate(String URL, String name, String uniqueName, String parentGroupUniqueName){
+    public SmartResponse GroupCreate(String authKey, String URL, String name, String uniqueName, String parentGroupUniqueName){
 
         Map<String,String> body = new HashMap<>();
         body.put("name", this.name=name);
@@ -29,7 +29,7 @@ public class GroupCreate {
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(null, URL, body);
+        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(authKey, URL, body);
         return  resp;
     }
 

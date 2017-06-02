@@ -26,7 +26,7 @@ public class GroupAPI {
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= create.GroupCreate(config.createGroup(),"tgroup", "tgroup", "capital");
+        SmartResponse response= create.GroupCreate(null, config.createGroup(),"tgroup", "tgroup", "capital");
         HelperMethods.assertCode("Create Group", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }
 

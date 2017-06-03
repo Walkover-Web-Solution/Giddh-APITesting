@@ -43,7 +43,6 @@ public class Group {
     }
 
     public void updateGroup() {
-        HelperMethods.setAnsiGreen("Started :- Update Group ");
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "tgroup1");
@@ -62,15 +61,13 @@ public class Group {
             HelperMethods.setAnsiGreen("Update Group Functionality Completed Successfully ");
         }
         else {
-            HelperMethods.setAnsiRed("Update Group Functionality fails with Response Code = " +  resp.getStatusCode());
+            HelperMethods.setAnsiRed(" Update Group Functionality fails with Response Code = " +  resp.getStatusCode());
             HelperMethods.setAnsiRed(resp.getJson());
             Assert.assertEquals(resp.getStatusCode(), HttpStatus.SC_OK);
         }
     }
 
     public void moveGroup() {
-        HelperMethods.setAnsiGreen("Started :- Move Group ");
-
         Map<String,String> body = new HashMap<>();
         body.put("parentGroupUniqueName", "sundrydebtors");
 
@@ -85,7 +82,6 @@ public class Group {
 
 
     public void shareGroup() {
-        HelperMethods.setAnsiGreen("Started :- Share Group ");
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -101,7 +97,6 @@ public class Group {
 
 
     public void unShareGroup() {
-        HelperMethods.setAnsiGreen("Started :- UnShare Group ");
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");

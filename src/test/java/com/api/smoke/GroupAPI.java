@@ -1,5 +1,6 @@
 package com.api.smoke;
 
+import com.api.regression.Company;
 import com.controller.GroupCreate;
 import com.apiUtils.*;
 import com.config.UrlConfig;

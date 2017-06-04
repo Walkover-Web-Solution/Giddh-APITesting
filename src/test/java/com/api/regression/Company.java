@@ -56,7 +56,6 @@ public class Company {
    // @Test(dependsOnMethods={"createCompany"})
     public void getCompany(int statusCode){
 
-
         /**
          * Main test and api call initiated
          */

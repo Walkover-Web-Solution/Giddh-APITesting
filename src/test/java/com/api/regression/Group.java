@@ -1,7 +1,7 @@
 package com.api.regression;
 
 import com.apiUtils.*;
-import com.config.UrlConfig;
+import com.config.*;
 import com.controller.*;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
@@ -20,25 +20,29 @@ public class Group {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
     GroupCreate create = new GroupCreate();
-    public String baseURL = mainURL + companyName + "/groups";
+    HeadersConfig headersConfig = create(HeadersConfig.class);
+    Company company = new Company();
+    private String baseURL = mainURL + companyName + "/groups";
+    private String apiURL;
 
 
-    public void createGroup() {
+    public void createGroup(String auth, int statusCode) {
 
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= create.GroupCreate(null, baseURL ,"tgroup", "tgroup", "capital");
-        HelperMethods.assertCode("Create Group", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
+        SmartResponse response= create.GroupCreate(auth, baseURL ,"tgroup", "tgroup", "capital");
+        HelperMethods.assertCode("Create Group", response.getStatusCode(), statusCode, response.getJson());
     }
 
     public void getGroup() {
-        HelperMethods.setAnsiGreen("Started :- Get Group ");
+
+        apiURL = baseURL + "/tgroup";
 
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, config.getGroup());
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, apiURL);
         HelperMethods.assertCode("Get Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -46,14 +50,16 @@ public class Group {
 
         Map<String,String> body = new HashMap<>();
         body.put("name", "tgroup1");
-        body.put("uniqueName", "tgroup1");
+        body.put("uniqueName", "tgroup");
         body.put("parentGroupUniqueName", "capital");
+
+        apiURL = baseURL + "/tgroup";
 
         /**
          * Main test and api call initiated
          */
 
-        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, config.updateGroup(), body);
+        SmartResponse resp = methodManager.putAPI_with_Assert_Statuscode(null, apiURL, body);
         if (resp.getStatusCode() == HttpStatus.SC_OK){
             String json = resp.getJson();
             JsonPath jp = new JsonPath(json);
@@ -68,6 +74,9 @@ public class Group {
     }
 
     public void moveGroup() {
+
+        apiURL = baseURL + "/tgroup" + "/move";
+
         Map<String,String> body = new HashMap<>();
         body.put("parentGroupUniqueName", "sundrydebtors");
 
@@ -83,6 +92,8 @@ public class Group {
 
     public void shareGroup() {
 
+        apiURL = baseURL + "/tgroup" + "/share";
+
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
         body.put("role", "edit");
@@ -97,6 +108,7 @@ public class Group {
 
 
     public void unShareGroup() {
+        apiURL = baseURL + "/tgroup" + "/unshare";
 
         Map<String,String> body = new HashMap<>();
         body.put("user", "tadhall87@gmail.com");
@@ -110,13 +122,32 @@ public class Group {
     }
 
 
-
-
     public void deleteGroup() {
+
+        apiURL = baseURL + "/tgroup";
+
         /**
          * Main test and api call initiated
          */
         SmartResponse response = methodManager.deleteAPI_with_Assert_Statuscode(null, config.deleteGroup());
         HelperMethods.assertCode("Delete Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+    }
+
+    /** Scenario :-
+     * 'A' User share Company with 'B' user with 'Super Admin' permission and
+     * then 'A' User Should not Able to Delete Company shared by 'A' User,
+     */
+
+
+    @Test
+    public void createGroup_after_shareCompany_for_View(){
+        HelperMethods.setAnsiGreen("Started :- Create Group after shareCompany for View");
+
+        /**
+         * Main test and api call initiated
+         */
+        company.getCompany(HttpStatus.SC_OK);
+        company.shareCompany("view_only");
+        createGroup(headersConfig.getSharedUserAuthKey(), HttpStatus.SC_UNAUTHORIZED);
     }
 }

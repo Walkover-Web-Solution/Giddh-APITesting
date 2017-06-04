@@ -92,6 +92,11 @@
 					<include name="deleteCompany_after_shareCompany_for_superAdmin"/>
 				</methods>
 			</class>
+			<class name="com.api.regression.Group">
+				<methods>
+					<include name="createGroup_after_shareCompany_for_View"/>
+				</methods>
+			</class>
 		</classes>
 	</test> <!-- Test -->
 </suite>

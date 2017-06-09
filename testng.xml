@@ -6,35 +6,35 @@
 		<classes>
 			<class name="com.api.smoke.CompanyAPI">
 				<methods>
-					<include name="createCompany" />
-					<include name="getCompany" />
-					<include name="shareCompany" />
-					<include name="unShareCompany" />
+					<include name="createCompany"/>
+					<include name="getCompany"/>
+					<include name="shareCompany"/>
+					<include name="unShareCompany"/>
 					<include name="deleteCompany"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.GroupAPI">
 				<methods>
-					<include name="createGroup" />
-					<include name="moveGroup" />
-					<include name="getGroup" />
-					<include name="shareGroup" />
-					<include name="unShareGroup" />
+					<include name="createGroup"/>
+					<include name="moveGroup"/>
+					<include name="getGroup"/>
+					<include name="shareGroup"/>
+					<include name="unShareGroup"/>
 					<include name="updateGroup"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.AccountAPI">
 				<methods>
-					<include name="createAccount" />
-					<include name="getAccount" />
-					<include name="shareAccount" />
-					<include name="unShareAccount" />
+					<include name="createAccount"/>
+					<include name="getAccount"/>
+					<include name="shareAccount"/>
+					<include name="unShareAccount"/>
 					<include name="updateAccount"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.StockGroupAPI">
 				<methods>
-					<include name="create_Stock_Group" />
+					<include name="create_Stock_Group"/>
 					<include name="get_Stock_Group"/>
 					<include name="update_Stock_Group"/>
 					<include name="get_Hierarchical_Stock_Groups"/>
@@ -49,27 +49,27 @@
 			</class>
 			<class name="com.api.smoke.FlattenAPI">
 				<methods>
-					<include name="flatten_Group_with_Accounts" />
+					<include name="flatten_Group_with_Accounts"/>
 					<include name="flatten_Group_with_Accounts_with_Cash_Search"/>
 					<include name="flatten_With_Accounts"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.TaxAPI">
 				<methods>
-					<include name="addTax" />
+					<include name="addTax"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.LedgerAPI">
 				<methods>
-					<include name="createLedger" />
+					<include name="createLedger"/>
 					<include name="updateLedger"/>
-					<include name="getLedger" />
+					<include name="getLedger"/>
 				</methods>
 			</class>
 			<class name="com.api.smoke.TrialBalanceAPI"/>
 			<class name="com.api.smoke.InvoiceAPI">
 				<methods>
-					<include name="createInvoice" />
+					<include name="createInvoice"/>
 					<include name="get_All_Invoices"/>
 					<include name="deleteInvoice"/>
 				</methods>

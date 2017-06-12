@@ -25,6 +25,9 @@ public class Company {
     public static String mainURL;
     public String apiURL;
 
+    public Company() {
+        prerequisites();
+    }
 
     public String getRandomCompanyName(){
         String chars = "abcdefghijklmnopqrstuvwxyz";
@@ -46,7 +49,6 @@ public class Company {
 
     @BeforeSuite
     public void createCompany(){
-        prerequisites();
         HelperMethods.setAnsiRed("Company UniqueName is "  +  companyName);
         SmartResponse response = create.companyCreate( null, mainURL, "AutomationCompany", companyName);
         HelperMethods.assertCode("Create Company", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
@@ -263,6 +265,26 @@ public class Company {
         getSharedCompany(HttpStatus.SC_OK);
         deleteCompany(headersConfig.getSharedUserAuthKey(), HttpStatus.SC_UNAUTHORIZED);
     }
+
+
+    /** Scenario :-
+     * 'A' User share Group  and Account with 'B' user with 'Super Admin' permission and
+     * then 'B' User Should be able to get only a get company in Company/all api with only single name ,
+     */
+
+
+//    @Test
+//    public void getCompany_After_User_Share_Group_and_Account(){
+//        HelperMethods.setAnsiGreen("Started :- getCompany_After_User_Share_Group_and_Account");
+//
+//        /**
+//         * Main test and api call initiated
+//         */
+//        getCompany(HttpStatus.SC_OK);
+//        shareCompany("super_admin");
+//        getSharedCompany(HttpStatus.SC_OK);
+//        deleteCompany(headersConfig.getSharedUserAuthKey(), HttpStatus.SC_UNAUTHORIZED);
+//    }
 
     @AfterSuite
     public void deleteSetup(){

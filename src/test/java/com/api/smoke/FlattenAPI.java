@@ -59,7 +59,7 @@ public class FlattenAPI {
             }
             else {
                 assertEquals(jp.get("body.totalPages"), 2);
-                assertEquals(jp.get("body.totalItems"), 7);
+                assertEquals(jp.get("body.totalItems"), 8);
             }
             assertEquals(jp.get("body.page"), 1);
             assertEquals(jp.get("body.count"), 5);

@@ -83,10 +83,11 @@ public class FlattenAPI {
         JsonPath jp = new JsonPath(json);
         if (searchValue.equalsIgnoreCase("")){
             if (response.getStatusCode() == HttpStatus.SC_OK){
-                assertEquals(jp.get("body.results[1].uniqueName"), "giddh");
+                HelperMethods.setAnsiRed(response.getJson());
+                assertEquals(jp.get("body.results[3].uniqueName"), "giddh");
                 assertEquals(jp.get("body.results[0].stock"), null);
                 assertEquals(jp.get("body.page"), 1);
-                assertEquals(jp.get("body.count"), 7);
+                assertEquals(jp.get("body.count"), 10);
                 HelperMethods.setAnsiGreen("Get flatten accounts Completed Successfully");
             }
             else {

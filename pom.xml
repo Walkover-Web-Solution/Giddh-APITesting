@@ -22,12 +22,23 @@
             </properties>
         </profile>
         <profile>
-            <id>dev</id>
+            <id>devRegression</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <env.id>dev</env.id>
+                <xml.id>regression.xml</xml.id>
+            </properties>
+        </profile>
+        <profile>
+            <id>devSmoke</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <env.id>dev</env.id>
+                <xml.id>testng.xml</xml.id>
             </properties>
         </profile>
         <profile>
@@ -70,7 +81,7 @@
                 <configuration>
                     <!-- Suite testng xml file to consider for test execution -->
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${xml.id}</suiteXmlFile>
                     </suiteXmlFiles>
                     <!-- This will set the system property for the environment variable passed  -->
                     <systemPropertyVariables>

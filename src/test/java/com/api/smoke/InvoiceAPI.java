@@ -37,7 +37,7 @@ public class InvoiceAPI {
         for ( String data : uniqueNames) {
             System.out.println(data);
         }
-        HelperMethods.assertCode("Create Invoice", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
+        HelperMethods.assertCode("Create Invoice", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
     }
 
     @Test(dependsOnMethods={"createInvoice"})

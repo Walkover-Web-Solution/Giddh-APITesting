@@ -24,5 +24,4 @@ Usual build tasks
 `mvn versions:display-dependency-updates`
 
 
-
 Giddh & Copy; 2017

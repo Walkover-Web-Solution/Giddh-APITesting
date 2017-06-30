@@ -47,6 +47,7 @@ public class InvoiceAPI {
         if (response.getStatusCode() == HttpStatus.SC_OK){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
+            HelperMethods.setAnsiRed(response.getJson());
             Invoice_Number= jp.get("body.results[0].invoiceNumber");
             HelperMethods.setAnsiGreen(Invoice_Number + "Invoice number");
             HelperMethods.setAnsiGreen("Get All Invoice Functionality Completed Successfully ");

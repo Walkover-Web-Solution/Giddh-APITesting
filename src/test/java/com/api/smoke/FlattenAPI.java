@@ -59,7 +59,7 @@ public class FlattenAPI {
             }
             else {
                 assertEquals(jp.get("body.totalPages"), 2);
-                assertEquals(jp.get("body.totalItems"), 8);
+                assertEquals(jp.get("body.totalItems"), 7);
             }
             assertEquals(jp.get("body.page"), 1);
             assertEquals(jp.get("body.count"), 5);
@@ -83,7 +83,7 @@ public class FlattenAPI {
         JsonPath jp = new JsonPath(json);
         if (searchValue.equalsIgnoreCase("")){
             if (response.getStatusCode() == HttpStatus.SC_OK){
-                assertEquals(jp.get("body.results[4].uniqueName"), "utgst");
+                assertEquals(jp.get("body.results[4].uniqueName"), "purchases");
                 assertEquals(jp.get("body.results[0].stock"), null);
                 assertEquals(jp.get("body.page"), 1);
                 assertEquals(jp.get("body.count"), 11);

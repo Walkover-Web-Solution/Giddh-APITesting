@@ -14,7 +14,7 @@ Prerequisites
 Usual build tasks
 -----------------
 
-* Compile and run test for default active profile
+* Compile and run test for default active profile  
 `mvn compile test`
 
 * Compile and run test for different file

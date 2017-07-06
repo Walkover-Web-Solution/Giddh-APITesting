@@ -47,21 +47,20 @@ public class CompanyAPI {
                 invoiceAPI.deleteInvoice();
                 ledgerAPI.deleteAllLedger();
                 deleteCompany();
+                SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
+                if (response1.getStatusCode() != HttpStatus.SC_CREATED){
+                    HelperMethods.setAnsiRed("Company Create Functionality Fails");
+                    System.out.println(response.getStatusCode());
+                    System.out.println(response.getJson());
+                    Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+                }
+
+                if (response1.getStatusCode() == HttpStatus.SC_CREATED){
+                    HelperMethods.setAnsiGreen("Company Created Successfully");
+                }
             }
             else {
                 deleteSetup();
-            }
-
-            SmartResponse response1 = create.companyCreate(config.mainURL(), "audi", "audi");
-            if (response1.getStatusCode() != HttpStatus.SC_CREATED){
-                HelperMethods.setAnsiRed("Company Create Functionality Fails");
-                System.out.println(response.getStatusCode());
-                System.out.println(response.getJson());
-                Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-            }
-
-            if (response1.getStatusCode() == HttpStatus.SC_CREATED){
-                HelperMethods.setAnsiGreen("Company Created Successfully");
             }
         }
 

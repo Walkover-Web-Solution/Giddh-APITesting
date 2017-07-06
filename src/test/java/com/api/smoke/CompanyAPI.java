@@ -10,7 +10,6 @@ import org.testng.annotations.*;
 import java.util.*;
 import com.apiUtils.*;
 
-import static com.api.smoke.InvoiceAPI.Invoice_Number;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
@@ -27,7 +26,6 @@ public class CompanyAPI {
     CompanyCreate create = new CompanyCreate();
     StockGroupAPI stockGroupAPI = new StockGroupAPI();
     StockAccountAPI stockAccountAPI = new StockAccountAPI();
-    InvoiceAPI invoiceAPI = new InvoiceAPI();
 
 
     @Test
@@ -42,17 +40,9 @@ public class CompanyAPI {
         SmartResponse response = create.companyCreate(config.mainURL(), "AutomationCompany",   "automationcompany");
 
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
-            invoiceAPI.get_All_Invoices();
-            if (!Invoice_Number.equals(null)){
-                invoiceAPI.deleteInvoice();
-                ledgerAPI.deleteAllLedger();
-                deleteCompany();
-            }
-            else {
-                deleteSetup();
-            }
+            deleteSetup();
+            SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
 
-            SmartResponse response1 = create.companyCreate(config.mainURL(), "audi", "audi");
             if (response1.getStatusCode() != HttpStatus.SC_CREATED){
                 HelperMethods.setAnsiRed("Company Create Functionality Fails");
                 System.out.println(response.getStatusCode());
@@ -61,7 +51,7 @@ public class CompanyAPI {
             }
 
             if (response1.getStatusCode() == HttpStatus.SC_CREATED){
-                HelperMethods.setAnsiGreen("Company Created Successfully");
+                HelperMethods.setAnsiGreen("Company Create Successfully");
             }
         }
 

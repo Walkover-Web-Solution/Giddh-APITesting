@@ -42,7 +42,7 @@ public class FlattenAPI {
     }
 
 
-   // @Test(dataProvider = "getFlattenData")
+    @Test(dataProvider = "getFlattenData")
     public void flatten_Group_with_Accounts(String searchValue, Boolean refreshValue){
         HelperMethods.setAnsiGreen("Started :- Get flatten group-with-accounts API");
 
@@ -72,7 +72,7 @@ public class FlattenAPI {
         }
     }
 
-   // @Test(dataProvider = "getSearchValue")
+    @Test(dataProvider = "getSearchValue")
     public void flatten_With_Accounts(String searchValue){
         HelperMethods.setAnsiGreen("Started :- Get flatten_with-Accounts");
         /**

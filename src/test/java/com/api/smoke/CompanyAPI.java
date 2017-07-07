@@ -10,7 +10,6 @@ import org.testng.annotations.*;
 import java.util.*;
 import com.apiUtils.*;
 
-import static com.api.smoke.InvoiceAPI.Invoice_Number;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
@@ -27,7 +26,6 @@ public class CompanyAPI {
     CompanyCreate create = new CompanyCreate();
     StockGroupAPI stockGroupAPI = new StockGroupAPI();
     StockAccountAPI stockAccountAPI = new StockAccountAPI();
-    InvoiceAPI invoiceAPI = new InvoiceAPI();
 
     @Test
     public void createCompany() throws Exception{
@@ -37,24 +35,17 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-
         SmartResponse response = create.companyCreate(config.mainURL(), "AutomationCompany",   "automationcompany");
-
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
-            invoiceAPI.get_All_Invoices();
-            if (Invoice_Number != null){
-                invoiceAPI.deleteInvoice();
-                deleteCompany();
-                SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
-                if (response1.getStatusCode() == HttpStatus.SC_CREATED){
-                    HelperMethods.setAnsiGreen("Company Create Successfully in Second Iteration");
-                }
-                else {
-                    HelperMethods.setAnsiRed("Company Create Functionality Fails in Second Iteration");
-                    System.out.println(response.getStatusCode());
-                    System.out.println(response.getJson());
-                    Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-                }
+            SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
+            if (response1.getStatusCode() == HttpStatus.SC_CREATED){
+                HelperMethods.setAnsiGreen("Company Create Successfully in Second Iteration");
+            }
+            else {
+                HelperMethods.setAnsiRed("Company Create Functionality Fails in Second Iteration");
+                System.out.println(response.getStatusCode());
+                System.out.println(response.getJson());
+                Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
             }
         }
 

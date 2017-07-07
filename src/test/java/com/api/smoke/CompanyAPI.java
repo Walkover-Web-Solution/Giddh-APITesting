@@ -27,7 +27,6 @@ public class CompanyAPI {
     StockGroupAPI stockGroupAPI = new StockGroupAPI();
     StockAccountAPI stockAccountAPI = new StockAccountAPI();
 
-
     @Test
     public void createCompany() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Create Company ");
@@ -36,22 +35,18 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-
         SmartResponse response = create.companyCreate(config.mainURL(), "AutomationCompany",   "automationcompany");
-
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
             deleteSetup();
             SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
-
-            if (response1.getStatusCode() != HttpStatus.SC_CREATED){
-                HelperMethods.setAnsiRed("Company Create Functionality Fails");
+            if (response1.getStatusCode() == HttpStatus.SC_CREATED){
+                HelperMethods.setAnsiGreen("Company Create Successfully in Second Iteration");
+            }
+            else {
+                HelperMethods.setAnsiRed("Company Create Functionality Fails in Second Iteration");
                 System.out.println(response.getStatusCode());
                 System.out.println(response.getJson());
                 Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-            }
-
-            if (response1.getStatusCode() == HttpStatus.SC_CREATED){
-                HelperMethods.setAnsiGreen("Company Create Successfully");
             }
         }
 

@@ -13,18 +13,20 @@ public class TaxInput {
     private String name;
     private String duration;
     private int taxFileDate;
+    private String taxType;
 
     private List<TaxDetails> taxDetail = new ArrayList<>();
-    private TaxAccount account;
+    private List<TaxAccount> accounts;
 
 
-    public TaxInput(List<TaxDetails> taxDetail, String taxNumber, String name, String duration, int taxFileDate, TaxAccount account){
+    public TaxInput(List<TaxDetails> taxDetail, String taxNumber, String name, String taxType, String duration, int taxFileDate, List<TaxAccount> accounts){
         this.taxNumber = taxNumber;
         this.name= name;
+        this.taxType= taxType;
         this.duration=duration;
         this.taxFileDate=taxFileDate;
         this.taxDetail= taxDetail;
-        this.account=account;
+        this.accounts=accounts;
     }
 
 }

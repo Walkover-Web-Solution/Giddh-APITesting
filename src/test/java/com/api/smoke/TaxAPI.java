@@ -42,11 +42,14 @@ public class TaxAPI {
     public void addTax() throws  Exception{
         HelperMethods.setAnsiGreen("Started :- Create Tax");
 
-        TaxAccount taxAccount = new TaxAccount("vat");
+        List<TaxAccount> taxAccounts = new ArrayList<>();
+        taxAccounts.add(new TaxAccount("vat"));
+       // TaxAccount taxAccount = new TaxAccount("vat");
         List<TaxDetails> taxDetail= new ArrayList<>();
         taxDetail.add(new TaxDetails("01-04-2017", 10));
-        TaxInput taxInput = new TaxInput(taxDetail,"123456", "vat", "YEARLY", 01, taxAccount);
+        TaxInput taxInput = new TaxInput(taxDetail,"123456", "vat","",  "YEARLY", 1, taxAccounts);
         String body = JsonUtil.toJsonAsString(taxInput);
+        HelperMethods.setAnsiRed("Tax request Body "+ body);
 
         /**
          * Main test and api call initiated

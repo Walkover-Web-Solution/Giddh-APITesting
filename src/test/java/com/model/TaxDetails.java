@@ -8,10 +8,10 @@ import java.math.BigDecimal;
 public class TaxDetails {
 
     private String date;
-    private Float value;
+    private Float taxValue;
 
     public TaxDetails(String taxDate, float taxRate){
         this.date= taxDate;
-        this.value=taxRate;
+        this.taxValue=taxRate;
     }
 }

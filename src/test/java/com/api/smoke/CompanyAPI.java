@@ -41,7 +41,7 @@ public class CompanyAPI {
 
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
             deleteSetup();
-            SmartResponse response1 = create.companyCreate(config.mainURL(), "audi", "audi");
+            SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
 
             if (response1.getStatusCode() != HttpStatus.SC_CREATED){
                 HelperMethods.setAnsiRed("Company Create Functionality Fails");

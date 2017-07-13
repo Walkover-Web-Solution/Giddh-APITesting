@@ -44,10 +44,10 @@ public class CompanyAPI {
             SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
 
             if (response1.getStatusCode() == HttpStatus.SC_CREATED){
-                HelperMethods.setAnsiGreen("Company Create Successfully");
+                HelperMethods.setAnsiGreen("Company Create Successfully in Second Iteration");
             }
             else {
-                HelperMethods.setAnsiRed("Company Create Functionality Fails");
+                HelperMethods.setAnsiRed("Company Create Functionality Fails in Second Iteration");
                 System.out.println(response.getStatusCode());
                 System.out.println(response.getJson());
                 Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);

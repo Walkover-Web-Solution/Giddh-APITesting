@@ -43,15 +43,14 @@ public class CompanyAPI {
             deleteSetup();
             SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
 
-            if (response1.getStatusCode() != HttpStatus.SC_CREATED){
+            if (response1.getStatusCode() == HttpStatus.SC_CREATED){
+                HelperMethods.setAnsiGreen("Company Create Successfully");
+            }
+            else {
                 HelperMethods.setAnsiRed("Company Create Functionality Fails");
                 System.out.println(response.getStatusCode());
                 System.out.println(response.getJson());
                 Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-            }
-
-            if (response1.getStatusCode() == HttpStatus.SC_CREATED){
-                HelperMethods.setAnsiGreen("Company Create Successfully");
             }
         }
 

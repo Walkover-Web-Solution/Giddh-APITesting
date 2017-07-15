@@ -16,7 +16,7 @@ public class TaxInput {
     private String taxType;
 
     private List<TaxDetails> taxDetail = new ArrayList<>();
-    private List<TaxAccount> accounts;
+    private List<TaxAccount> accounts = new ArrayList<>();
 
 
     public TaxInput(List<TaxDetails> taxDetail, String taxNumber, String name, String taxType, String duration, int taxFileDate, List<TaxAccount> accounts){

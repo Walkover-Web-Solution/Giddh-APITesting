@@ -27,7 +27,6 @@ public class CompanyAPI {
     StockGroupAPI stockGroupAPI = new StockGroupAPI();
     StockAccountAPI stockAccountAPI = new StockAccountAPI();
 
-
     @Test
     public void createCompany() throws Exception{
         HelperMethods.setAnsiGreen("Started :- Create Company ");
@@ -36,13 +35,10 @@ public class CompanyAPI {
         /**
          * Main test and api call initiated
          */
-
         SmartResponse response = create.companyCreate(config.mainURL(), "AutomationCompany",   "automationcompany");
-
         if (response.getStatusCode() == HttpStatus.SC_CONFLICT){
             deleteSetup();
             SmartResponse response1 = create.companyCreate(config.mainURL(), "AutomationCompany", "automationcompany");
-
             if (response1.getStatusCode() == HttpStatus.SC_CREATED){
                 HelperMethods.setAnsiGreen("Company Create Successfully in Second Iteration");
             }

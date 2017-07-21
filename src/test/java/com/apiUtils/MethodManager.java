@@ -62,9 +62,8 @@ public class MethodManager {
                         get(URL);
                 String json = resp.asString();
                 int statusCode = resp.getStatusCode();
-                SmartResponse response = new SmartResponse(statusCode, json);
-                //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
-                return response;
+        //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
+                return new SmartResponse(statusCode, json);
     }
 
 

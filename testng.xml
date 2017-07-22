@@ -62,7 +62,6 @@
 			<class name="com.api.smoke.LedgerAPI">
 				<methods>
 					<include name="createLedger"/>
-					<include name="createLedgerwWithDecimal"/>
 					<include name="updateLedger"/>
 					<include name="getLedger"/>
 				</methods>

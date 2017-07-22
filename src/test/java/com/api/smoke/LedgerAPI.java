@@ -43,6 +43,14 @@ public class LedgerAPI {
         return amountValue;
     }
 
+    @DataProvider
+    private Object[][] getLedgerUniqueName(){
+        Object[][] ledgerName = new  Object[2][1];
+        ledgerName[0][0]= ledger_UniqueName;
+        ledgerName[1][0]= ledger_UniqueName1;
+        return ledgerName;
+    }
+
     @Test(dataProvider = "getLedgerData")
     public void createLedger(BigDecimal amount) throws JsonProcessingException {
         HelperMethods.setAnsiGreen("Started :- Create Ledger ");
@@ -80,13 +88,13 @@ public class LedgerAPI {
         }
     }
 
-    @Test(dependsOnMethods={"createLedger"})
-    public void getLedger(){
+    @Test(dataProvider = "getLedgerUniqueName", dependsOnMethods={"createLedger"})
+    public void getLedger(String uniqueName){
         HelperMethods.setAnsiGreen("Started :- Get Ledger ");
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getLedger()+ledger_UniqueName);
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getLedger()+uniqueName);
         HelperMethods.assertCode("Get Ledger", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 

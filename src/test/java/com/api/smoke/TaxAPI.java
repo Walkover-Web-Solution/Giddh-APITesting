@@ -49,7 +49,6 @@ public class TaxAPI {
         taxDetail.add(new TaxDetails("01-04-2017", 10));
         TaxInput taxInput = new TaxInput(taxDetail,"123456", "vat","",  "YEARLY", 1, taxAccounts);
         String body = JsonUtil.toJsonAsString(taxInput);
-        HelperMethods.setAnsiRed("Tax request Body "+ body);
 
         /**
          * Main test and api call initiated

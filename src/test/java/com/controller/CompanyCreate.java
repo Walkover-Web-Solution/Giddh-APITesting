@@ -26,7 +26,7 @@ public class CompanyCreate {
         /**
          * Main test and api call initiated
          */
-        SmartResponse resp = methodManager.postAPI_with_Assert_Statuscode(null,null, URL, body);
-        return resp;
+        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null,null, URL, body);
+        return response;
     }
 }

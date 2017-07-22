@@ -15,9 +15,9 @@ import static org.aeonbits.owner.ConfigFactory.create;
 
 public class StockAccountAPI {
 
-    MethodManager methodManager = new MethodManager();
-    StockCreate stockCreate = new StockCreate();
-    UrlConfig config = create(UrlConfig.class);
+    private MethodManager methodManager = new MethodManager();
+    private StockCreate stockCreate = new StockCreate();
+    private UrlConfig config = create(UrlConfig.class);
 
     public static String stock_UniqueName = "bulksms";
 

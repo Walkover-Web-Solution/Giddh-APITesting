@@ -23,7 +23,7 @@ public class InvoiceAPI {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
-    public static String Invoice_Number;
+    private static String Invoice_Number;
 
     @Test
     public void createInvoice() throws  Exception{

@@ -17,15 +17,15 @@ import static org.aeonbits.owner.ConfigFactory.create;
 
 public class CompanyAPI {
 
-    ManageHeaders header = new ManageHeaders();
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
-    LedgerAPI ledgerAPI = new LedgerAPI();
-    GroupAPI groupAPI = new GroupAPI();
-    AccountAPI accountAPI = new AccountAPI();
-    CompanyCreate create = new CompanyCreate();
-    StockGroupAPI stockGroupAPI = new StockGroupAPI();
-    StockAccountAPI stockAccountAPI = new StockAccountAPI();
+    private ManageHeaders header = new ManageHeaders();
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
+    private LedgerAPI ledgerAPI = new LedgerAPI();
+    private GroupAPI groupAPI = new GroupAPI();
+    private AccountAPI accountAPI = new AccountAPI();
+    private CompanyCreate create = new CompanyCreate();
+    private StockGroupAPI stockGroupAPI = new StockGroupAPI();
+    private StockAccountAPI stockAccountAPI = new StockAccountAPI();
 
     @Test
     public void createCompany() throws Exception{

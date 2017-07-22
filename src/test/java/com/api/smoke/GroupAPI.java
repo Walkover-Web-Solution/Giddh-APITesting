@@ -15,9 +15,9 @@ import static org.testng.Assert.assertEquals;
 
 public class GroupAPI {
 
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
-    GroupCreate create = new GroupCreate();
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
+    private GroupCreate create = new GroupCreate();
 
 
     @Test

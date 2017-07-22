@@ -20,10 +20,10 @@ import static org.testng.Assert.assertEquals;
 
 public class TaxAPI {
 
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
-    GroupCreate groupCreate = new GroupCreate();
-    AccountCreate accountCreate = new AccountCreate();
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
+    private GroupCreate groupCreate = new GroupCreate();
+    private AccountCreate accountCreate = new AccountCreate();
 
     public static String Tax_UniqueName;
 

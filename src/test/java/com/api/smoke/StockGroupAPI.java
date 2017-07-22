@@ -16,9 +16,9 @@ import static org.testng.Assert.assertEquals;
 
 public class StockGroupAPI {
 
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
-    StockGroupCreate stockGroupCreate = new StockGroupCreate();
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
+    private StockGroupCreate stockGroupCreate = new StockGroupCreate();
 
     public static String stock_GroupName;
 

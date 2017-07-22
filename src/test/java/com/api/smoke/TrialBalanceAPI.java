@@ -13,8 +13,8 @@ import static org.aeonbits.owner.ConfigFactory.create;
 
 public class TrialBalanceAPI {
 
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
 
     @Test
     public void get_TrialBalance() {

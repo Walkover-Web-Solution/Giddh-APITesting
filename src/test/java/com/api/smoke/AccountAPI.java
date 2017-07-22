@@ -19,10 +19,10 @@ import static org.testng.Assert.assertEquals;
 
 public class AccountAPI {
 
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
-    GroupAPI groupAPI = new GroupAPI();
-    AccountCreate create = new AccountCreate();
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
+    private GroupAPI groupAPI = new GroupAPI();
+    private AccountCreate create = new AccountCreate();
 
     @Test
     public void createAccount() {

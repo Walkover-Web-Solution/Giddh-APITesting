@@ -15,9 +15,9 @@ import static org.testng.Assert.assertEquals;
 
 public class FlattenAPI {
 
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
-    getFlattenGroupWithAccountsAPI getFlatten =  new getFlattenGroupWithAccountsAPI();
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
+    private getFlattenGroupWithAccountsAPI getFlatten =  new getFlattenGroupWithAccountsAPI();
 
     @DataProvider
     public Object[][] getSearchValue(){

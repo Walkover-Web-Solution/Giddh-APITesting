@@ -25,7 +25,7 @@ import static org.testng.Assert.assertNotNull;
 
 public class LedgerAPI {
 
-    LocalDate localDate = new LocalDate();
+    private LocalDate localDate = new LocalDate();
 
     public static String ledger_UniqueName;
 

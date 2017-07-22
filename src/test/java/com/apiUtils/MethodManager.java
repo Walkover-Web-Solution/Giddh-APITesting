@@ -1,13 +1,8 @@
 package com.apiUtils;
 
 import com.model.ManageHeaders;
-import io.restassured.RestAssured;
-import io.restassured.config.ConnectionConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
-
-import java.util.concurrent.TimeUnit;
-
 import static io.restassured.RestAssured.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static io.restassured.config.SSLConfig.sslConfig;
@@ -15,15 +10,16 @@ import static io.restassured.config.SSLConfig.sslConfig;
 
 public class MethodManager {
 
-    ManageHeaders header = new ManageHeaders();
+    private ManageHeaders header = new ManageHeaders();
 
 
     public SmartResponse getAPI_with_Assert_Statuscode(String auth, String type,String URL) {
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = RestAssuredConfig.newConfig().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers(auth, type);
 
         Response resp =
-                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
+                given().config(config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
@@ -36,7 +32,8 @@ public class MethodManager {
     }
 
     public SmartResponse getAPI_With_Params(String auth, String type, String URL, String from, String to , String search, boolean refresh) {
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = RestAssuredConfig.newConfig().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers(auth, type);
 
         if (from == null){
@@ -49,7 +46,7 @@ public class MethodManager {
             search = "";
         }
         Response resp =
-                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames())).
+                given().config(config().sslConfig(sslConfig().allowAllHostnames())).
                         headers("Auth-Key",header.getAuthKey()).
                         headers("Content-Type",header.getType()).
                         param("from",from).
@@ -67,11 +64,12 @@ public class MethodManager {
 
 
     public SmartResponse postAPI_with_Assert_Statuscode(String auth, String type, String URL, Object body) {
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = RestAssuredConfig.newConfig().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers(auth, type);
 
         Response resp =
-                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
+                given().config(config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
@@ -83,7 +81,9 @@ public class MethodManager {
                                 try {
                                     Thread.sleep(3000);
                                 }
-                                catch (Exception e){}
+                                catch (Exception e){
+                                    System.out.println(e);
+                                }
                                 continue;
                             }
                             break;
@@ -97,11 +97,12 @@ public class MethodManager {
     /** APi mention below is with no body */
 
     public SmartResponse postAPI_with_Assert_Statuscode1(String auth, String type,String URL) {
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = RestAssuredConfig.newConfig().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers(auth, type);
 
         Response resp =
-                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
+                given().config(config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
@@ -125,11 +126,12 @@ public class MethodManager {
     }
 
     public SmartResponse putAPI_with_Assert_Statuscode(String auth, String type,String URL, Object body){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = RestAssuredConfig.newConfig().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers(auth, type);
 
         Response resp =
-                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
+                given().config(config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")
@@ -154,11 +156,12 @@ public class MethodManager {
 
 
     public SmartResponse deleteAPI_with_Assert_Statuscode(String auth, String type,String URL){
-        RestAssured.config = RestAssured.config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = RestAssuredConfig.newConfig().httpClient(httpClientConfig().reuseHttpClientInstance());
         header.set_Headers(auth, type);
 
         Response resp =
-                given().config(RestAssured.config().sslConfig(sslConfig().allowAllHostnames()))
+                given().config(config().sslConfig(sslConfig().allowAllHostnames()))
                         .headers("Auth-Key",header.getAuthKey())
                         .headers("Content-Type",header.getType()).
                         //.contentType("application/json")

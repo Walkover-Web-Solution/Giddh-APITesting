@@ -29,19 +29,19 @@ public class StockGroupAPI {
          * Main test and api call initiated
          */
         SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStockGroup(),"stockgroup1","stockgroup1","");
-        if (response.getStatusCode() != HttpStatus.SC_CREATED){
-            HelperMethods.setAnsiRed("Create Stock Group Functionality Failed ");
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getJson());
-        }
-        else {
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+        if (response.getStatusCode() == HttpStatus.SC_CREATED){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
             stock_GroupName = jp.get("body.uniqueName");
             System.out.println(" Stock Group name is  " + stock_GroupName );
             HelperMethods.setAnsiGreen("Stock Group Created Successfully");
+
+        }
+        else {
+            HelperMethods.setAnsiRed("Create Stock Group Functionality Failed ");
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         }
     }
 
@@ -70,9 +70,9 @@ public class StockGroupAPI {
         SmartResponse response= methodManager.putAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName, body);
         if (response.getStatusCode() != HttpStatus.SC_OK){
             HelperMethods.setAnsiRed("Update Stock Group Functionality Failed ");
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
         }
         else {
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);

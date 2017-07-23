@@ -20,15 +20,14 @@ import java.util.*;
 import static com.api.smoke.TaxAPI.Tax_UniqueName;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.*;
 
 public class LedgerAPI {
 
     private LocalDate localDate = new LocalDate();
 
-    public static String ledger_UniqueName;
-    public static String ledger_UniqueName1;
+    static String ledger_UniqueName;
+    static String ledger_UniqueName1;
     private int count = 0;
 
     MethodManager methodManager = new MethodManager();

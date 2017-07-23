@@ -21,8 +21,8 @@ import static org.testng.Assert.assertNotNull;
 
 public class InvoiceAPI {
 
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
 
     private static String Invoice_Number;
 

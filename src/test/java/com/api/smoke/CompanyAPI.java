@@ -13,8 +13,6 @@ import com.apiUtils.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
-
-
 public class CompanyAPI {
 
     private ManageHeaders header = new ManageHeaders();
@@ -106,7 +104,7 @@ public class CompanyAPI {
     }
 
 
-    public void deleteCompany(){
+    private void deleteCompany(){
 
         /**
          * Main test and api call initiated

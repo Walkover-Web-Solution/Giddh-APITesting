@@ -3,6 +3,8 @@ package com.apiUtils;
 import com.model.ManageHeaders;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
+
 import static io.restassured.RestAssured.*;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static io.restassured.config.SSLConfig.sslConfig;
@@ -12,6 +14,21 @@ public class MethodManager {
 
     private ManageHeaders header = new ManageHeaders();
 
+
+    private void waitFunction(String respBody , int respCode){
+        while( true ) {
+            if(respBody ==  null && respCode < 0 ) {
+                try {
+                    Thread.sleep(3000);
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+                continue;
+            }
+            break;
+        }
+    }
 
     public SmartResponse getAPI_with_Assert_Statuscode(String auth, String type,String URL) {
         config = config().httpClient(httpClientConfig().reuseHttpClientInstance());
@@ -25,6 +42,7 @@ public class MethodManager {
                         //.contentType("application/json")
                 when().
                         get(URL);
+                        waitFunction(String.valueOf(resp.getBody()), resp.getStatusCode());
                         String json = resp.asString();
                         int statusCode = resp.getStatusCode();
         //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
@@ -56,6 +74,7 @@ public class MethodManager {
                         //.contentType("application/json")
                 when().
                         get(URL);
+                        waitFunction(String.valueOf(resp.getBody()), resp.getStatusCode());
                 String json = resp.asString();
                 int statusCode = resp.getStatusCode();
         //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
@@ -76,18 +95,7 @@ public class MethodManager {
                                 body(body).
                 when().
                         post(URL);
-                        while( true ) {
-                            if( resp.getBody() ==  null) {
-                                try {
-                                    Thread.sleep(3000);
-                                }
-                                catch (Exception e){
-                                    System.out.println(e);
-                                }
-                                continue;
-                            }
-                            break;
-                        }
+                        waitFunction(String.valueOf(resp.getBody()), resp.getStatusCode());
                 String json = resp.asString();
                 int statusCode = resp.getStatusCode();
         //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
@@ -108,16 +116,7 @@ public class MethodManager {
                         //.contentType("application/json")
                 when().
                         post(URL);
-                        while( true ) {
-                            if( resp.getBody() ==  null) {
-                                try {
-                                    Thread.sleep(3000);
-                                }
-                                catch (Exception e){}
-                                continue;
-                            }
-                            break;
-                        }
+                        waitFunction(String.valueOf(resp.getBody()), resp.getStatusCode());
                 String json = resp.asString();
                 int statusCode = resp.getStatusCode();
         //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
@@ -139,7 +138,7 @@ public class MethodManager {
                 when().
                         put(URL);
                         while( true ) {
-                            if( resp.getBody() ==  null) {
+                            if(resp.getBody() ==  null && resp.getStatusCode() < 0) {
                                 try {
                                     Thread.sleep(3000);
                                 }
@@ -167,6 +166,7 @@ public class MethodManager {
                         //.contentType("application/json")
                 when().
                         delete(URL);
+                        waitFunction(String.valueOf(resp.getBody()), resp.getStatusCode());
                 String json = resp.asString();
                 int statusCode = resp.getStatusCode();
         //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));

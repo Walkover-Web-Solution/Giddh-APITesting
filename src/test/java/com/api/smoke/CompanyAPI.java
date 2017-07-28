@@ -124,6 +124,7 @@ public class CompanyAPI {
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
         stockAccountAPI.deleteStock();
+        stockGroupAPI.delete_Stock_Group2();
         stockGroupAPI.delete_Stock_Group();
         deleteCompany();
     }

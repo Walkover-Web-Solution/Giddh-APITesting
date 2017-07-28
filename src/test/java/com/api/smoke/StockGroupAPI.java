@@ -3,6 +3,7 @@ package com.api.smoke;
 import com.apiUtils.*;
 import com.config.UrlConfig;
 import com.controller.StockGroupCreate;
+import groovy.ui.SystemOutputInterceptor;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
@@ -34,6 +35,7 @@ public class StockGroupAPI {
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
             stock_GroupName = jp.get("body.uniqueName");
+            //HelperMethods.setAnsiRed( "Create Stock Group 1 JSON:"+ json);
             System.out.println(" Stock Group name is  " + stock_GroupName );
             HelperMethods.setAnsiGreen("Stock Group Created Successfully");
 
@@ -58,6 +60,7 @@ public class StockGroupAPI {
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
             stock_GroupName2 = jp.get("body.uniqueName");
+           // HelperMethods.setAnsiRed( "Create Stock Group 2 JSON:"+ json);
             System.out.println(" Stock Sub Group name is  " + stock_GroupName2 );
             HelperMethods.setAnsiGreen("Stock Sub Group Created Successfully");
 
@@ -118,7 +121,7 @@ public class StockGroupAPI {
         if (response.getStatusCode() == HttpStatus.SC_OK){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
-            assertEquals( jp.get("body.results[0].uniqueName"), stock_GroupName);
+            assertEquals( jp.get("body.results[0].childStockGroups[0].uniqueName"), stock_GroupName2);
             HelperMethods.setAnsiGreen("Get Hierarchical Stock Groups Completed Successfully");
         }
         else {

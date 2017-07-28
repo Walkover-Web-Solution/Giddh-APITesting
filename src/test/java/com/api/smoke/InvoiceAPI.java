@@ -14,14 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.api.smoke.LedgerAPI.ledger_UniqueName;
+import static com.api.smoke.LedgerAPI.ledger_UniqueName1;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.*;
 import static org.testng.Assert.assertNotNull;
 
 public class InvoiceAPI {
 
-    MethodManager methodManager = new MethodManager();
-    UrlConfig config = create(UrlConfig.class);
+    private MethodManager methodManager = new MethodManager();
+    private UrlConfig config = create(UrlConfig.class);
 
     private static String Invoice_Number;
 
@@ -31,6 +32,7 @@ public class InvoiceAPI {
         assertNotNull(ledger_UniqueName);
         List<String> uniqueNames = new ArrayList<>();
         uniqueNames.add(ledger_UniqueName);
+        uniqueNames.add(ledger_UniqueName1);
         Invoice invoice = new Invoice(uniqueNames);
         String body = JsonUtil.toJsonAsString(invoice);
         SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createInvoice(), body);

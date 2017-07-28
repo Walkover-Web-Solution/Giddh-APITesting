@@ -20,28 +20,34 @@ import java.util.*;
 import static com.api.smoke.TaxAPI.Tax_UniqueName;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.*;
 
 public class LedgerAPI {
 
     private LocalDate localDate = new LocalDate();
 
-    public static String ledger_UniqueName;
-    public static String ledger_UniqueName1;
-    int count = 0;
+    static String ledger_UniqueName;
+    static String ledger_UniqueName1;
+    private int count = 0;
 
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
     @DataProvider
     private Object[][] getLedgerData(){
-        Object[][] amountValue = new  Object[1][2];
+        Object[][] amountValue = new  Object[2][1];
         amountValue[0][0]= BigDecimal.ONE;
-        amountValue[1][0]= new BigDecimal(10.3);
+        amountValue[1][0]= new BigDecimal(10.3).setScale(2,BigDecimal.ROUND_HALF_EVEN);
         return amountValue;
     }
 
+    @DataProvider
+    private Object[][] getLedgerUniqueName(){
+        Object[][] ledgerName = new  Object[2][1];
+        ledgerName[0][0]= ledger_UniqueName;
+        ledgerName[1][0]= ledger_UniqueName1;
+        return ledgerName;
+    }
 
     @Test(dataProvider = "getLedgerData")
     public void createLedger(BigDecimal amount) throws JsonProcessingException {
@@ -62,18 +68,16 @@ public class LedgerAPI {
         if (response.getStatusCode() == HttpStatus.SC_CREATED){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
-            count = count + 1;
+            count ++;
             assertEquals(jp.get("body[0].entryDate"),localDate.toString("dd-MM-yyyy"));
             if (count == 1){
-
                 ledger_UniqueName = jp.get("body[0].uniqueName");
-            }else {
-                HelperMethods.setAnsiRed( "Count value is  " + count);
+                HelperMethods.setAnsiGreen("First Ledger uniqueName is " + ledger_UniqueName);
+            } else {
                 ledger_UniqueName1 = jp.get("body[0].uniqueName");
+                HelperMethods.setAnsiGreen("Second Ledger uniqueName is " + ledger_UniqueName1);
             }
 
-
-            HelperMethods.setAnsiGreen("Ledger uniqueName is " + ledger_UniqueName);
             HelperMethods.setAnsiGreen("Create Ledger Functionality Completed Successfully ");
         }
         else {
@@ -83,38 +87,6 @@ public class LedgerAPI {
         }
     }
 
-
-
-//    @Test
-//    public void createLedger() throws JsonProcessingException {
-//        HelperMethods.setAnsiGreen("Started :- Create Ledger ");
-//        assertNotNull(Tax_UniqueName);
-//        List<String> taxes = new ArrayList<>();
-//        taxes.add(Tax_UniqueName);
-//
-//        List<TransactionInput> transactions = new ArrayList<>();
-//        transactions.add(new TransactionInput(BigDecimal.ONE, "sales", "debit"));
-//        Ledger ledger = new Ledger(transactions, localDate.toString("dd-MM-yyyy"), "sales", taxes);
-//        String body = JsonUtil.toJsonAsString(ledger);
-//
-//        /**
-//         * Main test and api call initiated
-//         */
-//        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createLedger(), body);
-//        if (response.getStatusCode() == HttpStatus.SC_CREATED){
-//            String json = response.getJson();
-//            JsonPath jp = new JsonPath(json);
-//            assertEquals(jp.get("body[0].entryDate"),localDate.toString("dd-MM-yyyy"));
-//            ledger_UniqueName= jp.get("body[0].uniqueName");
-//            HelperMethods.setAnsiGreen("Ledger uniqueName is " + ledger_UniqueName);
-//            HelperMethods.setAnsiGreen("Create Ledger Functionality Completed Successfully ");
-//        }
-//        else {
-//            HelperMethods.setAnsiRed("Create Ledger Functionality fails with Response Code = " +  response.getStatusCode());
-//            HelperMethods.setAnsiRed(response.getJson());
-//            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
-//        }
-//    }
 
     @Test
     public void createLedgerWithDecimal() throws JsonProcessingException {
@@ -146,13 +118,13 @@ public class LedgerAPI {
         }
     }
 
-    @Test(dependsOnMethods={"createLedger"})
-    public void getLedger(){
+    @Test(dataProvider = "getLedgerUniqueName", dependsOnMethods={"createLedger"})
+    public void getLedger(String uniqueName){
         HelperMethods.setAnsiGreen("Started :- Get Ledger ");
         /**
          * Main test and api call initiated
          */
-        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getLedger()+ledger_UniqueName);
+        SmartResponse response = methodManager.getAPI_with_Assert_Statuscode(null, null,config.getLedger()+uniqueName);
         HelperMethods.assertCode("Get Ledger", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
@@ -180,7 +152,6 @@ public class LedgerAPI {
             HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
         }
-
     }
 
     @Test(dependsOnMethods={"createLedger"})

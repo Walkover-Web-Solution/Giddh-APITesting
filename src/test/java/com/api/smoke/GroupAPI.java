@@ -97,7 +97,7 @@ public class GroupAPI {
         Map<String,String> body = new HashMap<>();
         body.put("name", "tgroup1");
         body.put("uniqueName", "tgroup1");
-        body.put("parentGroupUniqueName", "capital");
+        body.put("parentGroupUniqueName", "shareholdersfunds");
 
         /**
          * Main test and api call initiated

@@ -68,6 +68,7 @@
 				</methods>
 			</class>
 			<class name="com.api.smoke.TrialBalanceAPI"/>
+			<class name="com.api.smoke.ProfitAndLossAPI"/>
 			<class name="com.api.smoke.InvoiceAPI">
 				<methods>
 					<include name="createInvoice"/>

@@ -59,8 +59,8 @@ public class StockAccountAPI {
         updateStock [0][8]= "purchases";
         updateStock [0][9]= stock_UniqueName;
         updateStock [0][10]= "nos";
-        updateStock [0][11]= BigDecimal.ZERO;
-        updateStock [0][12]= BigDecimal.ZERO;
+        updateStock [0][11]= BigDecimal.TEN;
+        updateStock [0][12]= BigDecimal.TEN;
         updateStock [0][13]= BigDecimal.valueOf(1);
         updateStock [0][14]= "nos";
         updateStock [0][15]= stock_UniqueName;

@@ -63,6 +63,7 @@ public class MethodManager {
         if (search == null ){
             search = "";
         }
+
         Response resp =
                 given().config(config().sslConfig(sslConfig().allowAllHostnames())).
                         headers("Auth-Key",header.getAuthKey()).
@@ -71,6 +72,7 @@ public class MethodManager {
                         param("to", to).
                         param("q", search).
                         param("refresh", refresh).
+
                         //.contentType("application/json")
                 when().
                         get(URL);
@@ -79,6 +81,27 @@ public class MethodManager {
                 int statusCode = resp.getStatusCode();
         //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
                 return new SmartResponse(statusCode, json);
+    }
+
+    public SmartResponse getAPI_With_int_Params(String auth, String type, String URL, int financialYear, boolean refresh) {
+        config = config().httpClient(httpClientConfig().reuseHttpClientInstance());
+        config = RestAssuredConfig.newConfig().httpClient(httpClientConfig().reuseHttpClientInstance());
+        header.set_Headers(auth, type);
+
+
+               Response resp =
+                given().config(config().sslConfig(sslConfig().allowAllHostnames())).
+                        headers("Auth-Key",header.getAuthKey()).
+                        headers("Content-Type",header.getType()).
+                        param("refresh", refresh).
+                        param("financialYear", financialYear).
+                        //.contentType("application/json")
+                                when().
+                        get(URL);
+        String json = resp.asString();
+        int statusCode = resp.getStatusCode();
+        //RestAssured.config = RestAssuredConfig.config().connectionConfig(new ConnectionConfig().closeIdleConnectionsAfterEachResponseAfter(2, TimeUnit.MILLISECONDS));
+        return new SmartResponse(statusCode, json);
     }
 
 

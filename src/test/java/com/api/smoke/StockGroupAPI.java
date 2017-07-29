@@ -86,8 +86,8 @@ public class StockGroupAPI {
         HelperMethods.setAnsiGreen("Started :- Update Stock Group");
 
         Map<String,String> body = new HashMap<>();
-        body.put("name", "stockgroup");
-        body.put("uniqueName", "stockgroup");
+        body.put("name", "Stock Group 2");
+        body.put("uniqueName", "stockgroup2");
         body.put("parentStockGroupUniqueName", stock_GroupName1);
 
         /**
@@ -129,22 +129,12 @@ public class StockGroupAPI {
         }
     }
 
-    public void delete_Stock_Group2(){
-        HelperMethods.setAnsiGreen("Started :- Delete Stock Sub Group");
-        /**
-         * Main test and api call initiated
-         */
-        SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName2);
-        HelperMethods.assertCode("Delete Stock Sub Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
-    }
-
-
-    public void delete_Stock_Group(){
+    public void delete_Stock_Group(String stockName){
         HelperMethods.setAnsiGreen("Started :- Delete Stock Group");
         /**
          * Main test and api call initiated
          */
-        SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName1);
+        SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stockName);
         HelperMethods.assertCode("Delete Stock Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 

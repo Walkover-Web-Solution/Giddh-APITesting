@@ -14,6 +14,8 @@ import org.testng.annotations.*;
 import java.util.*;
 import com.apiUtils.*;
 
+import static com.api.smoke.StockGroupAPI.stock_GroupName1;
+import static com.api.smoke.StockGroupAPI.stock_GroupName2;
 import static io.restassured.config.HttpClientConfig.httpClientConfig;
 import static org.aeonbits.owner.ConfigFactory.create;
 
@@ -136,7 +138,7 @@ public class CompanyAPI {
     }
 
 
-    @AfterSuite
+    @AfterSuite()
     public void deleteSetup()throws Exception{
         HelperMethods.setAnsiGreen("Started :- Delete Setup ");
         RestAssured.reset();
@@ -144,8 +146,8 @@ public class CompanyAPI {
         accountAPI.deleteAccount();
         groupAPI.deleteGroup();
         stockAccountAPI.deleteStock();
-        stockGroupAPI.delete_Stock_Group2();
-        stockGroupAPI.delete_Stock_Group();
+        stockGroupAPI.delete_Stock_Group(stock_GroupName2);
+        stockGroupAPI.delete_Stock_Group(stock_GroupName1);
         deleteCompany();
     }
 

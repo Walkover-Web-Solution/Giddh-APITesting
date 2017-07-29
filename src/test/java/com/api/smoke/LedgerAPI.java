@@ -33,7 +33,6 @@ public class LedgerAPI {
     MethodManager methodManager = new MethodManager();
     UrlConfig config = create(UrlConfig.class);
 
-
     @DataProvider
     private Object[][] getLedgerData(){
         Object[][] amountValue = new  Object[2][1];
@@ -78,10 +77,42 @@ public class LedgerAPI {
                 ledger_UniqueName1 = jp.get("body[0].uniqueName");
                 HelperMethods.setAnsiGreen("Second Ledger uniqueName is " + ledger_UniqueName1);
             }
+
             HelperMethods.setAnsiGreen("Create Ledger Functionality Completed Successfully ");
         }
         else {
             HelperMethods.setAnsiRed("Create Ledger Functionality fails with Response Code = " +  response.getStatusCode());
+            HelperMethods.setAnsiRed(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+        }
+    }
+
+
+    @Test
+    public void createLedgerWithDecimal() throws JsonProcessingException {
+        HelperMethods.setAnsiGreen("Started :- Create Ledger With Decimal ");
+        assertNotNull(Tax_UniqueName);
+        List<String> taxes = new ArrayList<>();
+        taxes.add(Tax_UniqueName);
+        List<TransactionInput> transactions = new ArrayList<>();
+        transactions.add(new TransactionInput(new BigDecimal(10.3), "sales", "debit"));
+        Ledger ledger = new Ledger(transactions, localDate.toString("dd-MM-yyyy"), "sales", taxes);
+        String body = JsonUtil.toJsonAsString(ledger);
+
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response = methodManager.postAPI_with_Assert_Statuscode(null, null, config.createLedger(), body);
+        if (response.getStatusCode() == HttpStatus.SC_CREATED){
+            String json = response.getJson();
+            JsonPath jp = new JsonPath(json);
+            assertEquals(jp.get("body[0].entryDate"),localDate.toString("dd-MM-yyyy"));
+            ledger_UniqueName1 = jp.get("body[0].uniqueName");
+            HelperMethods.setAnsiGreen("Ledger uniqueName is " + ledger_UniqueName);
+            HelperMethods.setAnsiGreen("Create Ledger With Decimal Functionality Completed Successfully ");
+        }
+        else {
+            HelperMethods.setAnsiRed("Create Ledger Functionality  with Decimal fails with Response Code = " +  response.getStatusCode());
             HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
         }

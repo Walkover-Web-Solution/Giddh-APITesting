@@ -99,6 +99,9 @@ public interface UrlConfig extends  Config{
     @Key("trialBalance.Get")
     String getTrialbalance();
 
+    @Key("trialBalance.Get")
+    String getProfitandLoss();
+
     @Key("Flatten_Group_With_Accounts.Get")
     String get_Flatten_Group_With_Accounts();
 

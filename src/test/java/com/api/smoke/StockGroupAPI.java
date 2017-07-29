@@ -3,6 +3,7 @@ package com.api.smoke;
 import com.apiUtils.*;
 import com.config.UrlConfig;
 import com.controller.StockGroupCreate;
+import groovy.ui.SystemOutputInterceptor;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
@@ -21,6 +22,7 @@ public class StockGroupAPI {
     private StockGroupCreate stockGroupCreate = new StockGroupCreate();
 
     public static String stock_GroupName;
+    public static String stock_GroupName2;
 
     @Test
     public void create_Stock_Group() {
@@ -33,12 +35,38 @@ public class StockGroupAPI {
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
             stock_GroupName = jp.get("body.uniqueName");
+            //HelperMethods.setAnsiRed( "Create Stock Group 1 JSON:"+ json);
             System.out.println(" Stock Group name is  " + stock_GroupName );
             HelperMethods.setAnsiGreen("Stock Group Created Successfully");
 
         }
         else {
             HelperMethods.setAnsiRed("Create Stock Group Functionality Failed ");
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getJson());
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
+        }
+    }
+
+
+    @Test
+    public void create_Stock_Group2() {
+        HelperMethods.setAnsiGreen("Started :- Create Stock Sub Group ");
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response= stockGroupCreate.StcokGroupCreate(null, null, config.createStockGroup(),"stockgroup2","stockgroup2","stockgroup1");
+        if (response.getStatusCode() == HttpStatus.SC_CREATED){
+            String json = response.getJson();
+            JsonPath jp = new JsonPath(json);
+            stock_GroupName2 = jp.get("body.uniqueName");
+           // HelperMethods.setAnsiRed( "Create Stock Group 2 JSON:"+ json);
+            System.out.println(" Stock Sub Group name is  " + stock_GroupName2 );
+            HelperMethods.setAnsiGreen("Stock Sub Group Created Successfully");
+
+        }
+        else {
+            HelperMethods.setAnsiRed("Create Stock Sub Group Functionality Failed ");
             System.out.println(response.getStatusCode());
             System.out.println(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED);
@@ -93,7 +121,7 @@ public class StockGroupAPI {
         if (response.getStatusCode() == HttpStatus.SC_OK){
             String json = response.getJson();
             JsonPath jp = new JsonPath(json);
-            assertEquals( jp.get("body.results[0].uniqueName"), stock_GroupName);
+            assertEquals( jp.get("body.results[0].childStockGroups[0].uniqueName"), stock_GroupName2);
             HelperMethods.setAnsiGreen("Get Hierarchical Stock Groups Completed Successfully");
         }
         else {
@@ -101,6 +129,15 @@ public class StockGroupAPI {
             HelperMethods.setAnsiRed(response.getJson());
             Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
         }
+    }
+
+    public void delete_Stock_Group2(){
+        HelperMethods.setAnsiGreen("Started :- Delete Stock Sub Group");
+        /**
+         * Main test and api call initiated
+         */
+        SmartResponse response= methodManager.deleteAPI_with_Assert_Statuscode(null, null, config.createStockGroup() + stock_GroupName2);
+        HelperMethods.assertCode("Delete Stock Sub Group", response.getStatusCode(), HttpStatus.SC_OK, response.getJson());
     }
 
     public void delete_Stock_Group(){

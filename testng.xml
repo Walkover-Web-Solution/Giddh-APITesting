@@ -35,6 +35,7 @@
 			<class name="com.api.smoke.StockGroupAPI">
 				<methods>
 					<include name="create_Stock_Group"/>
+					<include name="create_Stock_Group2"/>
 					<include name="get_Stock_Group"/>
 					<include name="update_Stock_Group"/>
 					<include name="get_Hierarchical_Stock_Groups"/>
@@ -67,6 +68,7 @@
 				</methods>
 			</class>
 			<class name="com.api.smoke.TrialBalanceAPI"/>
+			<class name="com.api.smoke.ProfitAndLossAPI"/>
 			<class name="com.api.smoke.InvoiceAPI">
 				<methods>
 					<include name="createInvoice"/>

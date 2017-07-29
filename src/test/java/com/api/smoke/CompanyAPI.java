@@ -4,7 +4,11 @@ import com.config.UrlConfig;
 import com.controller.CompanyCreate;
 import com.model.ManageHeaders;
 import io.restassured.RestAssured;
+import io.restassured.config.HttpClientConfig;
+import io.restassured.config.RestAssuredConfig;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.SystemDefaultHttpClient;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import java.util.*;
@@ -24,6 +28,22 @@ public class CompanyAPI {
     private CompanyCreate create = new CompanyCreate();
     private StockGroupAPI stockGroupAPI = new StockGroupAPI();
     private StockAccountAPI stockAccountAPI = new StockAccountAPI();
+
+
+    @BeforeSuite
+    public void initialSetup(){
+        System.setProperty("http.maxConnections","200   ");
+        RestAssured.config = RestAssuredConfig.newConfig().httpClient(httpClientConfig().reuseHttpClientInstance().httpClientFactory(
+                new HttpClientConfig.HttpClientFactory() {
+                    @Override
+                    public HttpClient createHttpClient() {
+                        return new SystemDefaultHttpClient();
+                    }
+                }
+        ));
+
+    }
+
 
     @Test
     public void createCompany() throws Exception{

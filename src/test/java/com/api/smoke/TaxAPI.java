@@ -25,11 +25,9 @@ public class TaxAPI {
     private GroupCreate groupCreate = new GroupCreate();
     private AccountCreate accountCreate = new AccountCreate();
 
-    public static String Tax_UniqueName;
+    static String Tax_UniqueName;
 
-
-    @BeforeClass
-    public void TaxSetup() throws Exception{
+    private void taxSetup() throws Exception{
 
         SmartResponse response= groupCreate.GroupCreate(config.createGroup(),"Duties & Taxes", "duties_&_taxes", "currentliabilities");
         HelperMethods.assertCode("Group Created for TAX", response.getStatusCode(), HttpStatus.SC_CREATED, response.getJson());
@@ -41,7 +39,7 @@ public class TaxAPI {
     @Test
     public void addTax() throws  Exception{
         HelperMethods.setAnsiGreen("Started :- Create Tax");
-
+        taxSetup();
         List<TaxAccount> taxAccounts = new ArrayList<>();
         taxAccounts.add(new TaxAccount("vat"));
        // TaxAccount taxAccount = new TaxAccount("vat");
